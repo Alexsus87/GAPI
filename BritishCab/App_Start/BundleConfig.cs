@@ -9,7 +9,9 @@ namespace BritishCab
 		public static void RegisterBundles(BundleCollection bundles)
 		{
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-						"~/Scripts/jquery-{version}.js"));
+						"~/Scripts/jquery-{version}.js",
+						"~/Scripts/jquery-ui-{version}.js",
+						"~/Scripts/jquery.datetimepicker.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.validate*"));
@@ -29,7 +31,9 @@ namespace BritishCab
 					  "~/Content/bootstrap.css",
 					  "~/Content/bootstrap-datepicker.css",
 					  "~/Content/site.css",
-					  "~/Content/animations.css"));
+					  "~/Content/animations.css", 
+					  "~/Content/jquery-ui.css",
+					  "~/Content/jquery.datetimepicker.css"));
 		}
 	}
 }

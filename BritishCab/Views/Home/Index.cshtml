@@ -1,4 +1,4 @@
-﻿@model API_Functions.Models.BookingEntity
+﻿@model BookingEntity
 
 <script type="text/javascript">
 	$(function () { // will trigger when the document is ready
@@ -16,33 +16,52 @@
 		@Html.ValidationSummary(true)
 		@Html.HiddenFor(model => model.Id)
 
-	<script type="text/javascript">
-	google.maps.event.addDomListener(window, 'load', function () {
-		var places = new google.maps.places.Autocomplete(document.getElementById('pickUpLocation'));
-		google.maps.event.addListener(places, 'place_changed', function () {
-			var place = places.getPlace();
-			var address = place.formatted_address;
-			var latitude = place.geometry.location.lat();
-			var longitude = place.geometry.location.lng();
-			//var mesg = "Address: " + address;
-			//mesg += "\nLatitude: " + latitude;
-			//mesg += "\nLongitude: " + longitude;
-			//alert(mesg);
-		});
-	});
-	google.maps.event.addDomListener(window, 'load', function () {
-		var places = new google.maps.places.Autocomplete(document.getElementById('dropLocation'));})
-	</script>
+		<script type="text/javascript">
+			//$(document).ready(function () {
+			//	//$('input[type=datetime]').datetimepicker({
+			//	$('input[type=datetime]').datetimepicker({
+			//		dateFormat: "dd/M/yy",
+			//		changeMonth: true,
+			//		changeYear: true,
+			//		yearRange: "-60:+0"
+			//	});
+
+			//});
+
+				var options = {
+					types: ['(cities)'],
+					componentRestrictions: {country: "uk"}
+				};
+
+			google.maps.event.addDomListener(window, 'load', function () {
+				var places = new google.maps.places.Autocomplete(document.getElementById('pickUpLocation'), options);
+				google.maps.event.addListener(places, 'place_changed', function () {
+					var place = places.getPlace();
+					var address = place.formatted_address;
+					var latitude = place.geometry.location.lat();
+					var longitude = place.geometry.location.lng();
+					//var mesg = "Address: " + address;
+					//mesg += "\nLatitude: " + latitude;
+					//mesg += "\nLongitude: " + longitude;
+					//alert(mesg);
+				});
+			});
+			google.maps.event.addDomListener(window, 'load', function () {
+				var places = new google.maps.places.Autocomplete(document.getElementById('dropLocation'));})
+		</script>
 
 	<table class="table table-striped table-hover">
 		<tr>
-			@Html.TextBoxFor(model => model.PickUpLocation, new { id = "pickUpLocation"})
+			@Html.TextBoxFor(model => model.PickUpLocation, new { @class = "form-control", id = "pickUpLocation" })
 		</tr>
 		<tr>
 			@Html.TextBoxFor(model => model.PickUpDateTime, new { @class = "form-control datepicker", placeholder = "Choose pick up date" })
 		</tr>
 		<tr>
-			@Html.TextBoxFor(model => model.DropLocation, new { id = "dropLocation"})
+			@Html.TextBoxFor(model => model.PickUpTime, new { @class = "form-control", placeholder = "Choose pick up time" })
+		</tr>
+		<tr>
+			@Html.TextBoxFor(model => model.DropLocation, new { @class = "form-control", id = "dropLocation" })
 		</tr>
 	</table>
 		<button type="submit" class="btn btn-primary">Check Availability</button>

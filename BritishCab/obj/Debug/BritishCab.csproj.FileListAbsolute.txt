@@ -84,3 +84,10 @@ C:\Users\v-olniko\Documents\Visual Studio 2013\Projects\GAPI\BritishCab\bin\Goog
 C:\Users\v-olniko\Documents\Visual Studio 2013\Projects\GAPI\BritishCab\bin\Google.Apis.Auth.PlatformServices.xml
 C:\Users\v-olniko\Documents\Visual Studio 2013\Projects\GAPI\BritishCab\bin\log4net.xml
 C:\Users\v-olniko\Documents\Visual Studio 2013\Projects\GAPI\BritishCab\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\BouncyCastle.Crypto.dll
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\System.Net.Http.Extensions.dll
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\BouncyCastle.Crypto.pdb
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\Microsoft.Threading.Tasks.Extensions.xml
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\System.Net.Http.Extensions.xml
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\obj\Debug\BritishCab.csproj.App.config
