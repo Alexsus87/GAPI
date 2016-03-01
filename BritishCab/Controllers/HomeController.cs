@@ -22,12 +22,22 @@ namespace BritishCab.Controllers
 			ApiMethods Api = new ApiMethods();
 			DistanceMatrix dm = new DistanceMatrix();
 			dm = Api.GetDrivingDistanceInKilometers(booking.PickUpLocation, booking.DropLocation);
+			if (dm.ErrorBit)
+			{
+				booking.ErrorMessage = "Please check spelling on locations";
+				ViewBag.Error = "Please check spelling on locations";
+				return View(booking);
+			}
 			booking.DrivingDistance = dm.TravelDistance;
 			booking.TransferTime = TimeSpan.FromSeconds( dm.TravelTime);
-			Api.InsertEventToCalendar("Test booking", booking.PickUpLocation, new DateTime(2016, 02, 29, 14, 15, 0), new DateTime(2016, 02, 29, 14, 30, 0));
-			return View("Booking",booking);
+			//Api.InsertEventToCalendar("Test booking", booking.PickUpLocation, new DateTime(2016, 02, 29, 14, 15, 0), new DateTime(2016, 02, 29, 14, 30, 0));
+			return RedirectToAction("Booking",booking);
 		}
 
+		public ActionResult Booking(BookingEntity booking)
+		{
+			return View(booking);
+		}
 		public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";

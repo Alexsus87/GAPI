@@ -72,17 +72,29 @@ namespace BritishCab
 			response.Close();
 
 			XmlDocument xmldoc = new XmlDocument();
+			DistanceMatrix dm = new DistanceMatrix();
 			xmldoc.LoadXml(responsereader);
 
 
 			if (xmldoc.GetElementsByTagName("status")[0].ChildNodes[0].InnerText == "OK")
 			{
-				XmlNodeList distance = xmldoc.GetElementsByTagName("distance");
-				XmlNodeList drivingTime = xmldoc.GetElementsByTagName("duration");
-				DistanceMatrix dm = new DistanceMatrix();
-				dm.TravelTime = Convert.ToDouble(drivingTime[0].ChildNodes[0].InnerText);
-				dm.TravelDistance = Convert.ToInt32(distance[0].ChildNodes[1].InnerText.Replace(" km", ""));
-				return dm;
+				try
+				{
+					XmlNodeList distance = xmldoc.GetElementsByTagName("distance");
+					XmlNodeList drivingTime = xmldoc.GetElementsByTagName("duration");
+	
+					dm.TravelTime = Convert.ToDouble(drivingTime[0].ChildNodes[0].InnerText);
+					dm.TravelDistance = Convert.ToInt32(distance[0].ChildNodes[1].InnerText.Replace(" km", ""));
+					dm.ErrorBit = false;
+					return dm;
+				}
+				catch (Exception)
+				{
+
+					dm.ErrorBit = true;
+					return dm;
+				}
+				
 			}
 
 			return null;

@@ -11,7 +11,9 @@ namespace BritishCab
 	public class BookingEntity
 	{
 		public int Id { get; set; }
+		[Required(ErrorMessage = "Pick Up location cannot be empty")]
 		public string PickUpLocation { get; set; }
+		[Required(ErrorMessage = "Drop location cannot be empty")]
 		public string DropLocation { get; set; }
 		[DisplayName("Pick up date")]
 		//[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{yyyy,MM,dd,HH,mm,ss}")]
@@ -23,5 +25,6 @@ namespace BritishCab
 		public TimeSpan TotalTime { get; set; }
 		public int DrivingDistance { get; set; }
 		public int TotalDrivingDistance { get; set; }
+		public string ErrorMessage { get; set; }
 	}
 }
