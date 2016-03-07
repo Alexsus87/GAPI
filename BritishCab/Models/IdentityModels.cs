@@ -24,7 +24,7 @@ namespace BritishCab.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
+ 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

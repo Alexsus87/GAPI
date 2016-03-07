@@ -1,4 +1,4 @@
-﻿@model BookingEntity
+﻿@model BritishCab.Models.BookingEntity
 
 @{
 	ViewBag.Title = "Booking";
@@ -14,7 +14,7 @@
 		<h4>BookingEntity</h4>
 		<hr />
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		@Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.BookingEntityId)
 
 		<div class="form-group">
 			@Html.LabelFor(model => model.PickUpLocation, htmlAttributes: new { @class = "control-label col-md-2" })

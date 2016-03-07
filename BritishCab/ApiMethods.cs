@@ -13,7 +13,7 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
-using API_Functions.Models;
+using BritishCab.Models;
 
 namespace BritishCab
 {
@@ -101,22 +101,22 @@ namespace BritishCab
 			return null;
 		}
 
-		public void InsertEventToCalendar(string eventTitle, string pickUpCity, DateTime pickUpDateTime, DateTime estimateDropDateTime)
+		public void InsertEventToCalendar(BookingEntity booking)
 		{
 			//Inserting event to calendar
 			Event event1 = new Event()
 			{
-				Summary = eventTitle,
-				Location = pickUpCity,
+				Summary = String.Format("Route: {0} - {1}, Client: {2}",booking.PickUpLocation, booking.DropLocation, booking.Name),
+				Location = booking.PickUpLocation,
 				Start = new EventDateTime()
 				{
-					DateTime = pickUpDateTime,
+					DateTime = booking.PickUpDateTime,
 					//DateTime = new DateTime(2015, 12, 11, 14, 15, 0),
 					TimeZone = "Europe/London"
 				},
 				End = new EventDateTime()
 				{
-					DateTime = estimateDropDateTime,
+					DateTime = booking.PickUpDateTime.Add(booking.TransferTime),
 					//DateTime = new DateTime(2015, 12, 11, 15, 15, 0),
 					TimeZone = "Europe/London"
 				},
@@ -172,7 +172,7 @@ namespace BritishCab
 			return events;
 		}
 
-		public bool SendEmailViaGmail(string emailTo)
+		public bool SendEmailViaGmail(BookingEntity booking, bool isFinal)
 		{
 			SmtpClient client = new SmtpClient();
 			client.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -190,11 +190,19 @@ namespace BritishCab
 
 			MailMessage msg = new MailMessage();
 			msg.From = new MailAddress("driverfrombritain@gmail.com");
-			msg.To.Add(new MailAddress(emailTo));
+			msg.To.Add(new MailAddress(booking.Email));
 
-			msg.Subject = "This is a test Email subject";
 			msg.IsBodyHtml = true;
-			msg.Body = string.Format("<html><head></head><body><b>Test HTML Email</b></body>");
+			if (isFinal)
+			{
+				msg.Subject = "Booking information";
+				msg.Body = "<html><head></head><body><b>Thanks for booking! We will be in touch with you shortly!</b></body>";
+			}
+			else
+			{
+				msg.Subject = "This is a test Email subject";
+				msg.Body = string.Format("<html><head></head><body><b>?confirmation={0}</b></body>", booking.ConfirmationCode);
+			}
 
 			try
 			{

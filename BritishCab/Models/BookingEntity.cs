@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BritishCab
+namespace BritishCab.Models
 {
 	public class BookingEntity
 	{
-		public int Id { get; set; }
+		public int BookingEntityId { get; set; }
 		[Required(ErrorMessage = "Pick Up location cannot be empty")]
 		public string PickUpLocation { get; set; }
 		[Required(ErrorMessage = "Drop location cannot be empty")]
@@ -29,5 +29,9 @@ namespace BritishCab
 		public string Email { get; set; }
 		public bool IsSlotAvailable { get; set; }
 		public bool IsSlotCheckWasMade { get; set; }
+		public string Name { get; set; }
+		public double Price { get; set; }
+		public Guid ConfirmationCode { get; set; }
+
 	}
 }

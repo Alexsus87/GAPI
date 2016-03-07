@@ -1,4 +1,4 @@
-﻿@model BookingEntity
+﻿@model BritishCab.Models.BookingEntity
 
 <script type="text/javascript">
 	$(function () { // will trigger when the document is ready
@@ -18,7 +18,7 @@
 	{
 		@Html.AntiForgeryToken()
 		@Html.ValidationSummary(true)
-		@Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.BookingEntityId)
 
 		<script type="text/javascript">
 			//$(document).ready(function () {
