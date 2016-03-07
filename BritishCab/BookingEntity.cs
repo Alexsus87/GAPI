@@ -16,7 +16,6 @@ namespace BritishCab
 		[Required(ErrorMessage = "Drop location cannot be empty")]
 		public string DropLocation { get; set; }
 		[DisplayName("Pick up date")]
-		//[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{yyyy,MM,dd,HH,mm,ss}")]
 		public DateTime PickUpDateTime { get; set; }
 		[DisplayName("Pick up time")]
 		public DateTime PickUpTime { get; set; }
@@ -26,5 +25,9 @@ namespace BritishCab
 		public int DrivingDistance { get; set; }
 		public int TotalDrivingDistance { get; set; }
 		public string ErrorMessage { get; set; }
+		public string PhoneNumber { get; set; }
+		public string Email { get; set; }
+		public bool IsSlotAvailable { get; set; }
+		public bool IsSlotCheckWasMade { get; set; }
 	}
 }

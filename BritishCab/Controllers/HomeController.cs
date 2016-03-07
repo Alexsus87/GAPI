@@ -11,15 +11,19 @@ namespace BritishCab.Controllers
 {
 	public class HomeController : Controller
 	{
+		private ApiMethods Api = new ApiMethods();
+
 		[HttpGet]
 		public ActionResult Index()
 		{
+			var queryValues = Request.QueryString.Get("confirmation");
+			var securityCode = Guid.NewGuid();
+
 			return View();
 		}
 		[HttpPost]
 		public ActionResult Index(BookingEntity booking)
 		{
-			ApiMethods Api = new ApiMethods();
 			DistanceMatrix dm = new DistanceMatrix();
 			dm = Api.GetDrivingDistanceInKilometers(booking.PickUpLocation, booking.DropLocation);
 			if (dm.ErrorBit)
@@ -34,10 +38,25 @@ namespace BritishCab.Controllers
 			return RedirectToAction("Booking",booking);
 		}
 
+
 		public ActionResult Booking(BookingEntity booking)
 		{
+			if (!booking.IsSlotCheckWasMade)
+			{
+				var events = Api.GetEventsFromCalendar(booking.PickUpDateTime, booking.PickUpDateTime.Add(booking.TransferTime));
+				if (events.Items != null && events.Items.Count > 0)
+				{
+					booking.IsSlotAvailable = false;
+				}
+				else
+				{
+					booking.IsSlotAvailable = true;
+				}
+				booking.IsSlotCheckWasMade = true;
+			}
 			return View(booking);
 		}
+
 		public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";

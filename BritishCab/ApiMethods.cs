@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -169,6 +170,42 @@ namespace BritishCab
 			// List events.
 			Events events = request.Execute();
 			return events;
+		}
+
+		public bool SendEmailViaGmail(string emailTo)
+		{
+			SmtpClient client = new SmtpClient();
+			client.DeliveryMethod = SmtpDeliveryMethod.Network;
+			client.EnableSsl = true;
+			client.Host = "smtp.gmail.com";
+			client.Port = 587;
+
+			var securityCode = new Guid();
+
+			// setup Smtp authentication
+			NetworkCredential credentials =
+				new NetworkCredential("driverfrombritain@gmail.com", "T!T@n1130");
+			client.UseDefaultCredentials = false;
+			client.Credentials = credentials;
+
+			MailMessage msg = new MailMessage();
+			msg.From = new MailAddress("driverfrombritain@gmail.com");
+			msg.To.Add(new MailAddress(emailTo));
+
+			msg.Subject = "This is a test Email subject";
+			msg.IsBodyHtml = true;
+			msg.Body = string.Format("<html><head></head><body><b>Test HTML Email</b></body>");
+
+			try
+			{
+				client.Send(msg);
+				return true;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
+
 		}
 	}
 }
