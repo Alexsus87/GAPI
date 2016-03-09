@@ -19,7 +19,7 @@ namespace BritishCab.Controllers
 			var queryValues = Request.QueryString.Get("confirmation");
 			Guid securityCode;
 			
-			if (Guid.TryParse(queryValues, out securityCode))
+			if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
 			{
 				using (var db = new DefaultContext())
 				{
@@ -33,13 +33,15 @@ namespace BritishCab.Controllers
 							Api.InsertEventToCalendar(bookingInfo);
 						}
 						Api.SendEmailViaGmail(bookingInfo, true);
+						bookingInfo.ConfirmationCode = Guid.Empty;
+						db.SaveChanges();
 					}
+					return View("Confirmation");
 				}
 			}
-			
-
 			return View();
 		}
+
 		[HttpPost]
 		public ActionResult Index(BookingEntity booking)
 		{
@@ -53,7 +55,7 @@ namespace BritishCab.Controllers
 			}
 			booking.DrivingDistance = dm.TravelDistance;
 			booking.TransferTime = TimeSpan.FromSeconds( dm.TravelTime);
-			//Api.InsertEventToCalendar("Test booking", booking.PickUpLocation, new DateTime(2016, 02, 29, 14, 15, 0), new DateTime(2016, 02, 29, 14, 30, 0));
+
 			return RedirectToAction("Booking",booking);
 		}
 
@@ -85,6 +87,7 @@ namespace BritishCab.Controllers
 					db.SaveChanges();
 				}
 				Api.SendEmailViaGmail(booking, false);
+				return View("Submit");
 			}
 			return View(booking);
 		}
