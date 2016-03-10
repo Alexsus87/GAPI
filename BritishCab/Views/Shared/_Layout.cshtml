@@ -14,81 +14,81 @@
 	<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
 
 	<!-- Font Awesome CSS -->
-	<link href="fonts/font-awesome.css" rel="stylesheet">
+	<link href="~/fonts/font-awesome.css" rel="stylesheet">
 	<!-- Fontello CSS -->
-	<link href="fonts/fontello.css" rel="stylesheet">
+	<link href="~/fonts/fontello.css" rel="stylesheet">
 
 	<!-- Plugins -->
-	<link href="Content/plugins/magnific-popup.css" rel="stylesheet">
-	<link href="Content/plugins/settings.css" rel="stylesheet">
+	<link href="~/Content/plugins/magnific-popup.css" rel="stylesheet">
+	<link href="~/Content/plugins/settings.css" rel="stylesheet">
 	@*<link href="Content/animations.css" rel="stylesheet">*@
-	<link href="Content/plugins/owl.carousel.css" rel="stylesheet">
-	<link href="Content/plugins/owl.transitions.css" rel="stylesheet">
-	<link href="Content/plugins/hover-min.css" rel="stylesheet">
-	<link href="Content/plugins/morphext.css" rel="stylesheet">
+	<link href="~/Content/plugins/owl.carousel.css" rel="stylesheet">
+	<link href="~/Content/plugins/owl.transitions.css" rel="stylesheet">
+	<link href="~/Content/plugins/hover-min.css" rel="stylesheet">
+	<link href="~/Content/plugins/morphext.css" rel="stylesheet">
+	<script type="text/javascript" src="~/Content/plugins/owl.carousel.js"></script>
 
 	<!-- the project core CSS file -->
-	<link href="Content/style.css" rel="stylesheet">
+	<link href="~/Content/style.css" rel="stylesheet">
 	<!-- Color Scheme (In order to change the color scheme, replace the blue.css with the color scheme that you prefer)-->
-	<link href="Content/light_blue.css" rel="stylesheet">
+	<link href="~/Content/light_blue.css" rel="stylesheet">
 	<!-- Custom css -->
-	<link href="Content/custom.css" rel="stylesheet">
+	<link href="~/Content/custom.css" rel="stylesheet">
 
 </head>
 <body class="no-trans front-page transparent-header  ">
-	<div class="page-wrapper">
-		<div class="header-container">
-			<div class="header  fixed  dark clearfix">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3">
-							<!-- header-left start -->
-							<!-- ================ -->
-							<div class="header-left clearfix">
-								<!-- logo -->
-								<div id="logo" class="logo">
-									<a href="index.html"><img id="logo_img" src="Content/Images/logo_light_blue.png" alt="The Project"></a>
-								</div>
-								<!-- name-and-slogan -->
-								<div class="site-slogan">
-									Multipurpose HTML5 Template
-								</div>
+<div class="page-wrapper">
+	<div class="header-container">
+		<div class="header  fixed  dark clearfix">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<!-- header-left start -->
+						<!-- ================ -->
+						<div class="header-left clearfix">
+							<!-- logo -->
+							<div id="logo" class="logo">
+								<a href="index.html"><img id="logo_img" src="Content/Images/logo_light_blue.png" alt="The Project"></a>
 							</div>
-							<!-- header-left end -->
+							<!-- name-and-slogan -->
+							<div class="site-slogan">
+								Multipurpose HTML5 Template
+							</div>
 						</div>
-						@*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<!-- header-left end -->
+					</div>
+					@*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
 				@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
 
-						<div class="col-md-9">
-							<div class="header-right clearfix">
-								<div class="main-navigation  animated with-dropdown-buttons">
-									<nav class="navbar navbar-default" role="navigation">
-										<div class="container-fluid">
-											<!-- Toggle get grouped for better mobile display -->
-											<div class="navbar-header">
-												<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-													<span class="sr-only">Toggle navigation</span>
-													<span class="icon-bar"></span>
-													<span class="icon-bar"></span>
-													<span class="icon-bar"></span>
-												</button>
+					<div class="col-md-9">
+						<div class="header-right clearfix">
+							<div class="main-navigation  animated with-dropdown-buttons">
+								<nav class="navbar navbar-default" role="navigation">
+									<div class="container-fluid">
+										<!-- Toggle get grouped for better mobile display -->
+										<div class="navbar-header">
+											<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+												<span class="sr-only">Toggle navigation</span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+												<span class="icon-bar"></span>
+											</button>
 
-											</div>
-											<div class="collapse navbar-collapse" id="navbar-collapse-1">
-												<ul class="nav navbar-nav">
-													<li>@Html.ActionLink("Home", "Index", "Home")</li>
-													<li>@Html.ActionLink("About", "About", "Home")</li>
-													<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-												</ul>
-												@*@Html.Partial("_LoginPartial")*@
-											</div>
 										</div>
-									</nav>
-								</div>
+										<div class="collapse navbar-collapse" id="navbar-collapse-1">
+											<ul class="nav navbar-nav">
+												<li>@Html.ActionLink("Home", "Index", "Home")</li>
+												<li>@Html.ActionLink("About", "About", "Home")</li>
+												<li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+											</ul>
+											@*@Html.Partial("_LoginPartial")*@
+										</div>
+									</div>
+								</nav>
 							</div>
 						</div>
 					</div>
@@ -96,16 +96,21 @@
 			</div>
 		</div>
 	</div>
-	<div class="container body-content">
-		@RenderBody()
-		<hr />
-		<footer>
-			<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-		</footer>
+</div>
+	<div>
+		@*<div class="container body-content">*@
+			@RenderBody()
+			<hr />
+			<footer>
+				<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+			</footer>
+
 	</div>
 
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/bundles/bootstrap")
 	@RenderSection("scripts", required: false)
+	<!-- Initialization of Plugins -->
+	<script type="text/javascript" src="~/Scripts/template.js"></script>
 </body>
 </html>

@@ -11,7 +11,21 @@ namespace BritishCab
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
 						"~/Scripts/jquery-{version}.js",
 						"~/Scripts/jquery-ui-{version}.js",
-						"~/Scripts/jquery.datetimepicker.js"));
+						"~/Scripts/jquery.datetimepicker.js",
+						"~/Content/plugins/jquery.themepunch.tools.min.js",
+						"~/Content/plugins/jquery.themepunch.revolution.min.js",
+						"~/Content/plugins/isotope.pkgd.min.js",
+						"~/Content/plugins/jquery.magnific-popup.min.js",
+						"~/Content/plugins/jquery.waypoints.min.js",
+						"~/Content/plugins/jquery.parallax-1.1.3.js",
+						"~/Content/plugins/jquery.validate.js",
+						"~/Content/plugins/morphext.min.js",
+						"~/Content/plugins/jquery.vide.js",
+						"~/Content/plugins/owl.carousel.js",
+						"~/Content/plugins/jquery.browser.js",
+						"~/Content/plugins/SmoothScroll.js",
+						"~/Scripts/template.js",
+						"~/Scripts/custom.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.validate*"));
@@ -22,10 +36,10 @@ namespace BritishCab
 						"~/Scripts/modernizr-*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-					  "~/Scripts/bootstrap.js",
-					  "~/Scripts/bootstrap-datepicker.js",
-					  "~/Scripts/respond.js",
-					  "~/Scripts/npm.js"));
+				"~/Scripts/bootstrap.js",
+				"~/Scripts/bootstrap-datepicker.js",
+				"~/Scripts/respond.js"));
+					//  "~/Scripts/npm.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap.css",
