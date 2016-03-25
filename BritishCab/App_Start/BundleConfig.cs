@@ -39,15 +39,19 @@ namespace BritishCab
 				"~/Scripts/bootstrap.js",
 				"~/Scripts/bootstrap-datepicker.js",
 				"~/Scripts/respond.js"));
-					//  "~/Scripts/npm.js"));
+			//  "~/Scripts/npm.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
+					  "~/fonts/font-awesome/css/font-awesome.css",
+					  "~/fonts/fontello/css/fontello.css",
 					  "~/Content/bootstrap.css",
+					  "~/Content/style.css",
 					  "~/Content/bootstrap-datepicker.css",
 					  "~/Content/site.css",
-					  "~/Content/animations.css", 
+					  "~/Content/animations.css",
 					  "~/Content/jquery-ui.css",
-					  "~/Content/jquery.datetimepicker.css"));
+					  "~/Content/jquery.datetimepicker.css",
+					  "~/Content/bootstrap-theme.css"));
 		}
 	}
 }
