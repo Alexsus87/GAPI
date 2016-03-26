@@ -85,7 +85,7 @@ namespace BritishCab
 					XmlNodeList drivingTime = xmldoc.GetElementsByTagName("duration");
 	
 					dm.TravelTime = Convert.ToDouble(drivingTime[0].ChildNodes[0].InnerText);
-					dm.TravelDistance = Convert.ToInt32(distance[0].ChildNodes[1].InnerText.Replace(" km", ""));
+					dm.TravelDistance = Convert.ToDouble(distance[0].ChildNodes[1].InnerText.Replace(" km", ""));
 					dm.ErrorBit = false;
 					return dm;
 				}
@@ -172,7 +172,7 @@ namespace BritishCab
 			return events;
 		}
 
-		public bool SendEmailViaGmail(BookingEntity booking, bool isFinal)
+		public bool SendEmailViaGmail(BookingEntity booking, bool isFinal, string localUrl)
 		{
 			SmtpClient client = new SmtpClient();
 			client.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -201,7 +201,7 @@ namespace BritishCab
 			else
 			{
 				msg.Subject = "This is a test Email subject";
-				msg.Body = string.Format("<html><head></head><body><b>?confirmation={0}</b></body>", booking.ConfirmationCode);
+				msg.Body = string.Format("<html><head></head><body><b>{0}?confirmation={1}</b></body>", localUrl, booking.ConfirmationCode);
 			}
 
 			try

@@ -16,29 +16,6 @@ namespace BritishCab.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
-			var queryValues = Request.QueryString.Get("confirmation");
-			Guid securityCode;
-			
-			if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
-			{
-				using (var db = new DefaultContext())
-				{
-					var bookingInfo = (from booking in db.BookingEntities
-						where booking.ConfirmationCode == securityCode
-						select booking).FirstOrDefault();
-					if (bookingInfo != null)
-					{
-						if (bookingInfo.IsSlotAvailable)
-						{
-							Api.InsertEventToCalendar(bookingInfo);
-						}
-						Api.SendEmailViaGmail(bookingInfo, true);
-						bookingInfo.ConfirmationCode = Guid.Empty;
-						db.SaveChanges();
-					}
-					return View("Confirmation");
-				}
-			}
 			return View();
 		}
 
@@ -53,7 +30,8 @@ namespace BritishCab.Controllers
 				ViewBag.Error = "Please check spelling on locations";
 				return View(booking);
 			}
-			booking.DrivingDistance = dm.TravelDistance;
+			var distance = Convert.ToInt32(Math.Round(dm.TravelDistance));
+			booking.DrivingDistance = distance;
 			booking.TransferTime = TimeSpan.FromSeconds( dm.TravelTime);
 
 			return RedirectToAction("Booking",booking);
@@ -62,6 +40,32 @@ namespace BritishCab.Controllers
 
 		public ActionResult Booking(BookingEntity booking)
 		{
+			#region Confirming the order
+			var queryValues = Request.QueryString.Get("confirmation");
+			Guid securityCode;
+
+			if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
+			{
+				using (var db = new DefaultContext())
+				{
+					var bookingInfo = (from DBbooking in db.BookingEntities
+									   where DBbooking.ConfirmationCode == securityCode
+									   select DBbooking).FirstOrDefault();
+					if (bookingInfo != null)
+					{
+						if (bookingInfo.IsSlotAvailable)
+						{
+							Api.InsertEventToCalendar(bookingInfo);
+						}
+						Api.SendEmailViaGmail(bookingInfo, true, null);
+						bookingInfo.ConfirmationCode = Guid.Empty;
+						db.SaveChanges();
+					}
+					return View("Confirmation");
+				}
+			}
+			#endregion
+
 			if (!booking.IsSlotCheckWasMade)
 			{
 				var events = Api.GetEventsFromCalendar(booking.PickUpDateTime, booking.PickUpDateTime.Add(booking.TransferTime));
@@ -86,7 +90,8 @@ namespace BritishCab.Controllers
 					db.BookingEntities.Add(booking);
 					db.SaveChanges();
 				}
-				Api.SendEmailViaGmail(booking, false);
+				var Url = HttpContext.Request.Url.ToString();
+				Api.SendEmailViaGmail(booking, false, Url);
 				return View("Submit");
 			}
 			return View(booking);
