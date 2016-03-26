@@ -217,6 +217,15 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Migrations\201603071440352_InitialCreate.cs" />
+    <Compile Include="Migrations\201603071440352_InitialCreate.Designer.cs">
+      <DependentUpon>201603071440352_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603261202419_Added-Comments.cs" />
+    <Compile Include="Migrations\201603261202419_Added-Comments.Designer.cs">
+      <DependentUpon>201603261202419_Added-Comments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingEntity.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -513,6 +522,14 @@
       <Project>{50e7897e-e482-4ff4-8af8-d5dfa22a6307}</Project>
       <Name>LogicLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603071440352_InitialCreate.resx">
+      <DependentUpon>201603071440352_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603261202419_Added-Comments.resx">
+      <DependentUpon>201603261202419_Added-Comments.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

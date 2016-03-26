@@ -18,13 +18,11 @@ namespace BritishCab.Models
 		[DisplayName("Pick up date")]
 		public DateTime PickUpDateTime { get; set; }
 		[DisplayName("Pick up time")]
-		//Can be deleted
-		public DateTime PickUpTime { get; set; }
 		public DateTime DriverActualDepartureTime { get; set; }
 		public TimeSpan TransferTime { get; set; }
 		public TimeSpan TotalTime { get; set; }
-		public int DrivingDistance { get; set; }
-		public int TotalDrivingDistance { get; set; }
+		public double DrivingDistance { get; set; }
+		public double TotalDrivingDistance { get; set; }
 		public string ErrorMessage { get; set; }
 		public string PhoneNumber { get; set; }
 		public string Email { get; set; }
@@ -33,6 +31,7 @@ namespace BritishCab.Models
 		public string Name { get; set; }
 		public double Price { get; set; }
 		public Guid ConfirmationCode { get; set; }
+		public string Comments { get; set; }
 
 	}
 }

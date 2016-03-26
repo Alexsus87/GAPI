@@ -127,7 +127,7 @@ namespace BritishCab
 				}
 
 			}
-			return distanceMatrix;
+			return dm;
 		}
 
 		public void InsertEventToCalendar(BookingEntity booking)

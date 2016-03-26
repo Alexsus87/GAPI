@@ -31,10 +31,14 @@ namespace BritishCab.Controllers
 				ViewBag.Error = "Please check spelling on locations";
 				return View(booking);
 			}
-			var distance = Convert.ToInt32(Math.Round(dm.TravelDistance));
-			booking.DrivingDistance = distance;
-			booking.TransferTime = TimeSpan.FromSeconds( dm.TravelTime);
 
+			booking.DrivingDistance = dm.TravelDistance;
+			booking.TransferTime = TimeSpan.FromSeconds( dm.TravelTime);
+			TimeSpan GetToOrigin = TimeSpan.FromSeconds(dm.HomeToOriginTime);
+			booking.DriverActualDepartureTime = booking.PickUpDateTime.Subtract(GetToOrigin);
+			booking.TotalDrivingDistance = dm.TotalTravelDistance;
+			TimeSpan totalTime = TimeSpan.FromSeconds(dm.TotalTravelTime);
+			booking.TotalTime = totalTime;
 			return RedirectToAction("Booking",booking);
 		}
 
@@ -69,7 +73,7 @@ namespace BritishCab.Controllers
 
 			if (!booking.IsSlotCheckWasMade)
 			{
-				var events = Api.GetEventsFromCalendar(booking.PickUpDateTime, booking.PickUpDateTime.Add(booking.TransferTime));
+				var events = Api.GetEventsFromCalendar(booking.DriverActualDepartureTime, booking.DriverActualDepartureTime.Add(booking.TotalTime));
 				if (events.Items != null && events.Items.Count > 0)
 				{
 					booking.IsSlotAvailable = false;
@@ -87,7 +91,6 @@ namespace BritishCab.Controllers
 					booking.ConfirmationCode = Guid.NewGuid();
 					//TODO: fix this
 					booking.DriverActualDepartureTime = booking.PickUpDateTime;
-					booking.PickUpTime = booking.PickUpDateTime;
 					db.BookingEntities.Add(booking);
 					db.SaveChanges();
 				}

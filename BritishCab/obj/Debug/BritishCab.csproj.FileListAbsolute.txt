@@ -91,3 +91,6 @@ C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\Boun
 C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\Microsoft.Threading.Tasks.Extensions.xml
 C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\bin\System.Net.Http.Extensions.xml
 C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\obj\Debug\BritishCab.csproj.App.config
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\obj\Debug\BritishCab.Migrations.InitialCreate.resources
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\obj\Debug\BritishCab.csproj.GenerateResource.Cache
+C:\Users\v-olniko\documents\visual studio 2013\Projects\GAPI\BritishCab\obj\Debug\BritishCab.Migrations.AddedComments.resources
