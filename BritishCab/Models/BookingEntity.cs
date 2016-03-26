@@ -18,6 +18,7 @@ namespace BritishCab.Models
 		[DisplayName("Pick up date")]
 		public DateTime PickUpDateTime { get; set; }
 		[DisplayName("Pick up time")]
+		//Can be deleted
 		public DateTime PickUpTime { get; set; }
 		public DateTime DriverActualDepartureTime { get; set; }
 		public TimeSpan TransferTime { get; set; }

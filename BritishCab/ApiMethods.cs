@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -26,6 +27,8 @@ namespace BritishCab
 		private UserCredential credential;
 
 		private CalendarService service;
+
+		const string homeTown = "Bristol";
 
 		public ApiMethods()
 		{
@@ -59,7 +62,35 @@ namespace BritishCab
 		/// <param name="origin"></param>
 		/// <param name="destination"></param>
 		/// <returns></returns>
-		public DistanceMatrix GetDrivingDistanceInKilometers(string origin, string destination)
+		public DistanceMatrix GetRouteInformation(string origin, string destination)
+		{
+			DistanceMatrix dm = new DistanceMatrix();
+
+			// Getting Distance and time for roundTrip
+			var clientTransfer = GetDistanceAndTime(origin, destination);
+			if (clientTransfer.ErrorBit)
+			{
+				dm.ErrorBit = clientTransfer.ErrorBit;
+				return dm;
+			}
+			var homeToOrigin = GetDistanceAndTime(homeTown, origin);
+			var destinationToHome = GetDistanceAndTime(destination, homeTown);
+
+			//Filling values
+			dm.TravelTime = clientTransfer.TravelTime;
+			dm.TravelDistance = clientTransfer.TravelDistance;
+			dm.HomeToOriginTime = homeToOrigin.TravelTime;
+			dm.HomeToOriginDistance = homeToOrigin.TravelDistance;
+			dm.DestinationToHomeTime = destinationToHome.TravelTime;
+			dm.DestinationToHomeDistance = destinationToHome.TravelDistance;
+			dm.TotalTravelTime = clientTransfer.TravelTime + homeToOrigin.TravelTime + destinationToHome.TravelTime;
+			dm.TotalTravelDistance = clientTransfer.TravelDistance + homeToOrigin.TravelDistance +
+									destinationToHome.TravelDistance;
+
+			return dm;
+		}
+
+		private TravelDistanceTime GetDistanceAndTime(string origin, string destination)
 		{
 			string url = @"http://maps.googleapis.com/maps/api/distancematrix/xml?origins=" +
 			  origin + "&destinations=" + destination +
@@ -73,9 +104,8 @@ namespace BritishCab
 			response.Close();
 
 			XmlDocument xmldoc = new XmlDocument();
-			DistanceMatrix dm = new DistanceMatrix();
 			xmldoc.LoadXml(responsereader);
-
+			var dm = new TravelDistanceTime();
 
 			if (xmldoc.GetElementsByTagName("status")[0].ChildNodes[0].InnerText == "OK")
 			{
@@ -83,7 +113,7 @@ namespace BritishCab
 				{
 					XmlNodeList distance = xmldoc.GetElementsByTagName("distance");
 					XmlNodeList drivingTime = xmldoc.GetElementsByTagName("duration");
-	
+
 					dm.TravelTime = Convert.ToDouble(drivingTime[0].ChildNodes[0].InnerText);
 					dm.TravelDistance = Convert.ToDouble(distance[0].ChildNodes[1].InnerText.Replace(" km", ""));
 					dm.ErrorBit = false;
@@ -95,10 +125,9 @@ namespace BritishCab
 					dm.ErrorBit = true;
 					return dm;
 				}
-				
-			}
 
-			return null;
+			}
+			return distanceMatrix;
 		}
 
 		public void InsertEventToCalendar(BookingEntity booking)

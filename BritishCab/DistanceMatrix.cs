@@ -9,7 +9,14 @@ namespace BritishCab
 	public class DistanceMatrix
 	{
 		public double TravelTime { get; set; }
+		public double TotalTravelTime { get; set; }
+		public double HomeToOriginTime { get; set; }
+		public double DestinationToHomeTime { get; set; }
 		public double TravelDistance { get; set; }
+		public double TotalTravelDistance { get; set; }
+		public double HomeToOriginDistance { get; set; }
+		public double DestinationToHomeDistance { get; set; }
 		public bool ErrorBit { get; set; }
+
 	}
 }

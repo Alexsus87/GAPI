@@ -22,8 +22,9 @@ namespace BritishCab.Controllers
 		[HttpPost]
 		public ActionResult Index(BookingEntity booking)
 		{
+
 			DistanceMatrix dm = new DistanceMatrix();
-			dm = Api.GetDrivingDistanceInKilometers(booking.PickUpLocation, booking.DropLocation);
+			dm = Api.GetRouteInformation(booking.PickUpLocation, booking.DropLocation);
 			if (dm.ErrorBit)
 			{
 				booking.ErrorMessage = "Please check spelling on locations";
