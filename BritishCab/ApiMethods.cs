@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Xml;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
@@ -32,8 +33,9 @@ namespace BritishCab
 
 		public ApiMethods()
 		{
+		    string path = HttpContext.Current.Server.MapPath("~/client_secret.json");
 			using (var stream =
-				new FileStream("client_secret.json", FileMode.Open, FileAccess.Read))
+				new FileStream(path, FileMode.Open, FileAccess.Read))
 			{
 				string credPath = System.Environment.GetFolderPath(
 					System.Environment.SpecialFolder.Personal);
