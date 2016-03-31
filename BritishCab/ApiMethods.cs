@@ -254,8 +254,15 @@ namespace BritishCab
 
 		}
 
-		public void LoadPricesFromXml()
+		public BookingEntity GetRoutePrice(BookingEntity bookingEntity)
 		{
+			var predefinedPrices = LoadPricesFromXml();
+			return bookingEntity;
+		}
+
+		private List<PredefinedPrice> LoadPricesFromXml()
+		{
+			var listOfPrices = new List<PredefinedPrice>();
 			string path = HttpContext.Current.Server.MapPath("Prices/Prices.xml");
 			XmlDocument xmlDocument = new XmlDocument(); 
 			xmlDocument.Load(path);
@@ -266,16 +273,22 @@ namespace BritishCab
 			{
 				try
 				{
-					string from = xndNode["From"].InnerText;
-					string to = xndNode["To"].InnerText;
-					string price = xndNode["Price"].InnerText;
+					var pricingOption = new PredefinedPrice();
+
+					pricingOption.From = xndNode["From"].InnerText;
+					pricingOption.To = xndNode["To"].InnerText;
+					string priceFromXml = xndNode["Price"].InnerText;
+					double price;
+					if (Double.TryParse(priceFromXml, out price))
+					{
+						pricingOption.Price = price;
+						listOfPrices.Add(pricingOption);
+					}
 				}
 				catch (Exception)
-				{
-
-				}
+				{ }
 			}
-			xmlDocument.ToString();
+			return listOfPrices;
 		}
 	}
 }

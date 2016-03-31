@@ -84,19 +84,25 @@ namespace BritishCab.Controllers
 				}
 				booking.IsSlotCheckWasMade = true;
 			}
-			if(Request.HttpMethod == "POST")
+			//if(Request.HttpMethod == "POST")
+			//{
+			//	using (var db = new DefaultContext())
+			//	{
+			//		booking.ConfirmationCode = Guid.NewGuid();
+			//		//TODO: fix this
+			//		booking.DriverActualDepartureTime = booking.PickUpDateTime;
+			//		db.BookingEntities.Add(booking);
+			//		db.SaveChanges();
+			//	}
+			//	var Url = HttpContext.Request.Url.ToString();
+			//	Api.SendEmailViaGmail(booking, false, Url);
+			//	return View("Submit");
+			//}
+
+			//Get route price
+			if (booking.PickUpLocation != null && booking.DropLocation != null)
 			{
-				using (var db = new DefaultContext())
-				{
-					booking.ConfirmationCode = Guid.NewGuid();
-					//TODO: fix this
-					booking.DriverActualDepartureTime = booking.PickUpDateTime;
-					db.BookingEntities.Add(booking);
-					db.SaveChanges();
-				}
-				var Url = HttpContext.Request.Url.ToString();
-				Api.SendEmailViaGmail(booking, false, Url);
-				return View("Submit");
+				Api.LoadPricesFromXml();
 			}
 			return View(booking);
 		}
