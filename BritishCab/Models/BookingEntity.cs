@@ -11,19 +11,29 @@ namespace BritishCab.Models
 	public class BookingEntity
 	{
 		public int BookingEntityId { get; set; }
-		[Required(ErrorMessage = "Pick Up location cannot be empty")]
+
+		[DisplayName("Pick up at")]
+		[Required(ErrorMessage = "Please choose pick up city")]
 		public string PickUpLocation { get; set; }
-		[Required(ErrorMessage = "Drop location cannot be empty")]
+
+		[DisplayName("Destination")]
+		[Required(ErrorMessage = "Please choose destination")]
 		public string DropLocation { get; set; }
+
 		[DisplayName("Pick up date")]
 		public DateTime PickUpDateTime { get; set; }
+
 		[DisplayName("Pick up time")]
 		public DateTime DriverActualDepartureTime { get; set; }
+
+		[DisplayName("Estimate transfer time")]
 		public TimeSpan TransferTime { get; set; }
 		public TimeSpan TotalTime { get; set; }
 		public double DrivingDistance { get; set; }
 		public double TotalDrivingDistance { get; set; }
 		public string ErrorMessage { get; set; }
+
+		[DisplayName("Contact number")]
 		public string PhoneNumber { get; set; }
 		public string Email { get; set; }
 		public bool IsSlotAvailable { get; set; }

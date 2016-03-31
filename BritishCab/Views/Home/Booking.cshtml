@@ -56,13 +56,13 @@
 						</div>
 					</div>
 
-					<div class="form-group">
+					@*<div class="form-group">
 						@Html.LabelFor(model => model.DrivingDistance, htmlAttributes: new { @class = "control-label col-md-4" })
 						<div class="col-md-6">
 							@Html.EditorFor(model => model.DrivingDistance, new { htmlAttributes = new { @class = "form-control" } })
 							@Html.ValidationMessageFor(model => model.DrivingDistance, "", new { @class = "text-danger" })
 						</div>
-					</div>
+					</div>*@
 
 					<div class="form-group">
 						@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -73,10 +73,18 @@
 					</div>
 
 					<div class="form-group">
-						@Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+						@Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new {@class = "control-label col-md-4"})
 						<div class="col-md-6">
-							@Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
-							@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+							@Html.EditorFor(model => model.PhoneNumber, new {htmlAttributes = new {@class = "form-control"}})
+							@Html.ValidationMessageFor(model => model.PhoneNumber, "", new {@class = "text-danger"})
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-4" })
+						<div class="col-md-6">
+							@Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
 						</div>
 					</div>
 
@@ -100,7 +108,7 @@
 					zoom: 11,
 
 					// The latitude and longitude to center the map (always required)
-					center: new google.maps.LatLng(40.6700, -73.9400), // New York
+					center: new google.maps.LatLng(51.4569511, -2.606284), // New York
 
 					// How you would like to style the map. 
 					// This is where you would paste any style found on Snazzy Maps.

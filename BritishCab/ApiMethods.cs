@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
+using System.Xml.Linq;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
@@ -251,6 +252,30 @@ namespace BritishCab
 				return false;
 			}
 
+		}
+
+		public void LoadPricesFromXml()
+		{
+			string path = HttpContext.Current.Server.MapPath("Prices/Prices.xml");
+			XmlDocument xmlDocument = new XmlDocument(); 
+			xmlDocument.Load(path);
+			XmlElement xelRoot = xmlDocument.DocumentElement;
+			XmlNodeList xnlNodes = xelRoot.SelectNodes("/prices/route");
+
+			foreach (XmlNode xndNode in xnlNodes)
+			{
+				try
+				{
+					string from = xndNode["From"].InnerText;
+					string to = xndNode["To"].InnerText;
+					string price = xndNode["Price"].InnerText;
+				}
+				catch (Exception)
+				{
+
+				}
+			}
+			xmlDocument.ToString();
 		}
 	}
 }
