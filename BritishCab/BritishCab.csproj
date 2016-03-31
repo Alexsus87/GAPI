@@ -386,6 +386,7 @@
     <Content Include="fonts\fontello\font\fontello.eot" />
     <Content Include="fonts\fontello\font\fontello.ttf" />
     <Content Include="fonts\fontello\font\fontello.woff" />
+    <Content Include="Content\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
     <None Include="Properties\PublishProfiles\britishcab1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\britishcab1 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -472,7 +473,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\template.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

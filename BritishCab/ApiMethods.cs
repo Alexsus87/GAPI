@@ -37,19 +37,25 @@ namespace BritishCab
 			using (var stream =
 				new FileStream(path, FileMode.Open, FileAccess.Read))
 			{
-				string credPath = System.Environment.GetFolderPath(
-					System.Environment.SpecialFolder.Personal);
-				credPath = Path.Combine(credPath, ".credentials/calendar-dotnet-quickstart");
+                //string credPath = System.Environment.GetFolderPath(
+                //    System.Environment.SpecialFolder.Personal);
 
-				credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-					GoogleClientSecrets.Load(stream).Secrets,
-					Scopes,
-					"user",
-					CancellationToken.None,
-					new FileDataStore(credPath, true)).Result;
-				Console.WriteLine("Credential file saved to: " + credPath);
+                //credPath = Path.Combine(credPath, ".credentials/calendar-dotnet-quickstart");
+
+                //credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                //    GoogleClientSecrets.Load(stream).Secrets,
+                //    Scopes,
+                //    "user",
+                //    CancellationToken.None,
+                //    new FileDataStore(credPath, true)).Result;
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                   GoogleClientSecrets.Load(stream).Secrets,
+                   Scopes,
+                   "user",
+                  CancellationToken.None,
+                   new FileDataStore(HttpContext.Current.Server.MapPath("~/Content"), true)).Result;
 			}
-
+            
 			// Create Google Calendar API service.
 			service = new CalendarService(new BaseClientService.Initializer()
 			{
