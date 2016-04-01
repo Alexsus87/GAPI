@@ -65,6 +65,15 @@ namespace BritishCab
 			});
 		}
 
+		public void PopulateBooking(DistanceMatrix dm, BookingEntity booking)
+		{
+			booking.DrivingDistance = dm.TravelDistance;
+			booking.TransferTime = TimeSpan.FromSeconds(dm.TravelTime);
+			booking.DriverActualDepartureTime = booking.PickUpDateTime.Subtract(TimeSpan.FromSeconds(dm.HomeToOriginTime));
+			booking.TotalDrivingDistance = dm.TotalTravelDistance;
+			booking.TotalTime = TimeSpan.FromSeconds(dm.TotalTravelTime);
+		}
+
 		/// <summary>
 		/// returns driving distance in kilometers
 		/// </summary>
@@ -193,7 +202,19 @@ namespace BritishCab
 			}
 		}
 
-		public Events GetEventsFromCalendar(DateTime TimeMin, DateTime TimeMax)
+		public void GetSlotAvailability(BookingEntity booking)
+		{
+			var events = GetEventsFromCalendar(booking.DriverActualDepartureTime, booking.DriverActualDepartureTime.Add(booking.TotalTime));
+			if (events.Items != null && events.Items.Count > 0)
+			{
+				booking.IsSlotAvailable = false;
+			}
+			else
+			{
+				booking.IsSlotAvailable = true;
+			}
+		}
+		private Events GetEventsFromCalendar(DateTime TimeMin, DateTime TimeMax)
 		{
 			//Define parameters of request.
 			EventsResource.ListRequest request = service.Events.List("primary");
