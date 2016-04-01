@@ -130,11 +130,9 @@ namespace BritishCab
 				}
 				catch (Exception)
 				{
-
 					dm.ErrorBit = true;
 					return dm;
 				}
-
 			}
 			return dm;
 		}
@@ -254,13 +252,32 @@ namespace BritishCab
 
 		}
 
-		public BookingEntity GetRoutePrice(BookingEntity bookingEntity)
+		public void GetRoutePrice(BookingEntity bookingEntity)
 		{
 			var predefinedPrices = LoadPricesFromXml();
-			return bookingEntity;
+		    var from = bookingEntity.PickUpLocation.ToUpper();
+		    var to = bookingEntity.DropLocation.ToUpper();
+		    var price = 0.0;
+		    foreach (var predefinedPrice in predefinedPrices)
+		    {
+		        if (from.Contains(predefinedPrice.From) && to.Contains(predefinedPrice.To))
+		        {
+		            price = predefinedPrice.Price;
+		        }
+		    }
+		    if (price == 0.0)
+		    {
+		        var pricePerKm = 1.80;
+		        var priceForTransfer = bookingEntity.TotalDrivingDistance*pricePerKm;
+		        bookingEntity.Price = priceForTransfer;
+		    }
+		    else
+		    {
+		        bookingEntity.Price = price;
+		    }
 		}
 
-		private List<PredefinedPrice> LoadPricesFromXml()
+		private IEnumerable<PredefinedPrice> LoadPricesFromXml()
 		{
 			var listOfPrices = new List<PredefinedPrice>();
 			string path = HttpContext.Current.Server.MapPath("Prices/Prices.xml");
@@ -275,8 +292,8 @@ namespace BritishCab
 				{
 					var pricingOption = new PredefinedPrice();
 
-					pricingOption.From = xndNode["From"].InnerText;
-					pricingOption.To = xndNode["To"].InnerText;
+					pricingOption.From = xndNode["From"].InnerText.ToUpper();
+					pricingOption.To = xndNode["To"].InnerText.ToUpper();
 					string priceFromXml = xndNode["Price"].InnerText;
 					double price;
 					if (Double.TryParse(priceFromXml, out price))

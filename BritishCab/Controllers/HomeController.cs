@@ -102,7 +102,7 @@ namespace BritishCab.Controllers
 			//Get route price
 			if (booking.PickUpLocation != null && booking.DropLocation != null)
 			{
-				Api.LoadPricesFromXml();
+				Api.GetRoutePrice(booking);
 			}
 			return View(booking);
 		}
