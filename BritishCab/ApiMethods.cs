@@ -34,29 +34,28 @@ namespace BritishCab
 
 		public ApiMethods()
 		{
-		    string path = HttpContext.Current.Server.MapPath("~/client_secret.json");
+			string path = HttpContext.Current.Server.MapPath("~/client_secret.json");
 			using (var stream =
 				new FileStream(path, FileMode.Open, FileAccess.Read))
 			{
-                //string credPath = System.Environment.GetFolderPath(
-                //    System.Environment.SpecialFolder.Personal);
+			//string credPath = System.Environment.GetFolderPath(
+			//    System.Environment.SpecialFolder.Personal);
 
-                //credPath = Path.Combine(credPath, ".credentials/calendar-dotnet-quickstart");
+			//credPath = Path.Combine(credPath, ".credentials/calendar-dotnet-quickstart");
 
-                //credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                //    GoogleClientSecrets.Load(stream).Secrets,
-                //    Scopes,
-                //    "user",
-                //    CancellationToken.None,
-                //    new FileDataStore(credPath, true)).Result;
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                   GoogleClientSecrets.Load(stream).Secrets,
-                   Scopes,
-                   "user",
-                  CancellationToken.None,
-                   new FileDataStore(HttpContext.Current.Server.MapPath("~/Content"), true)).Result;
+			//credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+			//    GoogleClientSecrets.Load(stream).Secrets,
+			//    Scopes,
+			//    "user",
+			//    CancellationToken.None,
+			//    new FileDataStore(credPath, true)).Result;
+			credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+				GoogleClientSecrets.Load(stream).Secrets,
+				Scopes,
+				"user",
+				CancellationToken.None,
+				new FileDataStore(HttpContext.Current.Server.MapPath("~/Content"), true)).Result;
 			}
-            
 			// Create Google Calendar API service.
 			service = new CalendarService(new BaseClientService.Initializer()
 			{
@@ -276,26 +275,26 @@ namespace BritishCab
 		public void GetRoutePrice(BookingEntity bookingEntity)
 		{
 			var predefinedPrices = LoadPricesFromXml();
-		    var from = bookingEntity.PickUpLocation.ToUpper();
-		    var to = bookingEntity.DropLocation.ToUpper();
-		    var price = 0.0;
-		    foreach (var predefinedPrice in predefinedPrices)
-		    {
-		        if (from.Contains(predefinedPrice.From) && to.Contains(predefinedPrice.To))
-		        {
-		            price = predefinedPrice.Price;
-		        }
-		    }
-		    if (price == 0.0)
-		    {
-		        var pricePerKm = 1.80;
-		        var priceForTransfer = bookingEntity.TotalDrivingDistance*pricePerKm;
-		        bookingEntity.Price = priceForTransfer;
-		    }
-		    else
-		    {
-		        bookingEntity.Price = price;
-		    }
+			var from = bookingEntity.PickUpLocation.ToUpper();
+			var to = bookingEntity.DropLocation.ToUpper();
+			var price = 0.0;
+			foreach (var predefinedPrice in predefinedPrices)
+			{
+				if (from.Contains(predefinedPrice.From) && to.Contains(predefinedPrice.To))
+				{
+					price = predefinedPrice.Price;
+				}
+			}
+			if (price == 0.0)
+			{
+				var pricePerKm = 1.80;
+				var priceForTransfer = bookingEntity.TotalDrivingDistance*pricePerKm;
+				bookingEntity.Price = priceForTransfer;
+			}
+			else
+			{
+				bookingEntity.Price = price;
+			}
 		}
 
 		private IEnumerable<PredefinedPrice> LoadPricesFromXml()
