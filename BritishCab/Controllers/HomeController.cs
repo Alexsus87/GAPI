@@ -34,12 +34,19 @@ namespace BritishCab.Controllers
 			}
 
 			_api.PopulateBooking(_dm,booking);
+            _api.GetRoutePrice(booking);
 
-			return RedirectToAction("Booking",booking);
+			return RedirectToAction("Redirect",booking);
 		}
 
+        [HttpGet]
+	    public ActionResult Booking(BookingEntity booking)
+        {
+            return View(booking);
+        }
 
-		public ActionResult Booking(BookingEntity booking, string btnBooking, string btnCalculate )
+        [HttpPost]
+		public ActionResult Booking(BookingEntity bookingIncoming, string post)
 		{
 			#region Confirming the order
 			var queryValues = Request.QueryString.Get("confirmation");
@@ -67,32 +74,36 @@ namespace BritishCab.Controllers
 			}
 			#endregion
 
-			if (Request.Form["Booking"] != null)
+            if (Request.Form["Calculate"] != null)
 			{
-				_api.GetSlotAvailability(booking);
-			}
-			_api.GetSlotAvailability(booking);
-			//if(Request.HttpMethod == "POST")
-			//{
-			//	using (var db = new DefaultContext())
-			//	{
-			//		booking.ConfirmationCode = Guid.NewGuid();
-			//		//TODO: fix this
-			//		booking.DriverActualDepartureTime = booking.PickUpDateTime;
-			//		db.BookingEntities.Add(booking);
-			//		db.SaveChanges();
-			//	}
-			//	var Url = HttpContext.Request.Url.ToString();
-			//	Api.SendEmailViaGmail(booking, false, Url);
-			//	return View("Submit");
-			//}
+                _dm = _api.GetRouteInformation(bookingIncoming.PickUpLocation, bookingIncoming.DropLocation);
+                if (_dm.ErrorBit)
+                {
+                    bookingIncoming.ErrorMessage = "Please check spelling on locations";
+                    ViewBag.Error = "Please check spelling on locations";
+                    return View(bookingIncoming);
+                }
 
-			//Get route price
-			if (booking.PickUpLocation != null && booking.DropLocation != null)
-			{
-				_api.GetRoutePrice(booking);
+                _api.PopulateBooking(_dm, bookingIncoming);
+                _api.GetRoutePrice(bookingIncoming);
+				//_api.GetSlotAvailability(booking);
 			}
-			return View(booking);
+
+            if (Request.Form["Booking"] != null)
+            {
+                //using (var db = new DefaultContext())
+                //{
+                //    booking.ConfirmationCode = Guid.NewGuid();
+                //    //TODO: fix this
+                //    booking.DriverActualDepartureTime = booking.PickUpDateTime;
+                //    db.BookingEntities.Add(booking);
+                //    db.SaveChanges();
+                //}
+                //var Url = HttpContext.Request.Url.ToString();
+                //_api.SendEmailViaGmail(booking, false, Url);
+                //return View("Submit");
+            }
+			return RedirectToAction("Redirect", bookingIncoming);
 		}
 
 		public ActionResult About()
@@ -102,11 +113,9 @@ namespace BritishCab.Controllers
 			return View();
 		}
 
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
-			return View();
-		}
+	    public ActionResult Redirect(BookingEntity booking)
+	    {
+	        return RedirectToAction("Booking", booking);
+	    }
 	}
 }
