@@ -13,12 +13,16 @@ namespace BritishCab.Models
 		public int BookingEntityId { get; set; }
 
 		[DisplayName("Pick up at")]
-		[Required(ErrorMessage = "Please choose pick up city")]
 		public string PickUpLocation { get; set; }
 
+		[DisplayName("Pick Up Address")]
+		public string PickUpAddress { get; set; }
+
 		[DisplayName("Destination")]
-		[Required(ErrorMessage = "Please choose destination")]
 		public string DropLocation { get; set; }
+
+		[DisplayName("Destination Address")]
+		public string DropAddress { get; set; }
 
 		[DisplayName("Pick up date")]
 		public DateTime PickUpDateTime { get; set; }

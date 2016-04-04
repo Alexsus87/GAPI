@@ -225,6 +225,14 @@
     <Compile Include="Migrations\201603261202419_Added-Comments.Designer.cs">
       <DependentUpon>201603261202419_Added-Comments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604040843339_Monday.cs" />
+    <Compile Include="Migrations\201604040843339_Monday.Designer.cs">
+      <DependentUpon>201604040843339_Monday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604040922455_AddressAdded.cs" />
+    <Compile Include="Migrations\201604040922455_AddressAdded.Designer.cs">
+      <DependentUpon>201604040922455_AddressAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingEntity.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -392,6 +400,7 @@
     <Content Include="Content\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
     <None Include="Properties\PublishProfiles\britishcab1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\britishcab1 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\britishcab1.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -515,6 +524,7 @@
     <Content Include="Views\Home\Booking.cshtml" />
     <Content Include="Views\Home\Submit.cshtml" />
     <Content Include="Views\Home\Confirmation.cshtml" />
+    <Content Include="Views\Home\FinalizeBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -538,6 +548,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603261202419_Added-Comments.resx">
       <DependentUpon>201603261202419_Added-Comments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604040843339_Monday.resx">
+      <DependentUpon>201604040843339_Monday.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604040922455_AddressAdded.resx">
+      <DependentUpon>201604040922455_AddressAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

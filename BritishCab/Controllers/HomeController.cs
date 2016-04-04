@@ -46,7 +46,7 @@ namespace BritishCab.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Booking(BookingEntity bookingIncoming, string post)
+		public ActionResult Booking(BookingEntity booking, string post)
 		{
 			#region Confirming the order
 			var queryValues = Request.QueryString.Get("confirmation");
@@ -74,36 +74,49 @@ namespace BritishCab.Controllers
 			}
 			#endregion
 
-			if (Request.Form["Calculate"] != null)
+			var bookingInput = new BookingEntity();
+			bookingInput.PickUpLocation = booking.PickUpLocation;
+			bookingInput.DropLocation = booking.DropLocation;
+			bookingInput.PickUpDateTime = booking.PickUpDateTime;
+
+			_dm = _api.GetRouteInformation(bookingInput.PickUpLocation, bookingInput.DropLocation);
+			if (_dm.ErrorBit)
 			{
-				_dm = _api.GetRouteInformation(bookingIncoming.PickUpLocation, bookingIncoming.DropLocation);
-				if (_dm.ErrorBit)
+				bookingInput.ErrorMessage = "Please check spelling on locations";
+				ViewBag.Error = "Please check spelling on locations";
+				return View(bookingInput);
+			}
+
+			_api.PopulateBooking(_dm, bookingInput);
+			_api.GetRoutePrice(bookingInput);
+
+			if (Request.Form["Book"] != null)
+			{
+				if (bookingInput.Price == booking.Price)
 				{
-					bookingIncoming.ErrorMessage = "Please check spelling on locations";
-					ViewBag.Error = "Please check spelling on locations";
-					return View(bookingIncoming);
+					return RedirectToAction("FinalizeBooking", booking);
 				}
-
-				_api.PopulateBooking(_dm, bookingIncoming);
-				_api.GetRoutePrice(bookingIncoming);
-				//_api.GetSlotAvailability(booking);
 			}
+			return RedirectToAction("Redirect", bookingInput);
+		}
 
-			if (Request.Form["Booking"] != null)
+		public ActionResult FinalizeBooking(BookingEntity booking)
+		{
+			if (Request.HttpMethod == "POST")
 			{
-				//using (var db = new DefaultContext())
-				//{
-				//    booking.ConfirmationCode = Guid.NewGuid();
-				//    //TODO: fix this
-				//    booking.DriverActualDepartureTime = booking.PickUpDateTime;
-				//    db.BookingEntities.Add(booking);
-				//    db.SaveChanges();
-				//}
-				//var Url = HttpContext.Request.Url.ToString();
-				//_api.SendEmailViaGmail(booking, false, Url);
-				//return View("Submit");
+				using (var db = new DefaultContext())
+				{
+					booking.ConfirmationCode = Guid.NewGuid();
+					//TODO: fix this
+					booking.DriverActualDepartureTime = booking.PickUpDateTime;
+					db.BookingEntities.Add(booking);
+					db.SaveChanges();
+				}
+				var Url = HttpContext.Request.Url.ToString();
+				_api.SendEmailViaGmail(booking, false, Url);
+				return View("Submit");
 			}
-			return RedirectToAction("Redirect", bookingIncoming);
+			return View(booking);
 		}
 
 		public ActionResult About()
