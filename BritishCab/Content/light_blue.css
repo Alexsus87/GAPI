@@ -46,6 +46,10 @@ mark,
   border-bottom: 1px solid #252a2c;
 }
 .header.dark {
+  background-color: black;
+  border-top-color: black;
+}
+.header.olddark {
   background-color: #394245;
   border-top-color: #394245;
 }
@@ -59,12 +63,12 @@ mark,
 }
 /*Transparent Header*/
 .transparent-header header.header.dark.transparent-header-on {
-  background-color: rgba(57, 66, 69, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   border-top-color: rgba(37, 42, 44, 0.5);
 }
 /*Fixed Navigation*/
 .fixed-header-on .dark.header.fixed {
-  background-color: rgba(57, 66, 69, 0.95);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
