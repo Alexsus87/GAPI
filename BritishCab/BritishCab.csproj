@@ -254,6 +254,7 @@
   <ItemGroup>
     <Content Include="Content\animate.css" />
     <Content Include="Content\animations.css" />
+    <Content Include="Content\assets\timer.png" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -267,6 +268,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Content\font\revicons.svg" />
     <Content Include="Content\Images\AstonWide.png" />
     <Content Include="Content\Images\corporate-2-slider-slide-1.jpg" />
     <Content Include="Content\Images\corporate-2-slider-slide-2.jpg" />
@@ -307,7 +309,9 @@
     <Content Include="Content\plugins\settings-ie8.css" />
     <Content Include="Content\plugins\settings.css" />
     <Content Include="Content\plugins\SmoothScroll.js" />
-    <Content Include="Content\style.css" />
+    <Content Include="Content\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -342,19 +346,27 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\font-awesome\css\font-awesome.css" />
+    <Content Include="fonts\font-awesome\css\font-awesome.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="fonts\font-awesome\css\font-awesome.min.css" />
-    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="fonts\fontello\css\animation.css" />
     <Content Include="fonts\fontello\css\fontello-codes.css" />
     <Content Include="fonts\fontello\css\fontello-embedded.css" />
     <Content Include="fonts\fontello\css\fontello-ie7-codes.css" />
     <Content Include="fonts\fontello\css\fontello-ie7.css" />
-    <Content Include="fonts\fontello\css\fontello.css" />
+    <Content Include="fonts\fontello\css\fontello.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="fonts\fontello\font\fontello.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\Site.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Home\Prices\Prices.xml" />
     <Content Include="Prices\Prices.xml" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -375,10 +387,18 @@
     <Content Include="client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.eot" />
-    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\font-awesome\fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="fonts\font-awesome\fonts\FontAwesome.otf" />
     <Content Include="fonts\font-awesome\less\animated.less" />
     <Content Include="fonts\font-awesome\less\bordered-pulled.less" />
@@ -398,6 +418,9 @@
     <Content Include="fonts\fontello\font\fontello.ttf" />
     <Content Include="fonts\fontello\font\fontello.woff" />
     <Content Include="Content\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
+    <Content Include="Content\font\revicons.eot" />
+    <Content Include="Content\font\revicons.ttf" />
+    <Content Include="Content\font\revicons.woff" />
     <None Include="Properties\PublishProfiles\britishcab1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\britishcab1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\britishcab1.pubxml" />
