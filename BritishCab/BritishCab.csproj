@@ -275,10 +275,14 @@
     <Content Include="Content\Images\Carousel_3.png" />
     <Content Include="Content\Images\corporate-2-slider-slide-1.jpg" />
     <Content Include="Content\Images\corporate-2-slider-slide-2.jpg" />
+    <Content Include="Content\Images\Logo_b.png" />
     <Content Include="Content\Images\Logo_Black.jpg" />
     <Content Include="Content\Images\logo_light_blue.png" />
     <Content Include="Content\Images\logo_orange.png" />
     <Content Include="Content\Images\AstonNormal.jpg" />
+    <Content Include="Content\Images\Logo_vip_driving_150ppi-06.png" />
+    <Content Include="Content\Images\Logo_vip_driving_300ppi-06-06.png" />
+    <Content Include="Content\Images\Logo_vip_driving_Small.png" />
     <Content Include="Content\Images\mercedes-benz-g-500-5120x3095-suv-mercedes-g-class-off-road-luxury-7477.jpg" />
     <Content Include="Content\Images\page-about-1.jpg" />
     <Content Include="Content\jquery.datetimepicker.css" />
