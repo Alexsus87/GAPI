@@ -25,7 +25,9 @@ namespace BritishCab
 						"~/Content/plugins/jquery.browser.js",
 						"~/Content/plugins/SmoothScroll.js",
 						"~/Scripts/template.js",
-						"~/Scripts/custom.js"));
+						"~/Scripts/custom.js",
+                        "~/Content/plugins/rs-plugin/js/jquery.themepunch.tools.min.js",
+                        "~/Content/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.validate*"));
@@ -42,7 +44,6 @@ namespace BritishCab
 			//  "~/Scripts/npm.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/fonts/font-awesome/css/font-awesome.css",
 					  "~/fonts/fontello/css/fontello.css",
 					  "~/Content/bootstrap.css",
 					  "~/Content/style.css",
@@ -51,7 +52,8 @@ namespace BritishCab
 					  "~/Content/animations.css",
 					  "~/Content/jquery-ui.css",
 					  "~/Content/jquery.datetimepicker.css",
-					  "~/Content/bootstrap-theme.css"));
+                      "~/Content/plugins/rs-plugin/css/setting.css",
+					  "~/Content/bootstrap-theme.css").Include("~/fonts/font-awesome/css/font-awesome.css", new CssRewriteUrlTransform()));
 		}
 	}
 }
