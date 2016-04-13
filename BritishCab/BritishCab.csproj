@@ -344,9 +344,6 @@
     <Content Include="Content\plugins\jquery.waypoints.js" />
     <Content Include="Content\plugins\jquery.waypoints.min.js" />
     <Content Include="Content\plugins\magnific-popup.css" />
-    <Content Include="Content\plugins\magnific-popup\jquery.magnific-popup.js" />
-    <Content Include="Content\plugins\magnific-popup\jquery.magnific-popup.min.js" />
-    <Content Include="Content\plugins\magnific-popup\magnific-popup.css" />
     <Content Include="Content\plugins\morphext.css" />
     <Content Include="Content\plugins\morphext.js" />
     <Content Include="Content\plugins\morphext.min.js" />

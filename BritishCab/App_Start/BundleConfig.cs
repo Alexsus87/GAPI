@@ -47,7 +47,6 @@ namespace BritishCab
 					  "~/Content/bootstrap.css",
 					  "~/fonts/font-awesome/css/font-awesome.css",
 					  "~/fonts/fontello/css/fontello.css",
-					  "~/Content/plugins/magnific-popup/magnific-popup.css",
 					  "~/Content/plugins/rs-plugin/css/settings.css",
 					  "~/Content/animations.css",
 
