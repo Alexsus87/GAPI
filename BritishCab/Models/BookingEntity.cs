@@ -10,6 +10,8 @@ namespace BritishCab.Models
 {
 	public class BookingEntity
 	{
+		private DateTime _pickUpDateTime;
+
 		public int BookingEntityId { get; set; }
 
 		[DisplayName("Pick up at")]
@@ -25,7 +27,18 @@ namespace BritishCab.Models
 		public string DropAddress { get; set; }
 
 		[DisplayName("Pick up date")]
-		public DateTime PickUpDateTime { get; set; }
+		public DateTime PickUpDateTime
+		{
+			get
+			{
+				if (_pickUpDateTime == DateTime.MinValue)
+				{
+					return DateTime.Now;
+				}
+				return _pickUpDateTime;
+			}
+			set { _pickUpDateTime = value; }
+		}
 
 		[DisplayName("Pick up time")]
 		public DateTime DriverActualDepartureTime { get; set; }

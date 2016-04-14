@@ -48,32 +48,6 @@ namespace BritishCab.Controllers
 		[HttpPost]
 		public ActionResult Booking(BookingEntity booking, string post)
 		{
-			#region Confirming the order
-			var queryValues = Request.QueryString.Get("confirmation");
-			Guid securityCode;
-
-			if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
-			{
-				using (var db = new DefaultContext())
-				{
-					var bookingInfo = (from DBbooking in db.BookingEntities
-									   where DBbooking.ConfirmationCode == securityCode
-									   select DBbooking).FirstOrDefault();
-					if (bookingInfo != null)
-					{
-						if (bookingInfo.IsSlotAvailable)
-						{
-							_api.InsertEventToCalendar(bookingInfo);
-						}
-						_api.SendEmailViaGmail(bookingInfo, true, null);
-						bookingInfo.ConfirmationCode = Guid.Empty;
-						db.SaveChanges();
-					}
-					return View("Confirmation");
-				}
-			}
-			#endregion
-
 			var bookingInput = new BookingEntity();
 			bookingInput.PickUpLocation = booking.PickUpLocation;
 			bookingInput.DropLocation = booking.DropLocation;
@@ -102,6 +76,32 @@ namespace BritishCab.Controllers
 
 		public ActionResult FinalizeBooking(BookingEntity booking)
 		{
+			#region Confirming the order
+			var queryValues = Request.QueryString.Get("confirmation");
+			Guid securityCode;
+
+			if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
+			{
+				using (var db = new DefaultContext())
+				{
+					var bookingInfo = (from DBbooking in db.BookingEntities
+									   where DBbooking.ConfirmationCode == securityCode
+									   select DBbooking).FirstOrDefault();
+					if (bookingInfo != null)
+					{
+						if (bookingInfo.IsSlotAvailable)
+						{
+							_api.InsertEventToCalendar(bookingInfo);
+						}
+						_api.SendEmailViaGmail(bookingInfo, true, null);
+						bookingInfo.ConfirmationCode = Guid.Empty;
+						db.SaveChanges();
+					}
+					return View("Confirmation");
+				}
+			}
+			#endregion
+
 			if (Request.HttpMethod == "POST")
 			{
 				using (var db = new DefaultContext())
