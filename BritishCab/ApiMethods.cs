@@ -288,7 +288,11 @@ namespace BritishCab
 			if (price == 0.0)
 			{
 				var pricePerKm = 1.80;
-				var priceForTransfer = bookingEntity.TotalDrivingDistance*pricePerKm;
+				var priceForTransfer = bookingEntity.DrivingDistance*pricePerKm;
+
+				//This calculates price for total driving distance
+				//var priceForTransfer = bookingEntity.TotalDrivingDistance*pricePerKm;
+
 				bookingEntity.Price = priceForTransfer;
 			}
 			else

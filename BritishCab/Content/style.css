@@ -437,7 +437,7 @@ tbody {
   padding: 10px 0;
 }
 .dark .footer {
-  background-color: #222222;
+  background-color: black;
 }
 .dark .subfooter {
   background-color: #373737;
@@ -501,6 +501,13 @@ tbody {
 .footer {
   padding: 40px 0;
   background-color: #fafafa;
+  background-image: url("../Content/Images/Logo1_VIPDRIVING_72-01.png");
+  background-repeat: no-repeat;
+	background-position-x: right;
+	background-size: 50%;
+}
+.display-string {
+	padding-top: 7px;
 }
 .footer-content {
   padding: 20px 0;
@@ -5172,7 +5179,7 @@ header.full-width .animated.main-navigation .dropdown-menu .open .dropdown-menu.
   text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
 }
 .transparent-header .dark.header .navbar-nav > li > a {
-  color: #e1e1e1;
+  color: #ffffff;
 }
 /* first level menu item on hover/focus */
 .dark.header .navbar-default .navbar-nav > li > a:hover,

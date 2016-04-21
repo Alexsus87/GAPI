@@ -28,55 +28,60 @@
 	<link href="~/Content/custom.css" rel="stylesheet">
 
 </head>
-<body class="no-trans front-page transparent-header  ">
-<div class="page-wrapper">
-	<div class="header-container">
-		<div class="header  fixed dark clearfix">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3">
-						<!-- header-left start -->
-						<!-- ================ -->
-						<div class="header-left clearfix">
-							<!-- logo -->
-							<div >
-								<a href="@Url.Action("Index", "Home")"><img id="logo_img" src="~/Content/Images/Logo_b.png" alt="The Project"></a>
+<body class="no-trans front-page transparent-header white-text ">
+	<div class="page-wrapper">
+		<div class="header-container">
+			<div class="header  fixed dark clearfix">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3">
+							<!-- header-left start -->
+							<!-- ================ -->
+							<div class="header-left clearfix">
+								<!-- logo -->
+								<div>
+									<a href="@Url.Action("Index", "Home")"><img id="logo_img" src="~/Content/Images/Logo_b.png" alt="The Project"></a>
+								</div>
 							</div>
+							<!-- header-left end -->
 						</div>
-						<!-- header-left end -->
-					</div>
-					@*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+						@*<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
 
-					<div class="col-md-9">
-						<div class="header-right clearfix">
-							<div class="main-navigation  animated with-dropdown-buttons">
-								<nav class="navbar navbar-default" role="navigation">
-									<div class="container-fluid">
-										<!-- Toggle get grouped for better mobile display -->
-										<div class="navbar-header">
-											<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-												<span class="sr-only">Toggle navigation</span>
-												<span class="icon-bar"></span>
-												<span class="icon-bar"></span>
-												<span class="icon-bar"></span>
-											</button>
+						<div class="col-md-9">
+							<div class="header-right clearfix">
+								<div class="main-navigation  animated with-dropdown-buttons">
+									<nav class="navbar navbar-default" role="navigation">
+										<div class="container-fluid">
+											<!-- Toggle get grouped for better mobile display -->
+											<div class="navbar-header">
+												<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+													<span class="sr-only">Toggle navigation</span>
+													<span class="icon-bar"></span>
+													<span class="icon-bar"></span>
+													<span class="icon-bar"></span>
+												</button>
 
+											</div>
+											<div class="collapse navbar-collapse" id="navbar-collapse-1">
+												<ul class="nav navbar-nav navbar-right">
+													<li>@Html.ActionLink("Home", "Index", "Home", new { @class = "white-text" })</li>
+													<li>@Html.ActionLink("Services", "Services", "Home")</li>
+													<li>@Html.ActionLink("Booking", "Booking", "Home")</li>
+													<li>@Html.ActionLink("About", "About", "Home")</li>
+													<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+													<li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+													<li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+												</ul>
+												@*@Html.Partial("_LoginPartial")*@
+											</div>
 										</div>
-										<div class="collapse navbar-collapse" id="navbar-collapse-1">
-											<ul class="nav navbar-nav navbar-right">
-												<li>@Html.ActionLink("Home", "Index", "Home")</li>
-												<li>@Html.ActionLink("About", "About", "Home")</li>
-												<li>@Html.ActionLink("Booking", "Booking", "Home")</li>
-											</ul>
-											@*@Html.Partial("_LoginPartial")*@
-										</div>
-									</div>
-								</nav>
+									</nav>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -84,33 +89,32 @@
 			</div>
 		</div>
 	</div>
-</div>
 	<div>
 		@*<div class="container body-content">*@
-			@RenderBody()
+		@RenderBody()
 
 		@*<!-- footer top start -->
-		<!-- ================ -->
-		<div class="dark-bg  default-hovered footer-top animated-text">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="call-to-action text-center">
-							<div class="row">
-								<div class="col-sm-8">
-									<h2>Reservation Number: +123 123 1234 </h2>
-									<h2>Call Us Now</h2>
-								</div>
-								<div class="col-sm-4">
-									<p class="mt-10"><a href="tel:+1231231234" class="btn btn-animated btn-lg btn-gray-transparent ">Call Us<i class="fa fa-phone pl-20"></i></a></p>
+			<!-- ================ -->
+			<div class="dark-bg  default-hovered footer-top animated-text">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="call-to-action text-center">
+								<div class="row">
+									<div class="col-sm-8">
+										<h2>Reservation Number: +123 123 1234 </h2>
+										<h2>Call Us Now</h2>
+									</div>
+									<div class="col-sm-4">
+										<p class="mt-10"><a href="tel:+1231231234" class="btn btn-animated btn-lg btn-gray-transparent ">Call Us<i class="fa fa-phone pl-20"></i></a></p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- footer top end -->*@
+			<!-- footer top end -->*@
 		<!-- footer start (Add "dark" class to #footer in order to enable dark footer) -->
 		<!-- ================ -->
 		<footer id="footer" class="clearfix dark">
@@ -122,61 +126,62 @@
 						<div class="row">
 							<div class="col-md-8">
 								<div class="footer-content">
-									<div class="logo-footer"><img id="logo-footer" src="~/Content/Images/logo_orange.png" alt=""></div>
+									@*<div class="logo-footer"><img id="logo-footer" src="~/Content/Images/logo_orange.png" alt=""></div>*@
 									<div class="row">
 										<div class="col-md-6">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus illo vel dolorum soluta consectetur doloribus sit. Delectus non tenetur odit dicta vitae debitis suscipit doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed dolore fugit vitae quia dicta inventore reiciendis. Ipsa, aut voluptas quaerat.</p>
-											<ul class="social-links circle animated-effect-1">
-												<li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
+											<p></p>
+											@*<ul class="social-links circle animated-effect-1">
+												
 												<li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
 												<li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-												<li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
+												
 												<li class="xing"><a target="_blank" href="http://www.xing.com"><i class="fa fa-xing"></i></a></li>
-												<li class="skype"><a target="_blank" href="http://www.skype.com"><i class="fa fa-skype"></i></a></li>
+												
 												<li class="youtube"><a target="_blank" href="https://www.youtube.com"><i class="fa fa-youtube"></i></a></li>
-											</ul>
+											</ul>*@
 											<ul class="list-icons">
 												<li><i class="fa fa-map-marker pr-10 text-default"></i> One infinity loop, 54100</li>
 												<li><i class="fa fa-phone pr-10 text-default"></i> +00 1234567890</li>
 												<li><a href="mailto:info@theproject.com"><i class="fa fa-envelope-o pr-10"></i>info@theproject.com</a></li>
 											</ul>
+											
 										</div>
-										<div class="col-md-6">
+										@*<div class="col-md-6">
 											<div id="map-canvas"></div>
-										</div>
+										</div>*@
 									</div>
 								</div>
 							</div>
 							@*<div class="col-md-4">
-								<div class="footer-content">
-									<h2 class="title">Contact Us</h2>
-									<br>
-									<div class="alert alert-success hidden" id="MessageSent2">
-										We have received your message, we will contact you very soon.
+									<div class="footer-content">
+										<h2 class="title">Contact Us</h2>
+										<br>
+										<div class="alert alert-success hidden" id="MessageSent2">
+											We have received your message, we will contact you very soon.
+										</div>
+										<div class="alert alert-danger hidden" id="MessageNotSent2">
+											Oops! Something went wrong please refresh the page and try again.
+										</div>
+										<form role="form" id="footer-form" class="margin-clear">
+											<div class="form-group has-feedback">
+												<label class="sr-only" for="name2">Name</label>
+												<input type="text" class="form-control" id="name2" placeholder="Name" name="name2">
+												<i class="fa fa-user form-control-feedback"></i>
+											</div>
+											<div class="form-group has-feedback">
+												<label class="sr-only" for="email2">Email address</label>
+												<input type="email" class="form-control" id="email2" placeholder="Enter email" name="email2">
+												<i class="fa fa-envelope form-control-feedback"></i>
+											</div>
+											<div class="form-group has-feedback">
+												<label class="sr-only" for="message2">Message</label>
+												<textarea class="form-control" rows="6" id="message2" placeholder="Message" name="message2"></textarea>
+												<i class="fa fa-pencil form-control-feedback"></i>
+											</div>
+											<input type="submit" value="Send" class="margin-clear submit-button btn btn-default">
+										</form>
 									</div>
-									<div class="alert alert-danger hidden" id="MessageNotSent2">
-										Oops! Something went wrong please refresh the page and try again.
-									</div>
-									<form role="form" id="footer-form" class="margin-clear">
-										<div class="form-group has-feedback">
-											<label class="sr-only" for="name2">Name</label>
-											<input type="text" class="form-control" id="name2" placeholder="Name" name="name2">
-											<i class="fa fa-user form-control-feedback"></i>
-										</div>
-										<div class="form-group has-feedback">
-											<label class="sr-only" for="email2">Email address</label>
-											<input type="email" class="form-control" id="email2" placeholder="Enter email" name="email2">
-											<i class="fa fa-envelope form-control-feedback"></i>
-										</div>
-										<div class="form-group has-feedback">
-											<label class="sr-only" for="message2">Message</label>
-											<textarea class="form-control" rows="6" id="message2" placeholder="Message" name="message2"></textarea>
-											<i class="fa fa-pencil form-control-feedback"></i>
-										</div>
-										<input type="submit" value="Send" class="margin-clear submit-button btn btn-default">
-									</form>
-								</div>
-							</div>*@
+								</div>*@
 						</div>
 					</div>
 				</div>

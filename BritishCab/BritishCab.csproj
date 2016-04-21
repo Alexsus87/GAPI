@@ -304,6 +304,7 @@
     <Content Include="Content\Images\Carousel_3.png" />
     <Content Include="Content\Images\corporate-2-slider-slide-1.jpg" />
     <Content Include="Content\Images\corporate-2-slider-slide-2.jpg" />
+    <Content Include="Content\Images\Logo1_VIPDRIVING_72-01.png" />
     <Content Include="Content\Images\Logo_b.png" />
     <Content Include="Content\Images\Logo_Black.jpg" />
     <Content Include="Content\Images\logo_light_blue.png" />
@@ -600,6 +601,7 @@
     <Content Include="Views\Home\Submit.cshtml" />
     <Content Include="Views\Home\Confirmation.cshtml" />
     <Content Include="Views\Home\FinalizeBooking.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

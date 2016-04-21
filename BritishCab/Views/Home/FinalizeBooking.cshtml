@@ -17,7 +17,7 @@
 
 					<div class="form-group">
 						@Html.LabelFor(model => model.PickUpLocation, htmlAttributes: new { @class = "control-label col-md-4" })
-						<div class="col-md-6">
+						<div class="col-md-6 display-string">
 							@Html.DisplayFor(model => model.PickUpLocation, new { htmlAttributes = new { @class = "form-control", id = "start", required = "required" } })
 							@Html.ValidationMessageFor(model => model.PickUpLocation, "", new { @class = "text-danger" })
 						</div>
@@ -25,7 +25,7 @@
 
 					<div class="form-group">
 						@Html.LabelFor(model => model.DropLocation, htmlAttributes: new { @class = "control-label col-md-4" })
-						<div class="col-md-6">
+						<div class="col-md-6 display-string">
 							@Html.DisplayFor(model => model.DropLocation, new { htmlAttributes = new { @class = "form-control", id = "end", required = "required" } })
 							@Html.ValidationMessageFor(model => model.DropLocation, "", new { @class = "text-danger" })
 						</div>
@@ -33,7 +33,7 @@
 
 					<div class="form-group">
 						@Html.LabelFor(model => model.PickUpDateTime, htmlAttributes: new { @class = "control-label col-md-4" })
-						<div class="col-md-6">
+						<div class="col-md-6 display-string">
 							@Html.DisplayFor(model => model.PickUpDateTime, new { htmlAttributes = new { @class = "form-control", id = "datetimepicker", placeholder = "Choose pich up time", required = "required" } })
 							@Html.ValidationMessageFor(model => model.PickUpDateTime, "", new { @class = "text-danger" })
 						</div>
@@ -41,7 +41,7 @@
 
 					<div class="form-group">
 						@Html.LabelFor(model => model.TransferTime, htmlAttributes: new { @class = "control-label col-md-4" })
-						<div class="col-md-6">
+						<div class="col-md-6 display-string">
 							@Html.DisplayFor(model => model.TransferTime, new { htmlAttributes = new { @class = "form-control" } })
 							@Html.ValidationMessageFor(model => model.TransferTime, "", new { @class = "text-danger" })
 						</div>
@@ -49,9 +49,9 @@
 
 					<div class="form-group">
 						@Html.LabelFor(model => model.Price, htmlAttributes: new {@class = "control-label col-md-4"})
-						<div class="col-md-6">
-							@Html.DisplayFor(model => model.Price, new {htmlAttributes = new {@class = "form-control"}})
-							@Html.ValidationMessageFor(model => model.Price, "", new {@class = "text-danger"})
+						<div class="col-md-6 display-string">
+							@Html.DisplayFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
 						</div>
 					</div>
 

@@ -1477,7 +1477,7 @@ if (typeof Object.create !== "function") {
         paginationNumbers : false,
 
         responsive : true,
-        responsiveRefreshRate : 200,
+        responsiveRefreshRate : 1200,
         responsiveBaseWidth : window,
 
         baseClass : "owl-carousel",

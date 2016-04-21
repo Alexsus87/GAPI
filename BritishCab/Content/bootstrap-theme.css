@@ -15,14 +15,14 @@
 }
 
 form.booking-form {
-	background-color: #373737;
-	color: #cdcdcd;
+	background-color: #2C3539;
+	color: #ffffff;
 	margin: 0;
 }
 
 .form-control {
 	border-color: #222222;
-	color: #cccccc;
+	color: #ffffff;
 	background-color: rgba(255, 255, 255, 0.1);
 	margin: 5px;
 }

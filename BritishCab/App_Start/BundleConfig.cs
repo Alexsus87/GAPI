@@ -41,11 +41,11 @@ namespace BritishCab
 					  "~/Content/plugins/rs-plugin/css/settings.css",
 					  "~/Content/animations.css",
 					  "~/Content/style.css",
-					  "~/Content/site.css",
 					  "~/Content/jquery-ui.css",
 					  "~/Content/jquery.datetimepicker.css",
                       "~/Content/plugins/rs-plugin/css/setting.css",
-					  "~/Content/bootstrap-theme.css"));
+					  "~/Content/bootstrap-theme.css",
+					  "~/Content/site.css"));
 		}
 	}
 }

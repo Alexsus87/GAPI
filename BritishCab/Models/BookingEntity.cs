@@ -56,8 +56,10 @@ namespace BritishCab.Models
 		public bool IsSlotAvailable { get; set; }
 		public bool IsSlotCheckWasMade { get; set; }
 		public string Name { get; set; }
+		[DisplayName("Price(£)")]
 		public double Price { get; set; }
 		public Guid ConfirmationCode { get; set; }
+		[DisplayName("Additional comments")]
 		public string Comments { get; set; }
 
 	}

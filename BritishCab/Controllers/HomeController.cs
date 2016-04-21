@@ -126,6 +126,11 @@ namespace BritishCab.Controllers
 			return View();
 		}
 
+		public ActionResult Services()
+		{
+			return View();
+		}
+
 		public ActionResult Redirect(BookingEntity booking)
 		{
 			return RedirectToAction("Booking", booking);
