@@ -28,3 +28,16 @@ textarea {
 .white-text {
 	color: #FFFFFF
 }
+.background-custom {
+		  background-color: black;
+		  	height: 150px;
+}
+.car-background {
+
+	    background-image: url("../Content/Images/Car_clean.png");
+  background-repeat: no-repeat;
+	background-position-x: right;
+	background-size: 100%;
+			  	height: 150px;
+	opacity: 0.5;
+}
