@@ -3341,7 +3341,7 @@ textarea {
 .form-control {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   background: #ffffff;
   height: 40px;
   padding-right: 30px;
@@ -7488,5 +7488,8 @@ h6.media-heading {
   .owl-controls .owl-page span {
     background: #000000;
   }
+}
+.my-large-form {
+	height: 80px;
 }
 /*# sourceMappingURL=style.css.map */

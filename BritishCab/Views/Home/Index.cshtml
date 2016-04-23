@@ -10,30 +10,6 @@
 	});
 </script>
 
-<script type="text/javascript">
-	var options = {
-		types: ['(cities)'],
-		componentRestrictions: { country: "uk" }
-	};
-
-	google.maps.event.addDomListener(window, 'load', function () {
-		var places = new google.maps.places.Autocomplete(document.getElementById('pickUpLocation'), options);
-		google.maps.event.addListener(places, 'place_changed', function () {
-			var place = places.getPlace();
-			var address = place.formatted_address;
-			var latitude = place.geometry.location.lat();
-			var longitude = place.geometry.location.lng();
-			//var mesg = "Address: " + address;
-			//mesg += "\nLatitude: " + latitude;
-			//mesg += "\nLongitude: " + longitude;
-			//alert(mesg);
-		});
-	});
-	google.maps.event.addDomListener(window, 'load', function () {
-		var places2 = new google.maps.places.Autocomplete(document.getElementById('dropLocation'), options);
-	});
-</script>
-
 
 
 <style>
@@ -320,6 +296,30 @@
 													@Html.ValidationSummary(true)
 													@Html.HiddenFor(model => model.BookingEntityId)
 
+	<script type="text/javascript">
+	var options = {
+		types: ['(cities)'],
+		componentRestrictions: { country: "uk" }
+	};
+
+	google.maps.event.addDomListener(window, 'load', function () {
+		var places = new google.maps.places.Autocomplete(document.getElementById('pickUpLocation'), options);
+		google.maps.event.addListener(places, 'place_changed', function () {
+			var place = places.getPlace();
+			var address = place.formatted_address;
+			var latitude = place.geometry.location.lat();
+			var longitude = place.geometry.location.lng();
+			//var mesg = "Address: " + address;
+			//mesg += "\nLatitude: " + latitude;
+			//mesg += "\nLongitude: " + longitude;
+			//alert(mesg);
+		});
+	});
+	google.maps.event.addDomListener(window, 'load', function () {
+		var places2 = new google.maps.places.Autocomplete(document.getElementById('dropLocation'), options);
+	});
+	</script>
+
 													if (ViewBag.Error != null)
 													{
 														<div class="alert alert-warning">@ViewBag.Error</div>
@@ -335,11 +335,13 @@
 														<tr>
 															@Html.TextBoxFor(model => model.PickUpDateTime, new { @class = "form-control", id = "datetimepicker", placeholder = "Choose pich up time", required = "required" })
 														</tr>
-
+														<tr class="tp-caption sfb fadeout small_white">
+															
+																<button type="submit" class="btn btn-animated btn-lg btn-gray-transparent get-quote">Get a quote</button>
+															
+														</tr>
 													</table>
-													<div class="tp-caption sfb fadeout small_white">
-														<button type="submit" class="btn btn-animated btn-lg btn-gray-transparent get-quote">Get a quote</button>
-													</div>
+													
 												}
 											</div>
 										</div>
