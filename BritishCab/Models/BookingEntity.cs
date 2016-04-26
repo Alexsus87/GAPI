@@ -61,6 +61,5 @@ namespace BritishCab.Models
 		public Guid ConfirmationCode { get; set; }
 		[DisplayName("Additional comments")]
 		public string Comments { get; set; }
-
 	}
 }

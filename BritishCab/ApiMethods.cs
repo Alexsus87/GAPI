@@ -236,8 +236,6 @@ namespace BritishCab
 			client.Host = "smtp.gmail.com";
 			client.Port = 587;
 
-			var securityCode = new Guid();
-
 			// setup Smtp authentication
 			NetworkCredential credentials =
 				new NetworkCredential("driverfrombritain@gmail.com", "T!T@n1130");
@@ -252,12 +250,21 @@ namespace BritishCab
 			if (isFinal)
 			{
 				msg.Subject = "Booking information";
-				msg.Body = "<html><head></head><body><b>Thanks for booking! We will be in touch with you shortly!</b></body>";
+				msg.Body = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
+										"<p><strong>Your order details:</strong></p>" +
+										"<p><strong>From:&nbsp;{0}</strong></p>" +
+										"<p><strong>To:&nbsp;{1}</strong></p>" +
+										"<p><strong>Pick up time:{2}</strong></p>" +
+										"<p><strong>Estimated transfer time:{3}</strong></p>" +
+										"<p><strong>Contact number:{4}</strong></p>" +
+										"<p><strong>Additional Comments:{5}</strong></p>" +
+										"<p><strong>Payment type: pay in person</strong></p>",booking.PickUpLocation,booking.DropLocation,booking.PickUpDateTime, booking.TransferTime, booking.PhoneNumber,booking.Comments);
+
 			}
 			else
 			{
-				msg.Subject = "This is a test Email subject";
-				msg.Body = string.Format("<html><head></head><body><b>{0}?confirmation={1}</b></body>", localUrl, booking.ConfirmationCode);
+				msg.Subject = "VipDriving Order Confirmation";
+				msg.Body = string.Format("<h3>Please follow the following link to confirm your order:</h3>{0}?confirmation={1}", localUrl, booking.ConfirmationCode);
 			}
 
 			try

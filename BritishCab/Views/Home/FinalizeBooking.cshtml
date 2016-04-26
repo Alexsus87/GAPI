@@ -14,6 +14,11 @@
 					@Html.HiddenFor(model => model.BookingEntityId)
 					@Html.HiddenFor(model => model.DriverActualDepartureTime)
 					@Html.HiddenFor(model => model.PickUpDateTime)
+					@Html.HiddenFor(model => model.PickUpLocation)
+					@Html.HiddenFor(model => model.DropLocation)
+					@Html.HiddenFor(model =>model.Price)
+					@Html.HiddenFor(model => model.TransferTime)
+					@Html.HiddenFor(model => model.TotalTime)
 
 					<div class="form-group">
 						@Html.LabelFor(model => model.PickUpLocation, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -154,19 +159,5 @@
 		</div>
 	</div>
 	<!-- .footer end -->
-	<!-- .subfooter start -->
-	<!-- ================ -->
-	<div class="subfooter">
-		<div class="container">
-			<div class="subfooter-inner">
-				<div class="row">
-					<div class="col-md-12">
-						<p class="text-center">Copyright © 2015 The Project by <a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>. All Rights Reserved</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- .subfooter end -->
 </footer>
 <!-- footer end -->

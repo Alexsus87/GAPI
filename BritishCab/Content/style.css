@@ -6893,6 +6893,11 @@ h6.media-heading {
   color: #ffffff;
   font-weight: 300;
 }
+.medium_to_large_white {
+  font-size: 32px;
+  color: #ffffff;
+  font-weight: 300;
+}
 .small_white {
   font-size: 16px;
   color: #ffffff;

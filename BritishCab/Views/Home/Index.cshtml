@@ -21,268 +21,294 @@
 </style>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
 
-<div class="tp-caption sfb fadeout text-left medium_white input-fields"
-     data-x="right"
-     data-y="100"
-     data-speed="500"
-     data-start="1300"
-     data-easing="easeOutQuad"
-     data-endspeed="600">
-    @*<span class="icon default-bg circle small hidden-xs"><i class="fa fa-laptop"></i></span> 100% Responsive*@
-    <div>
-        <div id="Booking">
-            <div class="container">
-               
+<div class="body">
+	<div class="tp-caption sfb fadeout text-right medium_white input-fields"
+		 data-x="1000"
+		 data-y="100">
+		@*<span class="icon default-bg circle small hidden-xs"><i class="fa fa-laptop"></i></span> 100% Responsive*@
+		<div>
+			<div id="Booking">
+				<div class="container">
+					<div class="col-md-12 pull-right" style="float: right">
+
+						@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+						{
+							@Html.AntiForgeryToken()
+							@Html.ValidationSummary(true)
+							@Html.HiddenFor(model => model.BookingEntityId)
+
+							<script type="text/javascript">
+								var options = {
+									types: ['(cities)'],
+									componentRestrictions: { country: "uk" }
+								};
+
+								google.maps.event.addDomListener(window, 'load', function () {
+									var places = new google.maps.places.Autocomplete(document.getElementById('pickUpLocation'), options);
+									google.maps.event.addListener(places, 'place_changed', function () {
+										var place = places.getPlace();
+										var address = place.formatted_address;
+										var latitude = place.geometry.location.lat();
+										var longitude = place.geometry.location.lng();
+										//var mesg = "Address: " + address;
+										//mesg += "\nLatitude: " + latitude;
+										//mesg += "\nLongitude: " + longitude;
+										//alert(mesg);
+									});
+								});
+								google.maps.event.addDomListener(window, 'load', function () {
+									var places2 = new google.maps.places.Autocomplete(document.getElementById('dropLocation'), options);
+								});
+							</script>
+
+							if (ViewBag.Error != null)
+							{
+								<div class="alert alert-warning">@ViewBag.Error</div>
+							}
+							<table class="table table-striped table-hover text-right">
+
+								<tr>
+									@Html.TextBoxFor(model => model.PickUpLocation, new { @class = "form-control text-right", id = "pickUpLocation", placeholder = "From A", required = "required" })
+								</tr>
+								<tr>
+									@Html.TextBoxFor(model => model.DropLocation, new { @class = "form-control text-right", id = "dropLocation", placeholder = "To B", required = "required" })
+								</tr>
+								<tr>
+									@Html.TextBoxFor(model => model.PickUpDateTime, new { @class = "form-control text-right", id = "datetimepicker", placeholder = "Choose pich up time", required = "required" })
+								</tr>
+
+							</table>
+							<div class="tp-caption sfb fadeout small_white">
+								<button type="submit" class="btn btn-animated btn-lg btn-gray-transparent get-quote">Get a quote</button>
+							</div>
+						}
+					</div>
+				</div>
 			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+	<!-- banner start -->
+	<!-- ================ -->
+	<div class="banner clearfix">
+		<!-- slideshow start -->
+		<!-- ================ -->
+		<div class="slideshow">
+
+			<!-- slider revolution start -->
+			<!-- ================ -->
+			<div class="slider-banner-container">
+				<div class="slider-banner-fullwidth-big-height">
+					<ul class="slides">
+						<!-- slide 1 start -->
+						<!-- ================ -->
+						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
+
+							<!-- main image -->
+							<img src="~/Content/images/Carousel_3.png" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<!-- Transparent Background -->
+							<div class="tp-caption dark-translucent-bg"
+								 data-x="center"
+								 data-y="bottom"
+								 data-speed="600"
+								 data-start="0">
+							</div>
+							<!-- LAYER NR. 1 -->
+							<div class="tp-caption sfb fadeout medium_to_large_white"
+								 data-x="left"
+								 data-y="100"
+								 data-speed="500"
+								 data-start="1000"
+								 data-easing="easeOutQuad"
+								 data-end="10000">
+								We Take you from point A to point B with maximum comfort and minimal cost.
+							</div>
+							<!-- LAYER NR. 2 -->
+							<!-- LAYER NR. 3 -->
+							@*<div class="tp-caption sfb fadeout text-left medium_white"
+									 data-x="left"
+									 data-y="290"
+									 data-speed="500"
+									 data-start="1600"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<span class="icon default-bg circle small hidden-xs"><i class="icon-check"></i></span> Bootstrap Based
+								</div>
+								<!-- LAYER NR. 4 -->
+								<div class="tp-caption sfb fadeout text-left medium_white"
+									 data-x="left"
+									 data-y="350"
+									 data-speed="500"
+									 data-start="1900"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<span class="icon default-bg circle small hidden-xs"><i class="icon-gift"></i></span> Packed Full of Features
+								</div>
+								<!-- LAYER NR. 5 -->
+								<div class="tp-caption sfb fadeout text-left medium_white"
+									 data-x="left"
+									 data-y="410"
+									 data-speed="500"
+									 data-start="2200"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<span class="icon default-bg circle small hidden-xs"><i class="icon-hourglass"></i></span> Very Easy to Customize
+								</div>
+								<!-- LAYER NR. 6 -->
+								<div class="tp-caption sfb fadeout small_white"
+									 data-x="left"
+									 data-y="480"
+									 data-speed="500"
+									 data-start="2500"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<a href="#" class="btn btn-default-transparent btn-lg btn-animated">Purchase <i class="fa fa-cart-arrow-down"></i></a>
+								</div>*@
+						</li>
+						<!-- slide 1 end -->
+						<!-- slide 2 start -->
+						<!-- ================ -->
+						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
+
+							<!-- main image -->
+							<img src="~/Content/images/Carousel_London.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<!-- Transparent Background -->
+							<div class="tp-caption dark-translucent-bg"
+								 data-x="center"
+								 data-y="bottom"
+								 data-speed="600"
+								 data-start="0">
+							</div>
+							<div class="tp-caption sfb fadeout large_white"
+								 data-x="left"
+								 data-y="100"
+								 data-speed="500"
+								 data-start="1000"
+								 data-easing="easeOutQuad"
+								 data-end="10000">
+								We Take you from point A to point B
+							</div>
+							<div class="tp-caption sfb fadeout large_white"
+								 data-x="left"
+								 data-y="140"
+								 data-speed="500"
+								 data-start="1000"
+								 data-easing="easeOutQuad"
+								 data-end="10000">
+								with maximum comfort and minimal cost.
+							</div>
+							@*<!-- LAYER NR. 1 -->
+								<div class="tp-caption sfb fadeout large_white"
+									 data-x="left"
+									 data-y="150"
+									 data-speed="500"
+									 data-start="1000"
+									 data-easing="easeOutQuad"
+									 data-end="10000">
+									Premium HTML5 Bootstrap Theme
+								</div>
+								<!-- LAYER NR. 2 -->
+								<div class="tp-caption sfb fadeout text-left medium_white"
+									 data-x="left"
+									 data-y="230"
+									 data-speed="500"
+									 data-start="1300"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<span class="icon default-bg circle small hidden-xs"><i class="fa fa-laptop"></i></span> W3C Validated
+								</div>
+								<!-- LAYER NR. 3 -->
+								<div class="tp-caption sfb fadeout text-left medium_white"
+									 data-x="left"
+									 data-y="290"
+									 data-speed="500"
+									 data-start="1600"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<span class="icon default-bg circle small hidden-xs"><i class="icon-check"></i></span> After Sale Support
+								</div>
+								<!-- LAYER NR. 4 -->
+								<div class="tp-caption sfb fadeout text-left medium_white"
+									 data-x="left"
+									 data-y="350"
+									 data-speed="500"
+									 data-start="1900"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<span class="icon default-bg circle small hidden-xs"><i class="icon-gift"></i></span> Crossbrowser Compatible
+								</div>
+								<!-- LAYER NR. 5 -->
+								<div class="tp-caption sfb fadeout text-left medium_white"
+									 data-x="left"
+									 data-y="410"
+									 data-speed="500"
+									 data-start="2200"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<span class="icon default-bg circle small hidden-xs"><i class="icon-hourglass"></i></span> Very Easy to Customize
+								</div>
+								<!-- LAYER NR. 6 -->
+								<div class="tp-caption sfb fadeout small_white"
+									 data-x="left"
+									 data-y="480"
+									 data-speed="500"
+									 data-start="2500"
+									 data-easing="easeOutQuad"
+									 data-endspeed="600">
+									<a href="#" class="btn btn-default-transparent btn-lg btn-animated">Purchase <i class="fa fa-cart-arrow-down"></i></a>
+								</div>*@
+						</li>
+						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
+
+							<!-- main image -->
+							<img src="~/Content/images/Carousel_Terminal.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<!-- Transparent Background -->
+							<div class="tp-caption dark-translucent-bg"
+								 data-x="center"
+								 data-y="bottom"
+								 data-speed="600"
+								 data-start="0">
+							</div>
+							<div class="tp-caption sfb fadeout large_white"
+								 data-x="left"
+								 data-y="100"
+								 data-speed="500"
+								 data-start="1000"
+								 data-easing="easeOutQuad"
+								 data-end="10000">
+								We Take you from point A to point B
+							</div>
+							<div class="tp-caption sfb fadeout large_white"
+								 data-x="left"
+								 data-y="140"
+								 data-speed="500"
+								 data-start="1000"
+								 data-easing="easeOutQuad"
+								 data-end="10000">
+								with maximum comfort and minimal cost.
+							</div>
+						</li>
+						<!-- slide 2 end -->
+					</ul>
+					@*<div class="tp-bannertimer"></div>*@
+				</div>
+			</div>
+			<!-- slider revolution end -->
+		</div>
+		<!-- slideshow end -->
+	</div>
+	<!-- banner end -->
+
+	<div class="container">
+		<div class="row">
 		</div>
 	</div>
 </div>
-
-
-
-
-
-<!-- banner start -->
-<!-- ================ -->
-<div class="banner clearfix">
-    <!-- slideshow start -->
-    <!-- ================ -->
-    <div class="slideshow">
-
-        <!-- slider revolution start -->
-        <!-- ================ -->
-        <div class="slider-banner-container">
-            <div class="slider-banner-fullwidth-big-height">
-                <ul class="slides">
-                    <!-- slide 1 start -->
-                    <!-- ================ -->
-                    <li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-
-                        <!-- main image -->
-                        <img src="~/Content/images/Carousel_3.png" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
-                        <!-- Transparent Background -->
-                        <div class="tp-caption dark-translucent-bg"
-                             data-x="center"
-                             data-y="bottom"
-                             data-speed="600"
-                             data-start="0">
-                        </div>
-                        <!-- LAYER NR. 1 -->
-						<div class="tp-caption sfb fadeout large_white"
-							 data-x="left"
-							 data-y="100"
-							 data-speed="500"
-							 data-start="1000"
-							 data-easing="easeOutQuad"
-							 data-end="10000">
-							We Take you from point A to point B
-						</div>
-						<div class="tp-caption sfb fadeout large_white"
-							 data-x="left"
-							 data-y="140"
-							 data-speed="500"
-							 data-start="1000"
-							 data-easing="easeOutQuad"
-							 data-end="10000">
-							with maximum comfort and minimal cost.
-						</div>
-                        <!-- LAYER NR. 2 -->
-                        <!-- LAYER NR. 3 -->
-                        @*<div class="tp-caption sfb fadeout text-left medium_white"
-                                 data-x="left"
-                                 data-y="290"
-                                 data-speed="500"
-                                 data-start="1600"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <span class="icon default-bg circle small hidden-xs"><i class="icon-check"></i></span> Bootstrap Based
-                            </div>
-                            <!-- LAYER NR. 4 -->
-                            <div class="tp-caption sfb fadeout text-left medium_white"
-                                 data-x="left"
-                                 data-y="350"
-                                 data-speed="500"
-                                 data-start="1900"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <span class="icon default-bg circle small hidden-xs"><i class="icon-gift"></i></span> Packed Full of Features
-                            </div>
-                            <!-- LAYER NR. 5 -->
-                            <div class="tp-caption sfb fadeout text-left medium_white"
-                                 data-x="left"
-                                 data-y="410"
-                                 data-speed="500"
-                                 data-start="2200"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <span class="icon default-bg circle small hidden-xs"><i class="icon-hourglass"></i></span> Very Easy to Customize
-                            </div>
-                            <!-- LAYER NR. 6 -->
-                            <div class="tp-caption sfb fadeout small_white"
-                                 data-x="left"
-                                 data-y="480"
-                                 data-speed="500"
-                                 data-start="2500"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <a href="#" class="btn btn-default-transparent btn-lg btn-animated">Purchase <i class="fa fa-cart-arrow-down"></i></a>
-                            </div>*@
-                    </li>
-                    <!-- slide 1 end -->
-                    <!-- slide 2 start -->
-                    <!-- ================ -->
-                    <li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-
-                        <!-- main image -->
-                        <img src="~/Content/images/Carousel_London.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
-                        <!-- Transparent Background -->
-						<div class="tp-caption dark-translucent-bg"
-							 data-x="center"
-							 data-y="bottom"
-							 data-speed="600"
-							 data-start="0">
-						</div>
-						<div class="tp-caption sfb fadeout large_white"
-							data-x="left"
-							data-y="100"
-							data-speed="500"
-							data-start="1000"
-							data-easing="easeOutQuad"
-							data-end="10000">
-							 We Take you from point A to point B
-						</div>
-						<div class="tp-caption sfb fadeout large_white"
-							 data-x="left"
-							 data-y="140"
-							 data-speed="500"
-							 data-start="1000"
-							 data-easing="easeOutQuad"
-							 data-end="10000">
-							with maximum comfort and minimal cost.
-						</div>
-                        @*<!-- LAYER NR. 1 -->
-                            <div class="tp-caption sfb fadeout large_white"
-                                 data-x="left"
-                                 data-y="150"
-                                 data-speed="500"
-                                 data-start="1000"
-                                 data-easing="easeOutQuad"
-                                 data-end="10000">
-                                Premium HTML5 Bootstrap Theme
-                            </div>
-                            <!-- LAYER NR. 2 -->
-                            <div class="tp-caption sfb fadeout text-left medium_white"
-                                 data-x="left"
-                                 data-y="230"
-                                 data-speed="500"
-                                 data-start="1300"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <span class="icon default-bg circle small hidden-xs"><i class="fa fa-laptop"></i></span> W3C Validated
-                            </div>
-                            <!-- LAYER NR. 3 -->
-                            <div class="tp-caption sfb fadeout text-left medium_white"
-                                 data-x="left"
-                                 data-y="290"
-                                 data-speed="500"
-                                 data-start="1600"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <span class="icon default-bg circle small hidden-xs"><i class="icon-check"></i></span> After Sale Support
-                            </div>
-                            <!-- LAYER NR. 4 -->
-                            <div class="tp-caption sfb fadeout text-left medium_white"
-                                 data-x="left"
-                                 data-y="350"
-                                 data-speed="500"
-                                 data-start="1900"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <span class="icon default-bg circle small hidden-xs"><i class="icon-gift"></i></span> Crossbrowser Compatible
-                            </div>
-                            <!-- LAYER NR. 5 -->
-                            <div class="tp-caption sfb fadeout text-left medium_white"
-                                 data-x="left"
-                                 data-y="410"
-                                 data-speed="500"
-                                 data-start="2200"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <span class="icon default-bg circle small hidden-xs"><i class="icon-hourglass"></i></span> Very Easy to Customize
-                            </div>
-                            <!-- LAYER NR. 6 -->
-                            <div class="tp-caption sfb fadeout small_white"
-                                 data-x="left"
-                                 data-y="480"
-                                 data-speed="500"
-                                 data-start="2500"
-                                 data-easing="easeOutQuad"
-                                 data-endspeed="600">
-                                <a href="#" class="btn btn-default-transparent btn-lg btn-animated">Purchase <i class="fa fa-cart-arrow-down"></i></a>
-                            </div>*@
-                    </li>
-                    <li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-
-                        <!-- main image -->
-                        <img src="~/Content/images/Carousel_Terminal.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
-                        <!-- Transparent Background -->
-	                    <div class="tp-caption dark-translucent-bg"
-	                         data-x="center"
-	                         data-y="bottom"
-	                         data-speed="600"
-	                         data-start="0">
-	                    </div>
-						<div class="tp-caption sfb fadeout large_white"
-							 data-x="left"
-							 data-y="100"
-							 data-speed="500"
-							 data-start="1000"
-							 data-easing="easeOutQuad"
-							 data-end="10000">
-							We Take you from point A to point B
-						</div>
-						<div class="tp-caption sfb fadeout large_white"
-							 data-x="left"
-							 data-y="140"
-							 data-speed="500"
-							 data-start="1000"
-							 data-easing="easeOutQuad"
-							 data-end="10000">
-							with maximum comfort and minimal cost.
-						</div>
-                    </li>
-                    <!-- slide 2 end -->
-                </ul>
-                @*<div class="tp-bannertimer"></div>*@
-            </div>
-        </div>
-        <!-- slider revolution end -->
-    </div>
-    <!-- slideshow end -->
-</div>
-<!-- banner end -->
-<div class="container">
-	<div class="row">
-		@*<div class="col-md-6" style="background-color: black">
-			<ul class="list-icons">
-				<li><i class="fa fa-map-marker pr-10 text-default"></i> One infinity loop, 54100</li>
-				<li><i class="fa fa-phone pr-10 text-default"></i> +00 1234567890</li>
-				<li><a href="mailto:info@theproject.com"><i class="fa fa-envelope-o pr-10"></i>info@theproject.com</a></li>
-			</ul>
-		</div>
-		<div class="col-md-6">
-			<div class="background-custom">
-				<div class="car-background"></div>
-			</div>
-		</div>*@
-		@*<div class="col-lg-6 col-lg-push-6 col-md-6 col-md-push-6 col-sm-6 col-sm-push-6 col-xs-6 col-xs-push-6">
-			<div class="background-custom">
-				<div class="car-background"></div>
-			</div>
-		</div>*@
-	</div>
-</div>
-
 <!-- footer start (Add "dark" class to #footer in order to enable dark footer) -->
 <!-- ================ -->
 <footer id="footer" class="clearfix dark">
@@ -316,7 +342,7 @@
 								<div class="col-md-8">
 									<div class="background-custom">
 										<div class="car-background">
-											<div class="pull-right">
+											@*<div class="pull-right">
 												@using (Html.BeginForm("Index", "Home", FormMethod.Post))
 												{
 													@Html.AntiForgeryToken()
@@ -363,20 +389,15 @@
 															@Html.TextBoxFor(model => model.PickUpDateTime, new { @class = "form-control", id = "datetimepicker", placeholder = "Choose pich up time", required = "required" })
 														</tr>
 														<tr class="tp-caption sfb fadeout small_white">
-															
 																<button type="submit" class="btn btn-animated btn-lg btn-gray-transparent get-quote">Get a quote</button>
-															
 														</tr>
 													</table>
 													
 												}
-											</div>
+											</div>*@
 										</div>
 									</div>
 								</div>
-								@*<div class="col-md-6">
-										<div id="map-canvas"></div>
-									</div>*@
 							</div>
 						</div>
 					</div>
@@ -414,7 +435,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- .footer end -->
+	@*<!-- .footer end -->
 	<!-- .subfooter start -->
 	<!-- ================ -->
 	<div class="subfooter">
@@ -428,6 +449,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- .subfooter end -->
+	<!-- .subfooter end -->*@
 </footer>
 <!-- footer end -->
