@@ -252,13 +252,13 @@ namespace BritishCab
 				msg.Subject = "Booking information";
 				msg.Body = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
-										"<p><strong>From:&nbsp;{0}</strong></p>" +
-										"<p><strong>To:&nbsp;{1}</strong></p>" +
+										"<p><strong>From:&nbsp;{6}, {0}</strong></p>" +
+										"<p><strong>To:&nbsp;{7}, {1}</strong></p>" +
 										"<p><strong>Pick up time:{2}</strong></p>" +
 										"<p><strong>Estimated transfer time:{3}</strong></p>" +
 										"<p><strong>Contact number:{4}</strong></p>" +
 										"<p><strong>Additional Comments:{5}</strong></p>" +
-										"<p><strong>Payment type: pay in person</strong></p>",booking.PickUpLocation,booking.DropLocation,booking.PickUpDateTime, booking.TransferTime, booking.PhoneNumber,booking.Comments);
+										"<p><strong>Payment type: pay in person</strong></p>",booking.PickUpLocation,booking.DropLocation,booking.PickUpDateTime, booking.TransferTime, booking.PhoneNumber,booking.Comments, booking.PickUpAddress, booking.DropAddress);
 
 			}
 			else
