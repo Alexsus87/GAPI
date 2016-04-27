@@ -1,12 +1,11 @@
 ﻿@model BritishCab.Models.BookingEntity
-
+<div style="background-color: #696E6F">
 @using (Html.BeginForm("FinalizeBooking", "Home",
 	FormMethod.Post, new { @class = "booking-form" }))
 {
 	@Html.AntiForgeryToken()
 	<div class="container">
 		<div class="form-horizontal">
-			<h2>Booking</h2>
 			<hr />
 			<div class="row">
 				<div class="col-lg-5">
@@ -113,3 +112,4 @@
 		</div>
 	</div>
 }
+</div>

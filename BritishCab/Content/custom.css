@@ -44,3 +44,9 @@ File Description: Place here your custom CSS styles
 html {
 	background-color: black;
 }
+.round-corners-custom {
+	border-radius: 20px;
+}
+.background-color {
+    background-color: #D1DBDD;
+}

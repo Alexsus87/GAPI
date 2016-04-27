@@ -66,7 +66,7 @@ namespace BritishCab.Controllers
 
 			if (Request.Form["Book"] != null)
 			{
-				if (bookingInput.Price == booking.Price)
+				if (Math.Round(bookingInput.Price,2) == booking.Price)
 				{
 					return RedirectToAction("FinalizeBooking", booking);
 				}
