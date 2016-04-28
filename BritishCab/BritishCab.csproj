@@ -309,6 +309,7 @@
     <Content Include="Content\Images\Car_logo2.png" />
     <Content Include="Content\Images\corporate-2-slider-slide-1.jpg" />
     <Content Include="Content\Images\corporate-2-slider-slide-2.jpg" />
+    <Content Include="Content\Images\lexus-gs-04.jpg" />
     <Content Include="Content\Images\Logo1_VIPDRIVING_72-01.png" />
     <Content Include="Content\Images\Logo_b.png" />
     <Content Include="Content\Images\Logo_Black.jpg" />
@@ -319,6 +320,8 @@
     <Content Include="Content\Images\Logo_vip_driving_300ppi-06-06.png" />
     <Content Include="Content\Images\Logo_vip_driving_Small.png" />
     <Content Include="Content\Images\mercedes-benz-g-500-5120x3095-suv-mercedes-g-class-off-road-luxury-7477.jpg" />
+    <Content Include="Content\Images\mercedes-e-class-08.jpg" />
+    <Content Include="Content\Images\mercedes_s_class.jpg" />
     <Content Include="Content\Images\page-about-1.jpg" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\light_blue.css" />
@@ -607,6 +610,7 @@
     <Content Include="Views\Home\Confirmation.cshtml" />
     <Content Include="Views\Home\FinalizeBooking.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\Home\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

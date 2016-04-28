@@ -76,6 +76,25 @@ namespace BritishCab.Controllers
 
 		public ActionResult FinalizeBooking(BookingEntity booking)
 		{
+			if (Request.HttpMethod == "POST")
+			{
+				booking.ConfirmationCode = Guid.NewGuid();
+				using (var db = new DefaultContext())
+				{
+					//TODO: fix this
+					booking.DriverActualDepartureTime = booking.PickUpDateTime;
+					db.BookingEntities.Add(booking);
+					db.SaveChanges();
+				}
+
+				//_api.SendEmailViaGmail(booking, false, Url);
+				return View("Payment", booking);
+			}
+			return View(booking);
+		}
+
+		public ActionResult Submit(BookingEntity booking)
+		{
 			#region Confirming the order
 			var queryValues = Request.QueryString.Get("confirmation");
 			Guid securityCode;
@@ -101,22 +120,21 @@ namespace BritishCab.Controllers
 				}
 			}
 			#endregion
+			var Url = HttpContext.Request.Url.ToString();
 
+			using (var db = new DefaultContext())
+			{
+				booking = (from book in db.BookingEntities
+					where book.ConfirmationCode == booking.ConfirmationCode
+					select book).FirstOrDefault();
+			}
+			ViewBag.Url = string.Format("{0}?confirmation={1}", Url, booking.ConfirmationCode);
 			if (Request.HttpMethod == "POST")
 			{
-				using (var db = new DefaultContext())
-				{
-					booking.ConfirmationCode = Guid.NewGuid();
-					//TODO: fix this
-					booking.DriverActualDepartureTime = booking.PickUpDateTime;
-					db.BookingEntities.Add(booking);
-					db.SaveChanges();
-				}
-				var Url = HttpContext.Request.Url.ToString();
 				_api.SendEmailViaGmail(booking, false, Url);
-				return View("Submit");
+				return View();
 			}
-			return View(booking);
+			return View("Payment",booking);
 		}
 
 		public ActionResult About()
