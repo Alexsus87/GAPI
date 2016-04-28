@@ -6,7 +6,8 @@
 	@Html.AntiForgeryToken()
 	<div class="container">
 		<div class="form-horizontal">
-			<hr />
+            <h3 class="title">Booking</h3>
+            <div class="separator-2"></div>
 			<div class="row">
 				<div class="col-lg-5">
 					@Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -99,11 +100,26 @@
 						</div>
 					</div>
 
-					<div class="form-group">
-						<div class="col-md-offset-2 col-md-10">
-							<input type="submit" name="payLater" value="Pay Later" class="btn btn-default" />
-						</div>
-					</div>
+				    <div class="form-group">
+				        <div class="col-md-offset-2 col-md-10">
+				            <input type="submit" name="payLater" value="Pay Later" class="btn btn-default" />
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_xclick">
+                                <input type="hidden" name="business" value="vitali@roshkani.com">
+                                <input type="hidden" name="lc" value="BT">
+                                <input type="hidden" name="item_name" value="Trip for: @Model.Name from: @Model.PickUpAddress to: @Model.DropLocation">
+                                <input type="hidden" name="item_number" value="paypal">
+                                <input type="hidden" name="amount" value="@Model.Price">
+                                <input type="hidden" name="currency_code" value="GBP">
+                                <input type="hidden" name="button_subtype" value="services">
+                                <input type="hidden" name="no_note" value="0">
+                                <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+                                <input type="image" class="btn" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="paypal" alt="PayPal - The safer, easier way to pay online!">
+                                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                            </form>
+				        </div>
+				    </div>
+                    
 				</div>
 				<div class="col-lg-7 visible-lg">
 					<div id="map"></div>
