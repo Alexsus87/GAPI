@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BritishCab.Controllers;
 
 namespace BritishCab.Models
 {
@@ -61,5 +62,6 @@ namespace BritishCab.Models
 		public Guid ConfirmationCode { get; set; }
 		[DisplayName("Additional comments")]
 		public string Comments { get; set; }
+		public BookingStatus BookingStatus { get; set; }
 	}
 }

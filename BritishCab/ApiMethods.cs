@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
+using BritishCab.Controllers;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
@@ -249,6 +250,16 @@ namespace BritishCab
 			msg.IsBodyHtml = true;
 			if (isFinal)
 			{
+				string paymentType;
+				if (booking.BookingStatus == BookingStatus.Paid)
+				{
+					paymentType = "Paid";
+				}
+				else
+				{
+					paymentType = "Pay in person";
+				}
+
 				msg.Subject = "Booking information";
 				msg.Body = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
@@ -258,8 +269,10 @@ namespace BritishCab
 										"<p><strong>Estimated transfer time:{3}</strong></p>" +
 										"<p><strong>Contact number:{4}</strong></p>" +
 										"<p><strong>Additional Comments:{5}</strong></p>" +
-										"<p><strong>Payment type: pay in person</strong></p>",booking.PickUpLocation,booking.DropLocation,booking.PickUpDateTime, booking.TransferTime, booking.PhoneNumber,booking.Comments, booking.PickUpAddress, booking.DropAddress);
-
+										"<p><strong>Payment type: {8}</strong></p>",
+										booking.PickUpLocation,booking.DropLocation,booking.PickUpDateTime, 
+										booking.TransferTime, booking.PhoneNumber,booking.Comments, 
+										booking.PickUpAddress, booking.DropAddress, paymentType);
 			}
 			else
 			{

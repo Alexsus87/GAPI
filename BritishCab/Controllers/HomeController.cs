@@ -9,6 +9,13 @@ using System.Web.Mvc;
 
 namespace BritishCab.Controllers
 {
+	public enum BookingStatus
+	{
+		PayOnSight,
+		NotDefined,
+		Paid,
+		NotActive
+	};
 	public class HomeController : Controller
 	{
 		private ApiMethods _api = new ApiMethods();
@@ -83,6 +90,7 @@ namespace BritishCab.Controllers
 				{
 					//TODO: fix this
 					booking.DriverActualDepartureTime = booking.PickUpDateTime;
+					booking.BookingStatus = BookingStatus.NotDefined;
 					db.BookingEntities.Add(booking);
 					db.SaveChanges();
 				}
@@ -112,8 +120,13 @@ namespace BritishCab.Controllers
 						{
 							_api.InsertEventToCalendar(bookingInfo);
 						}
+						if (booking.BookingStatus == BookingStatus.NotDefined)
+						{
+							booking.BookingStatus = BookingStatus.Paid;
+						}
 						_api.SendEmailViaGmail(bookingInfo, true, null);
 						bookingInfo.ConfirmationCode = Guid.Empty;
+						
 						db.SaveChanges();
 					}
 					return View("Confirmation");
@@ -132,6 +145,7 @@ namespace BritishCab.Controllers
 			if (Request.HttpMethod == "POST")
 			{
 				_api.SendEmailViaGmail(booking, false, Url);
+				booking.BookingStatus = BookingStatus.PayOnSight;
 				return View();
 			}
 			return View("Payment",booking);
