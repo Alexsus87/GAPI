@@ -7,10 +7,10 @@
 			@Html.AntiForgeryToken()
 
 			<div class="form-horizontal">
-				<h3 class="title">Booking</h3>
+				<h3 class="title" style="margin-top: 20px; color:white">Finalize Booking</h3>
 				<div class="separator-2"></div>
 				<div class="row">
-					<div class="col-lg-5">
+					<div class="col-lg-7">
 						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 						@Html.HiddenFor(model => model.BookingEntityId)
 						@Html.HiddenFor(model => model.DriverActualDepartureTime)

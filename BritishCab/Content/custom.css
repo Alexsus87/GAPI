@@ -11,8 +11,17 @@ File Description: Place here your custom CSS styles
 	background-color: transparent;
 }
 
-.no-js #loader { display: none;  }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.no-js #loader {
+	display: none;
+}
+
+.js #loader {
+	display: block;
+	position: absolute;
+	left: 100px;
+	top: 0;
+}
+
 .se-pre-con {
 	position: fixed;
 	left: 0px;
@@ -28,25 +37,47 @@ File Description: Place here your custom CSS styles
   margin-bottom: 60px;
 }*/
 .bootstrap-footer {
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  height: 200px;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	height: 200px;
 }
 
 .bootstrap-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: auto;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: auto;
 }
 
 html {
 	background-color: black;
 }
+
 .round-corners-custom {
 	border-radius: 20px;
 }
+
 .background-color {
-    background-color: #D1DBDD;
+	background-color: #D1DBDD;
+}
+
+#Booking {
+	position: absolute;
+	z-index: 1000;
+	top: 220px;
+}
+
+.input-fields {
+	position: absolute;
+	right: 30px;
+	z-index: 99;
+}
+
+@media (max-width: 767px) {
+	#Booking {
+		position: relative;
+		z-index: 1;
+		top: 0;
+	}
 }
