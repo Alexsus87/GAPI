@@ -55,7 +55,6 @@ namespace BritishCab.Models
 		public string PhoneNumber { get; set; }
 		public string Email { get; set; }
 		public bool IsSlotAvailable { get; set; }
-		public bool IsSlotCheckWasMade { get; set; }
 		public string Name { get; set; }
 		[DisplayName("Price(£)")]
 		public double Price { get; set; }
@@ -63,5 +62,9 @@ namespace BritishCab.Models
 		[DisplayName("Additional comments")]
 		public string Comments { get; set; }
 		public BookingStatus BookingStatus { get; set; }
+        [DisplayName("Number of passengers")]
+	    public int NumberOfPassengers { get; set; }
+        [DisplayName("Number of large luggage")]
+        public int NumberOfLuggage { get; set; }
 	}
 }
