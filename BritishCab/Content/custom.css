@@ -88,4 +88,7 @@ select#NumberOfLuggage {
 		z-index: 1;
 		top: 0;
 	}
+    .display-string {
+        padding-top: 0;
+    }
 }

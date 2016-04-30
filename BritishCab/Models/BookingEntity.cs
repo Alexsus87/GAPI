@@ -15,7 +15,7 @@ namespace BritishCab.Models
 
 		public int BookingId { get; set; }
 
-		[DisplayName("Pick up at")]
+		[DisplayName("Pick up ")]
 		public string PickUpLocation { get; set; }
 
 		[DisplayName("Pick Up Address")]
@@ -44,7 +44,7 @@ namespace BritishCab.Models
 		[DisplayName("Pick up time")]
 		public DateTime DriverActualDepartureTime { get; set; }
 
-		[DisplayName("Estimate transfer time")]
+		[DisplayName("Estimated transfer time")]
 		public TimeSpan TransferTime { get; set; }
 		public TimeSpan TotalTime { get; set; }
 		public double DrivingDistance { get; set; }

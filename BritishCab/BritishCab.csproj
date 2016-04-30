@@ -223,6 +223,10 @@
     <Compile Include="Migrations\201604291737191_newName.Designer.cs">
       <DependentUpon>201604291737191_newName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604301119368_changedDisplayNames.cs" />
+    <Compile Include="Migrations\201604301119368_changedDisplayNames.Designer.cs">
+      <DependentUpon>201604301119368_changedDisplayNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingEntity.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -622,6 +626,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604291737191_newName.resx">
       <DependentUpon>201604291737191_newName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604301119368_changedDisplayNames.resx">
+      <DependentUpon>201604301119368_changedDisplayNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

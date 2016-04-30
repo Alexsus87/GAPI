@@ -49,49 +49,8 @@
 							 data-start="1000"
 							 data-easing="easeOutQuad"
 							 data-end="10000">
-							We Take you from A to B with maximum comfort and minimal cost.
+							We Take you from A to B with maximum comfort and minimal cost
 						</div>
-						<!-- LAYER NR. 2 -->
-						<!-- LAYER NR. 3 -->
-						@*<div class="tp-caption sfb fadeout text-left medium_white"
-								 data-x="left"
-								 data-y="290"
-								 data-speed="500"
-								 data-start="1600"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<span class="icon default-bg circle small hidden-xs"><i class="icon-check"></i></span> Bootstrap Based
-							</div>
-							<!-- LAYER NR. 4 -->
-							<div class="tp-caption sfb fadeout text-left medium_white"
-								 data-x="left"
-								 data-y="350"
-								 data-speed="500"
-								 data-start="1900"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<span class="icon default-bg circle small hidden-xs"><i class="icon-gift"></i></span> Packed Full of Features
-							</div>
-							<!-- LAYER NR. 5 -->
-							<div class="tp-caption sfb fadeout text-left medium_white"
-								 data-x="left"
-								 data-y="410"
-								 data-speed="500"
-								 data-start="2200"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<span class="icon default-bg circle small hidden-xs"><i class="icon-hourglass"></i></span> Very Easy to Customize
-							</div>
-							<!-- LAYER NR. 6 -->
-							<div class="tp-caption sfb fadeout small_white"
-								 data-x="left"
-								 data-y="480"
-								 data-speed="500"
-								 data-start="2500"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<a href="#" class="btn btn-default-transparent btn-lg btn-animated">Purchase <i class="fa fa-cart-arrow-down"></i></a>
-							</div>*@
 					</li>
 					<!-- slide 1 end -->
 					<!-- slide 2 start -->
@@ -114,68 +73,8 @@
 							 data-start="1000"
 							 data-easing="easeOutQuad"
 							 data-end="10000">
-							We Take you from A to B with maximum comfort and minimal cost.
+							We Take you from A to B with maximum comfort and minimal cost
 						</div>
-						@*<!-- LAYER NR. 1 -->
-							<div class="tp-caption sfb fadeout large_white"
-								 data-x="left"
-								 data-y="150"
-								 data-speed="500"
-								 data-start="1000"
-								 data-easing="easeOutQuad"
-								 data-end="10000">
-								Premium HTML5 Bootstrap Theme
-							</div>
-							<!-- LAYER NR. 2 -->
-							<div class="tp-caption sfb fadeout text-left medium_white"
-								 data-x="left"
-								 data-y="230"
-								 data-speed="500"
-								 data-start="1300"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<span class="icon default-bg circle small hidden-xs"><i class="fa fa-laptop"></i></span> W3C Validated
-							</div>
-							<!-- LAYER NR. 3 -->
-							<div class="tp-caption sfb fadeout text-left medium_white"
-								 data-x="left"
-								 data-y="290"
-								 data-speed="500"
-								 data-start="1600"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<span class="icon default-bg circle small hidden-xs"><i class="icon-check"></i></span> After Sale Support
-							</div>
-							<!-- LAYER NR. 4 -->
-							<div class="tp-caption sfb fadeout text-left medium_white"
-								 data-x="left"
-								 data-y="350"
-								 data-speed="500"
-								 data-start="1900"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<span class="icon default-bg circle small hidden-xs"><i class="icon-gift"></i></span> Crossbrowser Compatible
-							</div>
-							<!-- LAYER NR. 5 -->
-							<div class="tp-caption sfb fadeout text-left medium_white"
-								 data-x="left"
-								 data-y="410"
-								 data-speed="500"
-								 data-start="2200"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<span class="icon default-bg circle small hidden-xs"><i class="icon-hourglass"></i></span> Very Easy to Customize
-							</div>
-							<!-- LAYER NR. 6 -->
-							<div class="tp-caption sfb fadeout small_white"
-								 data-x="left"
-								 data-y="480"
-								 data-speed="500"
-								 data-start="2500"
-								 data-easing="easeOutQuad"
-								 data-endspeed="600">
-								<a href="#" class="btn btn-default-transparent btn-lg btn-animated">Purchase <i class="fa fa-cart-arrow-down"></i></a>
-							</div>*@
 					</li>
 					<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
 
@@ -195,7 +94,7 @@
 							 data-start="1000"
 							 data-easing="easeOutQuad"
 							 data-end="10000">
-							We Take you from A to B with maximum comfort and minimal cost.
+							We Take you from A to B with maximum comfort and minimal cost
 						</div>
 					</li>
 					<!-- slide 2 end -->
@@ -251,13 +150,13 @@
 					<table class="table table-striped table-hover text-right ">
 
 						<tr>
-							@Html.TextBoxFor(model => model.PickUpLocation, new { @class = "form-control text-right", id = "pickUpLocation", placeholder = "From A", required = "required" })
+							@Html.TextBoxFor(model => model.PickUpLocation, new { @class = "form-control text-right", id = "pickUpLocation", placeholder = "From: A", required = "required" })
 						</tr>
 						<tr>
-							@Html.TextBoxFor(model => model.DropLocation, new { @class = "form-control text-right", id = "dropLocation", placeholder = "To B", required = "required" })
+							@Html.TextBoxFor(model => model.DropLocation, new { @class = "form-control text-right", id = "dropLocation", placeholder = "To: B", required = "required" })
 						</tr>
 						<tr>
-							@Html.TextBoxFor(model => model.PickUpDateTime, new { @class = "form-control text-right", id = "datetimepicker", placeholder = "Choose pick up time", required = "required" })
+							@Html.TextBoxFor(model => model.PickUpDateTime, new { @class = "form-control text-right", id = "datetimepicker", placeholder = "Pick up time", required = "required" })
 						</tr>
 
 					</table>
