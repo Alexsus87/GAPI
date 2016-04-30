@@ -9,8 +9,7 @@ namespace BritishCab.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "BritishCab.Models.DefaultContext";
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(BritishCab.Models.DefaultContext context)

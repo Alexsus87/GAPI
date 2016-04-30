@@ -65,7 +65,7 @@ namespace BritishCab
 			});
 		}
 
-		public void PopulateBooking(DistanceMatrix dm, BookingEntity booking)
+		public void PopulateBooking(DistanceMatrix dm, Booking booking)
 		{
 			booking.DrivingDistance = dm.TravelDistance;
 			booking.TransferTime = TimeSpan.FromSeconds(dm.TravelTime);
@@ -112,7 +112,7 @@ namespace BritishCab
 		{
 			string url = @"http://maps.googleapis.com/maps/api/distancematrix/xml?origins=" +
 			  origin + "&destinations=" + destination +
-			  "&mode=driving&sensor=false&language=en-EN";
+			  "&mode=driving&sensor=false&language=en-EN&units=imperial";
 
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 			WebResponse response = request.GetResponse();
@@ -133,7 +133,7 @@ namespace BritishCab
 					XmlNodeList drivingTime = xmldoc.GetElementsByTagName("duration");
 
 					dm.TravelTime = Convert.ToDouble(drivingTime[0].ChildNodes[0].InnerText);
-					dm.TravelDistance = Convert.ToDouble(distance[0].ChildNodes[1].InnerText.Replace(" km", ""));
+					dm.TravelDistance = Convert.ToDouble(distance[0].ChildNodes[1].InnerText.Replace(" mi", ""));
 					dm.ErrorBit = false;
 					return dm;
 				}
@@ -146,7 +146,7 @@ namespace BritishCab
 			return dm;
 		}
 
-		public void InsertEventToCalendar(BookingEntity booking)
+		public void InsertEventToCalendar(Booking booking)
 		{
 			//Inserting event to calendar
 			Event event1 = new Event()
@@ -202,7 +202,7 @@ namespace BritishCab
 			}
 		}
 
-		public void GetSlotAvailability(BookingEntity booking)
+		public void GetSlotAvailability(Booking booking)
 		{
 			var events = GetEventsFromCalendar(booking.DriverActualDepartureTime, booking.DriverActualDepartureTime.Add(booking.TotalTime));
 			if (events.Items != null && events.Items.Count > 0)
@@ -229,7 +229,7 @@ namespace BritishCab
 			return events;
 		}
 
-		public bool SendEmailViaGmail(BookingEntity booking, bool isFinal, string localUrl)
+		public bool SendEmailViaGmail(Booking booking, bool isFinal, string localUrl)
 		{
 			SmtpClient client = new SmtpClient();
 			client.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -269,10 +269,13 @@ namespace BritishCab
 										"<p><strong>Estimated transfer time:{3}</strong></p>" +
 										"<p><strong>Contact number:{4}</strong></p>" +
 										"<p><strong>Additional Comments:{5}</strong></p>" +
-										"<p><strong>Payment type: {8}</strong></p>",
+										"<p><strong>Payment type: {8}</strong></p>"+
+                                        "<p><strong>Number of passengers: {9}</strong></p>"+
+                                        "<p><strong>Number of large luggage: {10}</strong></p>",
 										booking.PickUpLocation,booking.DropLocation,booking.PickUpDateTime, 
 										booking.TransferTime, booking.PhoneNumber,booking.Comments, 
-										booking.PickUpAddress, booking.DropAddress, paymentType);
+										booking.PickUpAddress, booking.DropAddress, paymentType,
+                                        booking.NumberOfPassengers,booking.NumberOfLuggage);
 			}
 			else
 			{
@@ -292,7 +295,7 @@ namespace BritishCab
 
 		}
 
-		public void GetRoutePrice(BookingEntity bookingEntity)
+		public void GetRoutePrice(Booking bookingEntity)
 		{
 			var predefinedPrices = LoadPricesFromXml();
 			var from = bookingEntity.PickUpLocation.ToUpper();

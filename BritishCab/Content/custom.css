@@ -74,6 +74,14 @@ html {
 	z-index: 99;
 }
 
+select#NumberOfPassengers {
+    background-color: rgb(120, 124, 125);
+}
+
+select#NumberOfLuggage {
+    background-color: rgb(120, 124, 125);
+}
+
 @media (max-width: 767px) {
 	#Booking {
 		position: relative;

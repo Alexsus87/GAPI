@@ -14,6 +14,6 @@ namespace BritishCab.Models
 			
 		}
 
-		public DbSet<BookingEntity> BookingEntities { get; set; }
+		public DbSet<Booking> Bookings { get; set; }
 	}
 }

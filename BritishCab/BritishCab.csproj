@@ -43,6 +43,14 @@
       <HintPath>..\packages\BouncyCastle.1.7.0\lib\Net40-Client\BouncyCastle.Crypto.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Google.Apis">
       <HintPath>..\packages\Google.Apis.1.10.0\lib\net40\Google.Apis.dll</HintPath>
       <Private>True</Private>
@@ -164,12 +172,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -217,21 +219,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Migrations\201603071440352_InitialCreate.cs" />
-    <Compile Include="Migrations\201603071440352_InitialCreate.Designer.cs">
-      <DependentUpon>201603071440352_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603261202419_Added-Comments.cs" />
-    <Compile Include="Migrations\201603261202419_Added-Comments.Designer.cs">
-      <DependentUpon>201603261202419_Added-Comments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604040843339_Monday.cs" />
-    <Compile Include="Migrations\201604040843339_Monday.Designer.cs">
-      <DependentUpon>201604040843339_Monday.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201604040922455_AddressAdded.cs" />
-    <Compile Include="Migrations\201604040922455_AddressAdded.Designer.cs">
-      <DependentUpon>201604040922455_AddressAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201604291737191_newName.cs" />
+    <Compile Include="Migrations\201604291737191_newName.Designer.cs">
+      <DependentUpon>201604291737191_newName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingEntity.cs" />
@@ -611,6 +601,7 @@
     <Content Include="Views\Home\FinalizeBooking.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Home\Payment.cshtml" />
+    <Content Include="Views\Home\PDT.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -629,17 +620,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603071440352_InitialCreate.resx">
-      <DependentUpon>201603071440352_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603261202419_Added-Comments.resx">
-      <DependentUpon>201603261202419_Added-Comments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604040843339_Monday.resx">
-      <DependentUpon>201604040843339_Monday.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201604040922455_AddressAdded.resx">
-      <DependentUpon>201604040922455_AddressAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604291737191_newName.resx">
+      <DependentUpon>201604291737191_newName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

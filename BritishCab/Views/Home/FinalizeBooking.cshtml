@@ -1,4 +1,5 @@
-﻿@model BritishCab.Models.BookingEntity
+﻿@using System.Net.Mime
+@model BritishCab.Models.Booking
 <div style="background-color: #696E6F">
 	<div class="container">
 		@using (Html.BeginForm("FinalizeBooking", "Home",
@@ -12,7 +13,7 @@
 				<div class="row">
 					<div class="col-lg-7">
 						@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-						@Html.HiddenFor(model => model.BookingEntityId)
+						@Html.HiddenFor(model => model.BookingId)
 						@Html.HiddenFor(model => model.DriverActualDepartureTime)
 						@Html.HiddenFor(model => model.PickUpDateTime)
 						@Html.HiddenFor(model => model.PickUpLocation)
@@ -92,11 +93,27 @@
 								@Html.ValidationMessageFor(model => model.DropAddress, "", new { @class = "text-danger" })
 							</div>
 						</div>
+                        
+					    <div class="form-group">
+					        @Html.LabelFor(model => model.NumberOfPassengers, htmlAttributes: new { @class = "control-label col-md-4" })
+					        <div class="col-md-6">
+					            @Html.DropDownListFor(model => model.NumberOfPassengers, Enumerable.Range(1,3).Select(i => new SelectListItem{Text = i.ToString(), Value = i.ToString()}), new { @class = "form-control", required = "required" })
+					            @Html.ValidationMessageFor(model => model.NumberOfPassengers, "", new { @class = "text-danger" })
+					        </div>
+					    </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NumberOfLuggage, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.DropDownListFor(model => model.NumberOfLuggage, Enumerable.Range(0, 4).Select(i => new SelectListItem { Text = i.ToString(), Value = i.ToString() }), new { @class = "form-control", required = "required" })
+                                @Html.ValidationMessageFor(model => model.NumberOfLuggage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-						<div class="form-group">
+					    <div class="form-group">
 							@Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-4" })
 							<div class="col-md-6">
-								@Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control" } })
+								@Html.TextAreaFor(model => model.Comments, new { @class = "form-control", @rows="3" })
 								@Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
 							</div>
 						</div>

@@ -9,11 +9,11 @@ using BritishCab.Controllers;
 
 namespace BritishCab.Models
 {
-	public class BookingEntity
+	public class Booking
 	{
 		private DateTime _pickUpDateTime;
 
-		public int BookingEntityId { get; set; }
+		public int BookingId { get; set; }
 
 		[DisplayName("Pick up at")]
 		public string PickUpLocation { get; set; }

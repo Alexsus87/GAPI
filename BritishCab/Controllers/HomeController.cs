@@ -28,7 +28,7 @@ namespace BritishCab.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult Index(BookingEntity booking)
+		public ActionResult Index(Booking booking)
 		{
 
 			//Validate input and get route stats
@@ -47,15 +47,15 @@ namespace BritishCab.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult Booking(BookingEntity booking)
+		public ActionResult Booking(Booking booking)
 		{
 			return View(booking);
 		}
 
 		[HttpPost]
-		public ActionResult Booking(BookingEntity booking, string post)
+		public ActionResult Booking(Booking booking, string post)
 		{
-			var bookingInput = new BookingEntity();
+			var bookingInput = new Booking();
 			bookingInput.PickUpLocation = booking.PickUpLocation;
 			bookingInput.DropLocation = booking.DropLocation;
 			bookingInput.PickUpDateTime = booking.PickUpDateTime;
@@ -81,7 +81,7 @@ namespace BritishCab.Controllers
 			return RedirectToAction("Redirect", bookingInput);
 		}
 
-		public ActionResult FinalizeBooking(BookingEntity booking)
+		public ActionResult FinalizeBooking(Booking booking)
 		{
 			if (Request.HttpMethod == "POST")
 			{
@@ -91,7 +91,7 @@ namespace BritishCab.Controllers
 					//TODO: fix this
 					booking.DriverActualDepartureTime = booking.PickUpDateTime;
 					booking.BookingStatus = BookingStatus.NotDefined;
-					db.BookingEntities.Add(booking);
+					db.Bookings.Add(booking);
 					db.SaveChanges();
 				}
 
@@ -101,7 +101,7 @@ namespace BritishCab.Controllers
 			return View(booking);
 		}
 
-		public ActionResult Submit(BookingEntity booking)
+		public ActionResult Submit(Booking booking)
 		{
 			#region Confirming the order
 			var queryValues = Request.QueryString.Get("confirmation");
@@ -111,7 +111,7 @@ namespace BritishCab.Controllers
 			{
 				using (var db = new DefaultContext())
 				{
-					var bookingInfo = (from DBbooking in db.BookingEntities
+					var bookingInfo = (from DBbooking in db.Bookings
 									   where DBbooking.ConfirmationCode == securityCode
 									   select DBbooking).FirstOrDefault();
 					if (bookingInfo != null)
@@ -137,7 +137,7 @@ namespace BritishCab.Controllers
 
 			using (var db = new DefaultContext())
 			{
-				booking = (from book in db.BookingEntities
+				booking = (from book in db.Bookings
 					where book.ConfirmationCode == booking.ConfirmationCode
 					select book).FirstOrDefault();
 			}
@@ -158,12 +158,47 @@ namespace BritishCab.Controllers
 			return View();
 		}
 
+	    public ActionResult PDT()
+	    {
+            #region Confirming the order
+            var queryValues = Request.QueryString.Get("item_number");
+            Guid securityCode;
+
+            if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
+            {
+                using (var db = new DefaultContext())
+                {
+                    var bookingInfo = (from DBbooking in db.Bookings
+                                       where DBbooking.ConfirmationCode == securityCode
+                                       select DBbooking).FirstOrDefault();
+                    if (bookingInfo != null)
+                    {
+                        if (bookingInfo.IsSlotAvailable)
+                        {
+                            _api.InsertEventToCalendar(bookingInfo);
+                        }
+                        if (bookingInfo.BookingStatus == BookingStatus.NotDefined)
+                        {
+                            bookingInfo.BookingStatus = BookingStatus.Paid;
+                        }
+                        _api.SendEmailViaGmail(bookingInfo, true, null);
+                        bookingInfo.ConfirmationCode = Guid.Empty;
+
+                        db.SaveChanges();
+                    }
+                    return View("Confirmation");
+                }
+            }
+            #endregion
+	        return View("Submit");
+	    }
+
 		public ActionResult Services()
 		{
 			return View();
 		}
 
-		public ActionResult Redirect(BookingEntity booking)
+		public ActionResult Redirect(Booking booking)
 		{
 			return RedirectToAction("Booking", booking);
 		}
