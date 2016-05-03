@@ -64,7 +64,7 @@ namespace BritishCab.Models
 		public BookingStatus BookingStatus { get; set; }
         [DisplayName("Number of passengers")]
 	    public int NumberOfPassengers { get; set; }
-        [DisplayName("Number of large luggage")]
+        [DisplayName("Large pieces of luggage")]
         public int NumberOfLuggage { get; set; }
 	}
 }

@@ -227,6 +227,10 @@
     <Compile Include="Migrations\201604301119368_changedDisplayNames.Designer.cs">
       <DependentUpon>201604301119368_changedDisplayNames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605031504178_renamedLuggage.cs" />
+    <Compile Include="Migrations\201605031504178_renamedLuggage.Designer.cs">
+      <DependentUpon>201605031504178_renamedLuggage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingEntity.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -292,7 +296,9 @@
     <Content Include="Content\custom.css" />
     <Content Include="Content\Images\about.jpg" />
     <Content Include="Content\Images\about_2.jpg" />
+    <Content Include="Content\Images\AP3.jpg" />
     <Content Include="Content\Images\AstonWide.png" />
+    <Content Include="Content\Images\BB2.jpg" />
     <Content Include="Content\Images\Carousel_1.png" />
     <Content Include="Content\Images\Carousel_2.png" />
     <Content Include="Content\Images\Carousel_3.png" />
@@ -304,6 +310,7 @@
     <Content Include="Content\Images\corporate-2-slider-slide-1.jpg" />
     <Content Include="Content\Images\corporate-2-slider-slide-2.jpg" />
     <Content Include="Content\Images\lexus-gs-04.jpg" />
+    <Content Include="Content\Images\LO2.jpg" />
     <Content Include="Content\Images\Logo1_VIPDRIVING_72-01.png" />
     <Content Include="Content\Images\Logo_b.png" />
     <Content Include="Content\Images\Logo_Black.jpg" />
@@ -629,6 +636,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604301119368_changedDisplayNames.resx">
       <DependentUpon>201604301119368_changedDisplayNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605031504178_renamedLuggage.resx">
+      <DependentUpon>201605031504178_renamedLuggage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

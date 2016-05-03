@@ -55,12 +55,14 @@ namespace BritishCab.Controllers
 		[HttpPost]
 		public ActionResult Booking(Booking booking, string post)
 		{
-			var bookingInput = new Booking();
-			bookingInput.PickUpLocation = booking.PickUpLocation;
-			bookingInput.DropLocation = booking.DropLocation;
-			bookingInput.PickUpDateTime = booking.PickUpDateTime;
+			var bookingInput = new Booking
+			{
+			    PickUpLocation = booking.PickUpLocation,
+			    DropLocation = booking.DropLocation,
+			    PickUpDateTime = booking.PickUpDateTime
+			};
 
-			_dm = _api.GetRouteInformation(bookingInput.PickUpLocation, bookingInput.DropLocation);
+		    _dm = _api.GetRouteInformation(bookingInput.PickUpLocation, bookingInput.DropLocation);
 			if (_dm.ErrorBit)
 			{
 				bookingInput.ErrorMessage = "Please check spelling on locations";
@@ -83,7 +85,12 @@ namespace BritishCab.Controllers
 
 		public ActionResult FinalizeBooking(Booking booking)
 		{
-			if (Request.HttpMethod == "POST")
+		    if (booking.PickUpLocation == null || booking.DropLocation == null || booking.Price == 0.0)
+		    {
+		        return RedirectToAction("Booking");
+		    }
+
+		    if (Request.HttpMethod == "POST")
 			{
 				booking.ConfirmationCode = Guid.NewGuid();
 				using (var db = new DefaultContext())
@@ -99,6 +106,7 @@ namespace BritishCab.Controllers
 				return View("Payment", booking);
 			}
 			return View(booking);
+
 		}
 
 		public ActionResult Submit(Booking booking)

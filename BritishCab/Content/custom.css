@@ -81,6 +81,11 @@ select#NumberOfPassengers {
 select#NumberOfLuggage {
     background-color: rgb(120, 124, 125);
 }
+.subfooter {
+    padding: 0px;
+    background-color: black;
+}
+
 
 @media (max-width: 767px) {
 	#Booking {
@@ -90,5 +95,13 @@ select#NumberOfLuggage {
 	}
     .display-string {
         padding-top: 0;
+    }
+    [data-y] {
+       vertical-align: central;
+    }
+}
+@media (min-width: 768px) {
+    .with-dropdown-buttons .navbar-default .navbar-collapse {
+        padding-right: 0;
     }
 }

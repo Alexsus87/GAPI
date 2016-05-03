@@ -68,7 +68,7 @@ namespace BritishCab
 		public void PopulateBooking(DistanceMatrix dm, Booking booking)
 		{
 			booking.DrivingDistance = dm.TravelDistance;
-			booking.TransferTime = TimeSpan.FromSeconds(dm.TravelTime);
+			booking.TransferTime = RoundSeconds(TimeSpan.FromSeconds(dm.TravelTime));
 			booking.DriverActualDepartureTime = booking.PickUpDateTime.Subtract(TimeSpan.FromSeconds(dm.HomeToOriginTime));
 			booking.TotalDrivingDistance = dm.TotalTravelDistance;
 			booking.TotalTime = TimeSpan.FromSeconds(dm.TotalTravelTime);
@@ -82,7 +82,7 @@ namespace BritishCab
 		/// <returns></returns>
 		public DistanceMatrix GetRouteInformation(string origin, string destination)
 		{
-			DistanceMatrix dm = new DistanceMatrix();
+			var dm = new DistanceMatrix();
 
 			// Getting Distance and time for roundTrip
 			var clientTransfer = GetDistanceAndTime(origin, destination);
@@ -303,7 +303,8 @@ namespace BritishCab
 			var price = 0.0;
 			foreach (var predefinedPrice in predefinedPrices)
 			{
-				if (from.Contains(predefinedPrice.From) && to.Contains(predefinedPrice.To))
+                if (from.Contains(predefinedPrice.From) && to.Contains(predefinedPrice.To) || 
+                    from.Contains(predefinedPrice.To) && to.Contains(predefinedPrice.From))
 				{
 					price = predefinedPrice.Price;
 				}
@@ -354,5 +355,16 @@ namespace BritishCab
 			}
 			return listOfPrices;
 		}
+
+	    private TimeSpan RoundSeconds(TimeSpan transferTime)
+	    {
+	        int minutes = (int) transferTime.TotalMinutes;
+	        if (transferTime.Seconds >= 30)
+	        {
+	            minutes ++;
+	        }
+
+	        return TimeSpan.FromMinutes(minutes);
+	    }
 	}
 }
