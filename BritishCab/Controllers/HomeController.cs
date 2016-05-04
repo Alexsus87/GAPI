@@ -85,28 +85,23 @@ namespace BritishCab.Controllers
 
 		public ActionResult FinalizeBooking(Booking booking)
 		{
-		    if (booking.PickUpLocation == null || booking.DropLocation == null || booking.Price == 0.0)
-		    {
-		        return RedirectToAction("Booking");
-		    }
-
-		    if (Request.HttpMethod == "POST")
+			if (booking.PickUpLocation == null || booking.DropLocation == null || booking.Price == 0.0)
 			{
-				booking.ConfirmationCode = Guid.NewGuid();
-				using (var db = new DefaultContext())
-				{
-					//TODO: fix this
-					booking.DriverActualDepartureTime = booking.PickUpDateTime;
-					booking.BookingStatus = BookingStatus.NotDefined;
-					db.Bookings.Add(booking);
-					db.SaveChanges();
-				}
-
-				//_api.SendEmailViaGmail(booking, false, Url);
-				return View("Payment", booking);
+				return RedirectToAction("Booking");
 			}
-			return View(booking);
 
+			if (Request.HttpMethod != "POST") return View(booking);
+
+			booking.ConfirmationCode = Guid.NewGuid();
+			using (var db = new DefaultContext())
+			{
+				booking.DriverActualDepartureTime = booking.PickUpDateTime;
+				booking.BookingStatus = BookingStatus.NotDefined;
+				db.Bookings.Add(booking);
+				db.SaveChanges();
+			}
+
+			return View("Payment", booking);
 		}
 
 		public ActionResult Submit(Booking booking)
@@ -135,8 +130,8 @@ namespace BritishCab.Controllers
 			ViewBag.Url = string.Format("{0}?confirmation={1}", Url, booking.ConfirmationCode);
 			if (Request.HttpMethod == "POST")
 			{
-				_api.SendEmailViaGmail(booking, false, Url);
-				booking.BookingStatus = BookingStatus.PayOnSight;
+				_api.SendEmailViaGmail(booking, false, Url, null);
+				//booking.BookingStatus = BookingStatus.PayOnSight;
 				return View();
 			}
 			return View("Payment",booking);

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.EnterpriseServices;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
 using System.Xml.Linq;
@@ -248,13 +246,15 @@ namespace BritishCab
 			return events;
 		}
 
-		public bool SendEmailViaGmail(Booking booking, bool isFinal, string localUrl)
+		public bool SendEmailViaGmail(Booking booking, bool isFinal, string localUrl, string driverEmail)
 		{
 			SmtpClient client = new SmtpClient();
 			client.DeliveryMethod = SmtpDeliveryMethod.Network;
 			client.EnableSsl = true;
 			client.Host = "smtp.gmail.com";
 			client.Port = 587;
+
+			var emailAddress = driverEmail ?? booking.Email;
 
 			// setup Smtp authentication
 			NetworkCredential credentials =
@@ -264,7 +264,7 @@ namespace BritishCab
 
 			MailMessage msg = new MailMessage();
 			msg.From = new MailAddress("driverfrombritain@gmail.com");
-			msg.To.Add(new MailAddress(booking.Email));
+			msg.To.Add(new MailAddress(emailAddress));
 			msg.IsBodyHtml = true;
 
 			string paymentType;
@@ -371,11 +371,11 @@ namespace BritishCab
 						{
 							bookingInfo.BookingStatus = bookingStatus;
 						}
-						if (queryString == "confirmation")
+						if (bookingStatus == BookingStatus.Paid)
 						{
-							SendEmailViaGmail(bookingInfo, true, null);
+							SendEmailViaGmail(bookingInfo, true, null, null);
 						}
-
+						SendEmailViaGmail(bookingInfo, true, null, "vipdriving@roshkani.com");
 						bookingInfo.ConfirmationCode = Guid.Empty;
 
 						db.SaveChanges();

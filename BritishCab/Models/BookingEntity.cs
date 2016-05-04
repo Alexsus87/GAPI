@@ -58,7 +58,7 @@ namespace BritishCab.Models
 		public bool IsSlotAvailable { get; set; }
 		[DisplayName("Name")]
 		public string Name { get; set; }
-		[DisplayName("Price(£)")]
+		[DisplayName("Price")]
 		public double Price { get; set; }
 		public Guid ConfirmationCode { get; set; }
 		[DisplayName("Additional comments")]
