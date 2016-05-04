@@ -83,6 +83,8 @@ namespace BritishCab
 			booking.DriverActualDepartureTime = booking.PickUpDateTime.Subtract(TimeSpan.FromSeconds(dm.HomeToOriginTime));
 			booking.TotalDrivingDistance = dm.TotalTravelDistance;
 			booking.TotalTime = TimeSpan.FromSeconds(dm.TotalTravelTime);
+			booking.PickUpLocation = dm.OriginAddress;
+			booking.DropLocation = dm.DestinationAddress;
 		}
 
 		/// <summary>
@@ -108,6 +110,8 @@ namespace BritishCab
 			//Filling values
 			dm.TravelTime = clientTransfer.TravelTime;
 			dm.TravelDistance = clientTransfer.TravelDistance;
+			dm.OriginAddress = clientTransfer.OriginAddress;
+			dm.DestinationAddress = clientTransfer.DestinationAddress;
 			dm.HomeToOriginTime = homeToOrigin.TravelTime;
 			dm.HomeToOriginDistance = homeToOrigin.TravelDistance;
 			dm.DestinationToHomeTime = destinationToHome.TravelTime;
@@ -142,9 +146,13 @@ namespace BritishCab
 				{
 					XmlNodeList distance = xmldoc.GetElementsByTagName("distance");
 					XmlNodeList drivingTime = xmldoc.GetElementsByTagName("duration");
+					XmlNodeList originAddress = xmldoc.GetElementsByTagName("origin_address");
+					XmlNodeList destinationAddress = xmldoc.GetElementsByTagName("destination_address");
 
 					dm.TravelTime = Convert.ToDouble(drivingTime[0].ChildNodes[0].InnerText);
 					dm.TravelDistance = Convert.ToDouble(distance[0].ChildNodes[1].InnerText.Replace(" mi", ""));
+					dm.OriginAddress = originAddress[0].InnerText;
+					dm.DestinationAddress = destinationAddress[0].InnerText;
 					dm.ErrorBit = false;
 					return dm;
 				}

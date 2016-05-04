@@ -9,6 +9,8 @@ namespace BritishCab
 	{
 		public double TravelDistance { get; set; }
 		public double TravelTime { get; set; }
+		public string OriginAddress { get; set; }
+		public string DestinationAddress { get; set; }
 		public bool ErrorBit { get; set; }
 	}
 }

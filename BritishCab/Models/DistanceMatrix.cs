@@ -16,6 +16,8 @@ namespace BritishCab
 		public double TotalTravelDistance { get; set; }
 		public double HomeToOriginDistance { get; set; }
 		public double DestinationToHomeDistance { get; set; }
+		public string OriginAddress { get; set; }
+		public string DestinationAddress { get; set; }
 		public bool ErrorBit { get; set; }
 
 	}
