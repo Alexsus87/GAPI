@@ -117,8 +117,13 @@ namespace BritishCab.Controllers
 			{
 				return View("Confirmation");
 			}
+			if (Request.QueryString.Get("confirmation")!=null)
+			{
+				return RedirectToAction("Index");
+			}
 
 			#endregion
+
 			var Url = HttpContext.Request.Url.ToString();
 
 			using (var db = new DefaultContext())

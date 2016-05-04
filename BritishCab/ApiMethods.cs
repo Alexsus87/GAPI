@@ -246,22 +246,19 @@ namespace BritishCab
 			MailMessage msg = new MailMessage();
 			msg.From = new MailAddress("driverfrombritain@gmail.com");
 			msg.To.Add(new MailAddress(booking.Email));
-
 			msg.IsBodyHtml = true;
+
+			string paymentType;
 			if (isFinal)
 			{
-				string paymentType;
-				if (booking.BookingStatus == BookingStatus.Paid)
-				{
-					paymentType = "Paid";
-				}
-				else
-				{
-					paymentType = "Pay in person";
-				}
+				paymentType = "Paid";
+			}
+			else
+			{
+				paymentType = "Pay in person";
+			}
 
-				msg.Subject = "Booking information";
-				msg.Body = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
+			var bookingInfo = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
 										"<p><strong>Name:&nbsp;{11}</strong></p>" +
 										"<p><strong>From:&nbsp;{6}, {0}</strong></p>" +
@@ -270,19 +267,26 @@ namespace BritishCab
 										"<p><strong>Estimated transfer time:{3}</strong></p>" +
 										"<p><strong>Contact number:{4}</strong></p>" +
 										"<p><strong>Additional Comments:{5}</strong></p>" +
-										"<p><strong>Payment type: {8}</strong></p>"+
-                                        "<p><strong>Number of passengers: {9}</strong></p>"+
-                                        "<p><strong>Number of large luggage: {10}</strong></p>",
-										booking.PickUpLocation,booking.DropLocation,booking.PickUpDateTime, 
-										booking.TransferTime, booking.PhoneNumber,booking.Comments, 
+										"<p><strong>Payment type: {8}</strong></p>" +
+										"<p><strong>Number of passengers: {9}</strong></p>" +
+										"<p><strong>Number of large luggage: {10}</strong></p>",
+										booking.PickUpLocation, booking.DropLocation, booking.PickUpDateTime,
+										booking.TransferTime, booking.PhoneNumber, booking.Comments,
 										booking.PickUpAddress, booking.DropAddress, paymentType,
-                                        booking.NumberOfPassengers,booking.NumberOfLuggage,
+										booking.NumberOfPassengers, booking.NumberOfLuggage,
 										booking.Name);
+
+			var confirmationLink = string.Format("<h3>You're almost there!<p>&nbsp;</p>Please follow the following link to confirm your order:</h3>{0}?confirmation={1}<p>&nbsp;</p>", localUrl, booking.ConfirmationCode);
+
+			if (isFinal)
+			{
+				msg.Subject = "Booking information";
+				msg.Body = bookingInfo;
 			}
 			else
 			{
 				msg.Subject = "VipDriving Order Confirmation";
-				msg.Body = string.Format("<h3>Please follow the following link to confirm your order:</h3>{0}?confirmation={1}", localUrl, booking.ConfirmationCode);
+				msg.Body = confirmationLink + bookingInfo;
 			}
 
 			try
@@ -294,7 +298,6 @@ namespace BritishCab
 			{
 				return false;
 			}
-
 		}
 
 		public void GetRoutePrice(Booking bookingEntity)
@@ -349,12 +352,17 @@ namespace BritishCab
 						{
 							bookingInfo.BookingStatus = bookingStatus;
 						}
-						SendEmailViaGmail(bookingInfo, true, null);
+						if (queryString == "confirmation")
+						{
+							SendEmailViaGmail(bookingInfo, true, null);
+						}
+
 						bookingInfo.ConfirmationCode = Guid.Empty;
 
 						db.SaveChanges();
+
+						return true;
 					}
-					return true;
 				}
 			}
 			return false;
