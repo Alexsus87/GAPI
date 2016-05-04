@@ -68,7 +68,18 @@ namespace BritishCab
 		public void PopulateBooking(DistanceMatrix dm, Booking booking)
 		{
 			booking.DrivingDistance = dm.TravelDistance;
-			booking.TransferTime = RoundSeconds(TimeSpan.FromSeconds(dm.TravelTime));
+			Int32 travelTime = (int)RoundSeconds(TimeSpan.FromSeconds(dm.TravelTime)).TotalMinutes;
+			var remainder = travelTime%5;
+			if ( remainder == 0)
+			{
+				booking.TransferTime = RoundSeconds(TimeSpan.FromSeconds(dm.TravelTime));
+			}
+			else
+			{
+				travelTime += (5 - remainder);
+				booking.TransferTime = TimeSpan.FromMinutes(travelTime);
+			}
+
 			booking.DriverActualDepartureTime = booking.PickUpDateTime.Subtract(TimeSpan.FromSeconds(dm.HomeToOriginTime));
 			booking.TotalDrivingDistance = dm.TotalTravelDistance;
 			booking.TotalTime = TimeSpan.FromSeconds(dm.TotalTravelTime);
