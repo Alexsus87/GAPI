@@ -4,16 +4,12 @@
 	$(document).ready(function () {
 	    $('#datetimepicker').datetimepicker({
 	        theme: 'dark',
-	        format: 'd.m.Y H:i'
+	        format: 'd/m/Y H:i'
+
 	    });
 	});
 </script>
-
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-
-
-
-
 
 <!-- banner start -->
 <!-- ================ -->
@@ -21,7 +17,6 @@
 	<!-- slideshow start -->
 	<!-- ================ -->
 	<div class="slideshow">
-
 		<!-- slider revolution start -->
 		<!-- ================ -->
 		<div class="slider-banner-container">
@@ -30,7 +25,6 @@
 					<!-- slide 1 start -->
 					<!-- ================ -->
 					<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-
 						<!-- main image -->
 						<img src="~/Content/images/BB2.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
 						<!-- Transparent Background -->
@@ -55,7 +49,6 @@
 					<!-- slide 2 start -->
 					<!-- ================ -->
 					<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-
 						<!-- main image -->
 						<img src="~/Content/images/LO2.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
 						<!-- Transparent Background -->
@@ -76,7 +69,6 @@
 						</div>
 					</li>
 					<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-
 						<!-- main image -->
 						<img src="~/Content/images/AP3.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
 						<!-- Transparent Background -->
@@ -155,7 +147,7 @@
 							@Html.TextBoxFor(model => model.DropLocation, new { @class = "form-control text-right", id = "dropLocation", placeholder = "To", required = "required", autocomplete = "off" })
 						</tr>
 						<tr>
-							@Html.TextBoxFor(model => model.PickUpDateTime, new { @class = "form-control text-right", id = "datetimepicker", placeholder = "Pick up time", required = "required", autocomplete = "off"})
+							@Html.TextBoxFor(model => model.PickUpDateTime, "{0: dd/MM/yyy H:mm}", new { @class = "form-control text-right", id = "datetimepicker", placeholder = "Pick up time", required = "required", autocomplete = "off"})
 						</tr>
 
 					</table>
