@@ -263,6 +263,7 @@ namespace BritishCab
 				msg.Subject = "Booking information";
 				msg.Body = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
+										"<p><strong>Name:&nbsp;{11}</strong></p>" +
 										"<p><strong>From:&nbsp;{6}, {0}</strong></p>" +
 										"<p><strong>To:&nbsp;{7}, {1}</strong></p>" +
 										"<p><strong>Pick up time:{2}</strong></p>" +
@@ -275,7 +276,8 @@ namespace BritishCab
 										booking.PickUpLocation,booking.DropLocation,booking.PickUpDateTime, 
 										booking.TransferTime, booking.PhoneNumber,booking.Comments, 
 										booking.PickUpAddress, booking.DropAddress, paymentType,
-                                        booking.NumberOfPassengers,booking.NumberOfLuggage);
+                                        booking.NumberOfPassengers,booking.NumberOfLuggage,
+										booking.Name);
 			}
 			else
 			{
@@ -323,6 +325,39 @@ namespace BritishCab
 			{
 				bookingEntity.Price = price;
 			}
+		}
+
+		public bool OrderConfirmation(HttpRequestBase request, BookingStatus bookingStatus, string queryString )
+		{
+			var queryValues = request.QueryString.Get(queryString);
+			Guid securityCode;
+
+			if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
+			{
+				using (var db = new DefaultContext())
+				{
+					var bookingInfo = (from DBbooking in db.Bookings
+									   where DBbooking.ConfirmationCode == securityCode
+									   select DBbooking).FirstOrDefault();
+					if (bookingInfo != null)
+					{
+						if (bookingInfo.IsSlotAvailable)
+						{
+							InsertEventToCalendar(bookingInfo);
+						}
+						if (bookingInfo.BookingStatus == BookingStatus.NotDefined)
+						{
+							bookingInfo.BookingStatus = bookingStatus;
+						}
+						SendEmailViaGmail(bookingInfo, true, null);
+						bookingInfo.ConfirmationCode = Guid.Empty;
+
+						db.SaveChanges();
+					}
+					return true;
+				}
+			}
+			return false;
 		}
 
 		private IEnumerable<PredefinedPrice> LoadPricesFromXml()

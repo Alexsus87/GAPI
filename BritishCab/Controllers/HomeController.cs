@@ -112,34 +112,12 @@ namespace BritishCab.Controllers
 		public ActionResult Submit(Booking booking)
 		{
 			#region Confirming the order
-			var queryValues = Request.QueryString.Get("confirmation");
-			Guid securityCode;
 
-			if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
+			if (_api.OrderConfirmation(Request, BookingStatus.PayOnSight, "confirmation"))
 			{
-				using (var db = new DefaultContext())
-				{
-					var bookingInfo = (from DBbooking in db.Bookings
-									   where DBbooking.ConfirmationCode == securityCode
-									   select DBbooking).FirstOrDefault();
-					if (bookingInfo != null)
-					{
-						if (bookingInfo.IsSlotAvailable)
-						{
-							_api.InsertEventToCalendar(bookingInfo);
-						}
-						if (booking.BookingStatus == BookingStatus.NotDefined)
-						{
-							booking.BookingStatus = BookingStatus.Paid;
-						}
-						_api.SendEmailViaGmail(bookingInfo, true, null);
-						bookingInfo.ConfirmationCode = Guid.Empty;
-						
-						db.SaveChanges();
-					}
-					return View("Confirmation");
-				}
+				return View("Confirmation");
 			}
+
 			#endregion
 			var Url = HttpContext.Request.Url.ToString();
 
@@ -169,34 +147,10 @@ namespace BritishCab.Controllers
 	    public ActionResult PDT()
 	    {
             #region Confirming the order
-            var queryValues = Request.QueryString.Get("item_number");
-            Guid securityCode;
-
-            if (Guid.TryParse(queryValues, out securityCode) && securityCode != Guid.Empty)
-            {
-                using (var db = new DefaultContext())
-                {
-                    var bookingInfo = (from DBbooking in db.Bookings
-                                       where DBbooking.ConfirmationCode == securityCode
-                                       select DBbooking).FirstOrDefault();
-                    if (bookingInfo != null)
-                    {
-                        if (bookingInfo.IsSlotAvailable)
-                        {
-                            _api.InsertEventToCalendar(bookingInfo);
-                        }
-                        if (bookingInfo.BookingStatus == BookingStatus.NotDefined)
-                        {
-                            bookingInfo.BookingStatus = BookingStatus.Paid;
-                        }
-                        _api.SendEmailViaGmail(bookingInfo, true, null);
-                        bookingInfo.ConfirmationCode = Guid.Empty;
-
-                        db.SaveChanges();
-                    }
-                    return View("Confirmation");
-                }
-            }
+			if (_api.OrderConfirmation(Request, BookingStatus.Paid, "item_number"))
+			{
+				return View("Confirmation");
+			}
             #endregion
 	        return View("Submit");
 	    }

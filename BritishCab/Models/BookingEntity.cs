@@ -28,6 +28,7 @@ namespace BritishCab.Models
 		public string DropAddress { get; set; }
 
 		[DisplayName("Pick up date")]
+		[DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
 		public DateTime PickUpDateTime
 		{
 			get
@@ -55,6 +56,7 @@ namespace BritishCab.Models
 		public string PhoneNumber { get; set; }
 		public string Email { get; set; }
 		public bool IsSlotAvailable { get; set; }
+		[DisplayName("Name")]
 		public string Name { get; set; }
 		[DisplayName("Price(£)")]
 		public double Price { get; set; }
