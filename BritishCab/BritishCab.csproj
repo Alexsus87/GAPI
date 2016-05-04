@@ -231,6 +231,10 @@
     <Compile Include="Migrations\201605031504178_renamedLuggage.Designer.cs">
       <DependentUpon>201605031504178_renamedLuggage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605040824158_ChangedTitles.cs" />
+    <Compile Include="Migrations\201605040824158_ChangedTitles.Designer.cs">
+      <DependentUpon>201605040824158_ChangedTitles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingEntity.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -639,6 +643,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605031504178_renamedLuggage.resx">
       <DependentUpon>201605031504178_renamedLuggage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605040824158_ChangedTitles.resx">
+      <DependentUpon>201605040824158_ChangedTitles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

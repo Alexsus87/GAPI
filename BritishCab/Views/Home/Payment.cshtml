@@ -15,6 +15,14 @@
 						@Html.HiddenFor(model => model.ConfirmationCode)
 
 						<div class="form-group">
+							@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-4" })
+							<div class="col-md-6 display-string">
+								@Html.DisplayFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", id = "start", required = "required" } })
+								@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+							</div>
+						</div>
+
+						<div class="form-group">
 							@Html.LabelFor(model => model.PickUpLocation, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-4" })
 							<div class="col-md-6 display-string">
 								@Html.DisplayFor(model => model.PickUpLocation, new { htmlAttributes = new { @class = "form-control", id = "start", required = "required" } })
@@ -33,7 +41,7 @@
 						<div class="form-group">
 							@Html.LabelFor(model => model.PickUpDateTime, htmlAttributes: new { @class = "control-label col-md-4 col-sm-3 col-xs-4" })
 							<div class="col-md-6 display-string">
-								@Html.DisplayFor(model => model.PickUpDateTime, new { htmlAttributes = new { @class = "form-control", id = "datetimepicker", placeholder = "Choose pich up time", required = "required" } })
+								@Html.DisplayFor(model => model.PickUpDateTime, new {@Value = Model.PickUpDateTime.ToString("dd/MM/yyyy HH:mm"), @class = "form-control", id = "datetimepicker", placeholder = "Choose pich up time", required = "required" })
 								@Html.ValidationMessageFor(model => model.PickUpDateTime, "", new { @class = "text-danger" })
 							</div>
 						</div>
