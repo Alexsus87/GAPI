@@ -246,7 +246,7 @@ namespace BritishCab
 			return events;
 		}
 
-		public bool SendEmailViaGmail(Booking booking, bool isFinal, string localUrl, string driverEmail)
+		public bool SendEmailViaGmail(Booking booking, bool isFinal, string localUrl,BookingStatus bookingStatus, string driverEmail)
 		{
 			SmtpClient client = new SmtpClient();
 			client.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -267,15 +267,7 @@ namespace BritishCab
 			msg.To.Add(new MailAddress(emailAddress));
 			msg.IsBodyHtml = true;
 
-			string paymentType;
-			if (isFinal)
-			{
-				paymentType = "Paid";
-			}
-			else
-			{
-				paymentType = "Pay in person";
-			}
+		    string paymentType = bookingStatus == BookingStatus.Paid ? "Paid" : "Pay in person";
 
 			var bookingInfo = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
@@ -373,9 +365,9 @@ namespace BritishCab
 						}
 						if (bookingStatus == BookingStatus.Paid)
 						{
-							SendEmailViaGmail(bookingInfo, true, null, null);
+							SendEmailViaGmail(bookingInfo, true, null, bookingStatus, null);
 						}
-						SendEmailViaGmail(bookingInfo, true, null, "vipdriving@roshkani.com");
+						SendEmailViaGmail(bookingInfo, true, null,bookingStatus, "vitali@roshkani.com");
 						bookingInfo.ConfirmationCode = Guid.Empty;
 
 						db.SaveChanges();

@@ -130,7 +130,7 @@ namespace BritishCab.Controllers
 			ViewBag.Url = string.Format("{0}?confirmation={1}", Url, booking.ConfirmationCode);
 			if (Request.HttpMethod == "POST")
 			{
-				_api.SendEmailViaGmail(booking, false, Url, null);
+				_api.SendEmailViaGmail(booking, false, Url, BookingStatus.PayOnSight, null);
 				//booking.BookingStatus = BookingStatus.PayOnSight;
 				return View();
 			}
