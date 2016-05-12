@@ -105,3 +105,27 @@ select#NumberOfLuggage {
         padding-right: 0;
     }
 }
+@media (min-width: 992px) {
+		.footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+	.subfooter {
+				position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+}
+@media (min-width: 1200px) {
+	.footer {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+	.subfooter {
+				position: absolute;
+		bottom: 0;
+		width: 100%;
+	}
+}
