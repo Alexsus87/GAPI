@@ -132,7 +132,8 @@ namespace BritishCab.Controllers
 			{
 				_api.SendEmailViaGmail(booking, false, Url, BookingStatus.PayOnSight, null);
 				//booking.BookingStatus = BookingStatus.PayOnSight;
-				return View();
+				ViewBag.HomeUrl = Request.Url.Authority.ToString();
+				return View("Submit");
 			}
 			return View("Payment",booking);
 		}
