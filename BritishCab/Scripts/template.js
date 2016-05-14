@@ -279,7 +279,7 @@
 			});
 
 			$('.slider-banner-container .slider-banner-fullwidth-big-height').show().revolution({
-				delay:8000,
+				delay:5000,
 				startwidth:1140,
 				startheight:450,
 				
