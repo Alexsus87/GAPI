@@ -109,7 +109,7 @@ select#WineOption {
         padding-right: 0;
     }
 }
-@media (min-width: 992px) {
+/*@media (min-width: 992px) {
 		.footer {
 		position: absolute;
 		bottom: 0;
