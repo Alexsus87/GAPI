@@ -81,6 +81,10 @@ select#NumberOfPassengers {
 select#NumberOfLuggage {
     background-color: rgb(120, 124, 125);
 }
+
+select#WineOption {
+    background-color: rgb(120, 124, 125);
+}
 .subfooter {
     padding: 0px;
     background-color: black;
