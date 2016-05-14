@@ -29,18 +29,18 @@ namespace BritishCab.Models
 
 		[DisplayName("Pick up date")]
 		[DataType(DataType.DateTime), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm}", ApplyFormatInEditMode = true)]
-		public DateTime PickUpDateTime
-		{
-			get
-			{
-				if (_pickUpDateTime == DateTime.MinValue)
-				{
-					return DateTime.Now;
-				}
-				return _pickUpDateTime;
-			}
-			set { _pickUpDateTime = value; }
-		}
+		public DateTime PickUpDateTime { get; set; }
+		//{
+		//	get
+		//	{
+		//		if (_pickUpDateTime == DateTime.MinValue)
+		//		{
+		//			return DateTime.Now;
+		//		}
+		//		return _pickUpDateTime;
+		//	}
+		//	set { _pickUpDateTime = value; }
+		//}
 
 		[DisplayName("Pick up time")]
 		public DateTime DriverActualDepartureTime { get; set; }
@@ -68,5 +68,8 @@ namespace BritishCab.Models
 	    public int NumberOfPassengers { get; set; }
         [DisplayName("Large pieces of luggage")]
         public int NumberOfLuggage { get; set; }
+		public string WineOption { get; set; }
+		public string RefNumber { get; set; }
+		public DateTime BookingDate { get; set; }
 	}
 }

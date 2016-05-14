@@ -269,6 +269,12 @@ namespace BritishCab
 
 		    string paymentType = bookingStatus == BookingStatus.Paid ? "Paid" : "Pay in person";
 
+			string treat = "";
+			if (booking.DrivingDistance > 100)
+			{
+				treat = string.Format("<p><strong>Treats: {0}</strong></p>", booking.WineOption);
+			}
+
 			var bookingInfo = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
 										"<p><strong>Name:&nbsp;{11}</strong></p>" +
@@ -280,7 +286,8 @@ namespace BritishCab
 										"<p><strong>Additional Comments:{5}</strong></p>" +
 										"<p><strong>Payment type: {8}</strong></p>" +
 										"<p><strong>Number of passengers: {9}</strong></p>" +
-										"<p><strong>Number of large luggage: {10}</strong></p>",
+										"<p><strong>Number of large luggage: {10}</strong></p>" +
+										treat,
 										booking.PickUpLocation, booking.DropLocation, booking.PickUpDateTime,
 										booking.TransferTime, booking.PhoneNumber, booking.Comments,
 										booking.PickUpAddress, booking.DropAddress, paymentType,
@@ -296,7 +303,7 @@ namespace BritishCab
 			}
 			else
 			{
-				msg.Subject = "VipDriving Order Confirmation";
+				msg.Subject = String.Format("VipDriving Order Confirmation Ref: {0}",booking.RefNumber);
 				msg.Body = confirmationLink + bookingInfo;
 			}
 
@@ -377,6 +384,19 @@ namespace BritishCab
 				}
 			}
 			return false;
+		}
+
+		public void SetReferenceNumber(Booking booking)
+		{
+			int todaysOrders = 0;
+			using (var db = new DefaultContext())
+			{
+				todaysOrders = (from DbBooking in db.Bookings
+					where DbBooking.BookingDate == DateTime.Today
+					select DbBooking).Count();
+			}
+			todaysOrders += 1;
+			booking.RefNumber = DateTime.Today.ToString("M/yy/dd") + "-" + todaysOrders;
 		}
 
 		private IEnumerable<PredefinedPrice> LoadPricesFromXml()

@@ -55,32 +55,21 @@ namespace BritishCab.Controllers
 		[HttpPost]
 		public ActionResult Booking(Booking booking, string post)
 		{
-			var bookingInput = new Booking
-			{
-			    PickUpLocation = booking.PickUpLocation,
-			    DropLocation = booking.DropLocation,
-			    PickUpDateTime = booking.PickUpDateTime
-			};
-
-		    _dm = _api.GetRouteInformation(bookingInput.PickUpLocation, bookingInput.DropLocation);
+			//Getting trip distance stats
+			_dm = _api.GetRouteInformation(booking.PickUpLocation, booking.DropLocation);
 			if (_dm.ErrorBit)
 			{
-				bookingInput.ErrorMessage = "Please check spelling on locations";
+				booking.ErrorMessage = "Please check spelling on locations";
 				ViewBag.Error = "Please check spelling on locations";
-				return View(bookingInput);
+				return View(booking);
 			}
 
-			_api.PopulateBooking(_dm, bookingInput);
-			_api.GetRoutePrice(bookingInput);
+			//Adding trip distance stats to booking
+			_api.PopulateBooking(_dm, booking);
+			//Calculating route price
+			_api.GetRoutePrice(booking);
 
-			if (Request.Form["Book"] != null)
-			{
-				if (Math.Round(bookingInput.Price,2) == booking.Price)
-				{
-					return RedirectToAction("FinalizeBooking", booking);
-				}
-			}
-			return RedirectToAction("Redirect", bookingInput);
+			return RedirectToAction(Request.Form["Book"] != null ? "FinalizeBooking" : "Redirect", booking);
 		}
 
 		public ActionResult FinalizeBooking(Booking booking)
@@ -90,9 +79,24 @@ namespace BritishCab.Controllers
 				return RedirectToAction("Booking");
 			}
 
+			var listOfTreats = new List<string>();
+			listOfTreats.Add(" ");
+			listOfTreats.Add("Sauvignon blanc (New Zealand)");
+			listOfTreats.Add("Malbec (Agrentina)");
+			listOfTreats.Add("Sweets for non-drinkers");
+
+			ViewBag.Treats = listOfTreats;
+
 			if (Request.HttpMethod != "POST") return View(booking);
 
+			//Check if user validates to receive wind before confirmation
+			if (booking.DrivingDistance < 100)
+			{
+				booking.WineOption = "";
+			}
 			booking.ConfirmationCode = Guid.NewGuid();
+			_api.SetReferenceNumber(booking);
+			booking.BookingDate = DateTime.Today;
 			using (var db = new DefaultContext())
 			{
 				booking.DriverActualDepartureTime = booking.PickUpDateTime;
@@ -106,6 +110,7 @@ namespace BritishCab.Controllers
 
 		public ActionResult Submit(Booking booking)
 		{
+			//User confirms order via link in email (Pay on sight)
 			#region Confirming the order
 
 			if (_api.OrderConfirmation(Request, BookingStatus.PayOnSight, "confirmation"))

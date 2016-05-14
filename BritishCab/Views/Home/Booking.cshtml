@@ -78,8 +78,15 @@
 							<div class="form-group">
 								@Html.LabelFor(model => model.PickUpDateTime, htmlAttributes: new { @class = "control-label col-md-4 col-sm-2" })
 								<div class="col-md-6">
-									@Html.TextBoxFor(model => model.PickUpDateTime, new { @Value = Model.PickUpDateTime.ToString("dd/MM/yyyy HH:mm"), @class = "form-control text-box single-line", id = "datetimepicker", placeholder = "Choose pich up time", required = "required", autocomplete = "off" })
-									@Html.ValidationMessageFor(model => model.PickUpDateTime, "", new { @class = "text-danger" })
+									@if (Model.PickUpDateTime == DateTime.MinValue)
+									{
+										@Html.TextBoxFor(model => model.PickUpDateTime, new { @Value = "", @class = "form-control text-box single-line", id = "datetimepicker", placeholder = "Choose pich up time", required = "required", autocomplete = "off" })
+									}
+									else
+									{
+										@Html.TextBoxFor(model => model.PickUpDateTime, new { @Value = Model.PickUpDateTime.ToString("dd/MM/yyyy HH:mm"), @class = "form-control text-box single-line", id = "datetimepicker", placeholder = "Choose pich up time", required = "required", autocomplete = "off" })
+									}
+									@Html.ValidationMessageFor(model => model.PickUpDateTime, "", new {@class = "text-danger"})
 								</div>
 							</div>
 
