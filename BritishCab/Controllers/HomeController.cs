@@ -87,8 +87,8 @@ namespace BritishCab.Controllers
 
 			var listOfTreats = new List<string>();
 			listOfTreats.Add(" ");
-			listOfTreats.Add("Sauvignon blanc (New Zealand)");
-			listOfTreats.Add("Malbec (Agrentina)");
+			listOfTreats.Add("(White) Sauvignon blanc, New Zealand");
+			listOfTreats.Add("(Red) Malbec, Agrentina");
 			listOfTreats.Add("Sweets for non-drinkers");
 
 			ViewBag.Treats = listOfTreats;
