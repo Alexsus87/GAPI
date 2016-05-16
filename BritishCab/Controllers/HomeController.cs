@@ -63,6 +63,12 @@ namespace BritishCab.Controllers
 				ViewBag.Error = "Please check spelling on locations";
 				return View(booking);
 			}
+			if (booking.PickUpDateTime.Date < DateTime.Today)
+			{
+				booking.ErrorMessage = "You cannot choose past date";
+				ViewBag.Error = "You cannot choose past date";
+				return View(booking);
+			}
 
 			//Adding trip distance stats to booking
 			_api.PopulateBooking(_dm, booking);
