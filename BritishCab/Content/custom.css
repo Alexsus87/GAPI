@@ -65,7 +65,7 @@ html {
 #Booking {
 	position: absolute;
 	z-index: 1000;
-	top: 220px;
+	top: 20%;
 }
 
 .input-fields {
@@ -88,6 +88,8 @@ select#WineOption {
 .subfooter {
     padding: 0px;
     background-color: black;
+    position: absolute;
+    bottom: 0;
 }
 
 
@@ -133,3 +135,32 @@ select#WineOption {
 		width: 100%;
 	}
 }*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 190px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 190px;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+
+.container .text-muted {
+  margin: 20px 0;
+}
+.social {
+	margin-right: -30px;
+}

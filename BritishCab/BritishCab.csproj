@@ -239,6 +239,18 @@
     <Compile Include="Migrations\201605041653248_changedPriceName.Designer.cs">
       <DependentUpon>201605041653248_changedPriceName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605141103592_addedWine.cs" />
+    <Compile Include="Migrations\201605141103592_addedWine.Designer.cs">
+      <DependentUpon>201605141103592_addedWine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605141119528_RefNumber.cs" />
+    <Compile Include="Migrations\201605141119528_RefNumber.Designer.cs">
+      <DependentUpon>201605141119528_RefNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605141136445_DateOfBooking.cs" />
+    <Compile Include="Migrations\201605141136445_DateOfBooking.Designer.cs">
+      <DependentUpon>201605141136445_DateOfBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookingEntity.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -621,6 +633,7 @@
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\Home\PDT.cshtml" />
+    <Content Include="Views\Home\VipReward.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -653,6 +666,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605041653248_changedPriceName.resx">
       <DependentUpon>201605041653248_changedPriceName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605141103592_addedWine.resx">
+      <DependentUpon>201605141103592_addedWine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605141119528_RefNumber.resx">
+      <DependentUpon>201605141119528_RefNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605141136445_DateOfBooking.resx">
+      <DependentUpon>201605141136445_DateOfBooking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

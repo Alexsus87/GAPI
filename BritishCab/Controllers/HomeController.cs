@@ -89,7 +89,7 @@ namespace BritishCab.Controllers
 			listOfTreats.Add(" ");
 			listOfTreats.Add("(White) Sauvignon blanc, New Zealand");
 			listOfTreats.Add("(Red) Malbec, Agrentina");
-			listOfTreats.Add("Sweets for non-drinkers");
+			listOfTreats.Add("Ferrero Raffaello (non-drinker)");
 
 			ViewBag.Treats = listOfTreats;
 
@@ -142,7 +142,7 @@ namespace BritishCab.Controllers
 			if (Request.HttpMethod == "POST")
 			{
 				_api.SendEmailViaGmail(booking, false, Url, BookingStatus.PayOnSight, null);
-				//booking.BookingStatus = BookingStatus.PayOnSight;
+
 				ViewBag.HomeUrl = Request.Url.Authority.ToString();
 				return View("Submit");
 			}
@@ -175,6 +175,11 @@ namespace BritishCab.Controllers
 		public ActionResult Redirect(Booking booking)
 		{
 			return RedirectToAction("Booking", booking);
+		}
+
+		public ActionResult VipReward()
+		{
+			return View();
 		}
 	}
 }

@@ -2,163 +2,165 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-	    $('#datetimepicker').datetimepicker({
-	        theme: 'dark',
-	        format: 'd/m/Y H:i'
-
+		$('#datetimepicker').datetimepicker({
+			theme: 'dark',
+			format: 'd/m/Y H:i',
+			minDate:0
 	    });
 	});
 </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-<div id="Booking">
-	<div class="container">
-		<div class="row">
-			<div class=" col-md-offset-2 col-sm-offset-1 col-md-3 col-sm-4 col-xs-12 ">
-
-				@using (Html.BeginForm("Index", "Home", FormMethod.Post))
-				{
-					@Html.AntiForgeryToken()
-					@Html.ValidationSummary(true)
-					@Html.HiddenFor(model => model.BookingId)
-
-					<script type="text/javascript">
-						var options = {
-							types: [],
-							componentRestrictions: { country: "uk" }
-						};
-
-						google.maps.event.addDomListener(window, 'load', function () {
-							var places = new google.maps.places.Autocomplete(document.getElementById('pickUpLocation'), options);
-							google.maps.event.addListener(places, 'place_changed', function () {
-								var place = places.getPlace();
-								var address = place.formatted_address;
-								var latitude = place.geometry.location.lat();
-								var longitude = place.geometry.location.lng();
-								//var mesg = "Address: " + address;
-								//mesg += "\nLatitude: " + latitude;
-								//mesg += "\nLongitude: " + longitude;
-								//alert(mesg);
-							});
-						});
-						google.maps.event.addDomListener(window, 'load', function () {
-							var places2 = new google.maps.places.Autocomplete(document.getElementById('dropLocation'), options);
-						});
-					</script>
-
-					if (ViewBag.Error != null)
-					{
-						<div class="alert alert-warning">@ViewBag.Error</div>
-					}
-					<table class="table table-striped table-hover text-right ">
-
-						<tr>
-							@Html.TextBoxFor(model => model.PickUpLocation, new { @class = "form-control text-right", id = "pickUpLocation", placeholder = "From", required = "required", autocomplete = "off" })
-						</tr>
-						<tr>
-							@Html.TextBoxFor(model => model.DropLocation, new { @class = "form-control text-right", id = "dropLocation", placeholder = "To", required = "required", autocomplete = "off" })
-						</tr>
-						<tr>
-							@Html.TextBoxFor(model => model.PickUpDateTime, "{0: dd/MM/yyy H:mm}", new { @class = "form-control text-right", id = "datetimepicker", placeholder = "Pick up time", required = "required", autocomplete = "off" })
-						</tr>
-
-					</table>
-					<div class="tp-caption sfb fadeout small_white">
-						<button type="submit" class="btn btn-animated btn-lg btn-gray-transparent get-quote">Get a quote</button>
-					</div>
-				}
-			</div>
-
-		</div>
-	</div>
-</div>
-<!-- banner start -->
-<!-- ================ -->
-<div class="banner clearfix">
-	<!-- slideshow start -->
+<div style="position:relative">
+	<!-- banner start -->
 	<!-- ================ -->
-	<div class="slideshow">
-		<!-- slider revolution start -->
+	<div class="banner clearfix">
+		<!-- slideshow start -->
 		<!-- ================ -->
-		<div class="slider-banner-container">
-			<div class="slider-banner-fullwidth-big-height">
-				<ul class="slides">
-					<!-- slide 1 start -->
-					<!-- ================ -->
-					<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-						<!-- main image -->
-						<img src="~/Content/images/BB2.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
-						<!-- Transparent Background -->
-						<div class="tp-caption dark-translucent-bg"
-							 data-x="center"
-							 data-y="bottom"
-							 data-speed="600"
-							 data-start="0">
+		<div class="slideshow">
+			<!-- slider revolution start -->
+			<!-- ================ -->
+			<div class="slider-banner-container">
+				<div class="slider-banner-fullwidth-big-height">
+					<ul class="slides">
+						<!-- slide 1 start -->
+						<!-- ================ -->
+						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
+							<!-- main image -->
+							<img src="~/Content/images/BB2.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<!-- Transparent Background -->
+							<div class="tp-caption dark-translucent-bg"
+								 data-x="center"
+								 data-y="bottom"
+								 data-speed="600"
+								 data-start="0">
+							</div>
+							<!-- LAYER NR. 1 -->
+							<div class="tp-caption sfb fadeout medium_to_large_white"
+								 data-x="center"
+								 data-y="25"
+								 data-speed="500"
+								 data-start="1000"
+								 data-easing="easeOutQuad"
+								 data-end="10000">
+								We take you from "A" to "B" with maximum comfort and minimal cost
+							</div>
+						</li>
+						<!-- slide 1 end -->
+						<!-- slide 2 start -->
+						<!-- ================ -->
+						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
+							<!-- main image -->
+							<img src="~/Content/images/LO2.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<!-- Transparent Background -->
+							<div class="tp-caption dark-translucent-bg"
+								 data-x="center"
+								 data-y="bottom"
+								 data-speed="600"
+								 data-start="0">
+							</div>
+							<div class="tp-caption sfb fadeout medium_to_large_white"
+								 data-x="center"
+								 data-y="25"
+								 data-speed="500"
+								 data-start="1000"
+								 data-easing="easeOutQuad"
+								 data-end="10000">
+								All you need for your pleasant journey
+							</div>
+						</li>
+						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
+							<!-- main image -->
+							<img src="~/Content/images/AP3.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<!-- Transparent Background -->
+							<div class="tp-caption dark-translucent-bg"
+								 data-x="center"
+								 data-y="bottom"
+								 data-speed="600"
+								 data-start="0">
+							</div>
+							<div class="tp-caption sfb fadeout medium_to_large_white"
+								 data-x="center"
+								 data-y="25"
+								 data-speed="500"
+								 data-start="1000"
+								 data-easing="easeOutQuad"
+								 data-end="10000">
+								Affordable reliable fast and always on time
+							</div>
+						</li>
+						<!-- slide 2 end -->
+					</ul>
+					@*<div class="tp-bannertimer"></div>*@
+				</div>
+			</div>
+			<!-- slider revolution end -->
+		</div>
+		<!-- slideshow end -->
+	</div>
+	<!-- banner end -->
+
+	<div id="Booking">
+		<div class="container">
+			<div class="row">
+				<div class=" col-md-offset-2 col-sm-offset-1 col-md-3 col-sm-4 col-xs-12 ">
+
+					@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+					{
+						@Html.AntiForgeryToken()
+						@Html.ValidationSummary(true)
+						@Html.HiddenFor(model => model.BookingId)
+
+						<script type="text/javascript">
+							var options = {
+								types: [],
+								componentRestrictions: { country: "uk" }
+							};
+
+							google.maps.event.addDomListener(window, 'load', function () {
+								var places = new google.maps.places.Autocomplete(document.getElementById('pickUpLocation'), options);
+								google.maps.event.addListener(places, 'place_changed', function () {
+									var place = places.getPlace();
+									var address = place.formatted_address;
+									var latitude = place.geometry.location.lat();
+									var longitude = place.geometry.location.lng();
+									//var mesg = "Address: " + address;
+									//mesg += "\nLatitude: " + latitude;
+									//mesg += "\nLongitude: " + longitude;
+									//alert(mesg);
+								});
+							});
+							google.maps.event.addDomListener(window, 'load', function () {
+								var places2 = new google.maps.places.Autocomplete(document.getElementById('dropLocation'), options);
+							});
+						</script>
+
+						if (ViewBag.Error != null)
+						{
+							<div class="alert alert-warning">@ViewBag.Error</div>
+						}
+						<table class="table table-striped table-hover text-right ">
+
+							<tr>
+								@Html.TextBoxFor(model => model.PickUpLocation, new { @class = "form-control text-right", id = "pickUpLocation", placeholder = "From", required = "required", autocomplete = "off" })
+							</tr>
+							<tr>
+								@Html.TextBoxFor(model => model.DropLocation, new { @class = "form-control text-right", id = "dropLocation", placeholder = "To", required = "required", autocomplete = "off" })
+							</tr>
+							<tr>
+								@Html.TextBoxFor(model => model.PickUpDateTime, "{0: dd/MM/yyy H:mm}", new { @class = "form-control text-right", id = "datetimepicker", placeholder = "Pick up time", required = "required", autocomplete = "off" })
+							</tr>
+
+						</table>
+						<div class="tp-caption sfb fadeout small_white">
+							<button type="submit" class="btn btn-animated btn-lg btn-gray-transparent get-quote">Get a quote</button>
 						</div>
-						<!-- LAYER NR. 1 -->
-						<div class="tp-caption sfb fadeout medium_to_large_white"
-							 data-x="center"
-							 data-y="25"
-							 data-speed="500"
-							 data-start="1000"
-							 data-easing="easeOutQuad"
-							 data-end="10000">
-							We take you from "A" to "B" with maximum comfort and minimal cost
-						</div>
-					</li>
-					<!-- slide 1 end -->
-					<!-- slide 2 start -->
-					<!-- ================ -->
-					<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-						<!-- main image -->
-						<img src="~/Content/images/LO2.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
-						<!-- Transparent Background -->
-						<div class="tp-caption dark-translucent-bg"
-							 data-x="center"
-							 data-y="bottom"
-							 data-speed="600"
-							 data-start="0">
-						</div>
-						<div class="tp-caption sfb fadeout medium_to_large_white"
-							 data-x="center"
-							 data-y="25"
-							 data-speed="500"
-							 data-start="1000"
-							 data-easing="easeOutQuad"
-							 data-end="10000">
-							All you need for your pleasant journey
-						</div>
-					</li>
-					<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
-						<!-- main image -->
-						<img src="~/Content/images/AP3.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
-						<!-- Transparent Background -->
-						<div class="tp-caption dark-translucent-bg"
-							 data-x="center"
-							 data-y="bottom"
-							 data-speed="600"
-							 data-start="0">
-						</div>
-						<div class="tp-caption sfb fadeout medium_to_large_white"
-							 data-x="center"
-							 data-y="25"
-							 data-speed="500"
-							 data-start="1000"
-							 data-easing="easeOutQuad"
-							 data-end="10000">
-							Affordable reliable fast and always on time
-						</div>
-					</li>
-					<!-- slide 2 end -->
-				</ul>
-				@*<div class="tp-bannertimer"></div>*@
+					}
+				</div>
+
 			</div>
 		</div>
-		<!-- slider revolution end -->
 	</div>
-	<!-- slideshow end -->
 </div>
-<!-- banner end -->
-
 <div class="container">
 	<div class="row">
 	</div>

@@ -254,6 +254,7 @@ namespace BritishCab
 			client.Host = "smtp.gmail.com";
 			client.Port = 587;
 
+			//Send email to driver if driverEmail is not null
 			var emailAddress = driverEmail ?? booking.Email;
 
 			// setup Smtp authentication
@@ -267,15 +268,15 @@ namespace BritishCab
 			msg.To.Add(new MailAddress(emailAddress));
 			msg.IsBodyHtml = true;
 
-		    string paymentType = bookingStatus == BookingStatus.Paid ? "Paid" : "Pay in person";
+			string paymentType = bookingStatus == BookingStatus.Paid ? "Paid by Paipal" : "Pay in person";
 
 			string treat = "";
 			if (booking.DrivingDistance > 100)
 			{
-				treat = string.Format("<p><strong>Treats: {0}</strong></p>", booking.WineOption);
+				treat = string.Format("<p><strong>Your treat: {0}</strong></p>", booking.WineOption);
 			}
 
-			var bookingInfo = String.Format(@"<h2>Thanks you for booking at VIPDRIVING!</h2>" +
+			var bookingInfo = String.Format(@"<h2>Thanks you for booking at VIPdriving!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
 										"<p><strong>Name:&nbsp;{11}</strong></p>" +
 										"<p><strong>From:&nbsp;{6}, {0}</strong></p>" +
@@ -298,12 +299,12 @@ namespace BritishCab
 
 			if (isFinal)
 			{
-				msg.Subject = "Booking information";
+				msg.Subject = String.Format("Order was placed Ref: {0}", booking.RefNumber);
 				msg.Body = bookingInfo;
 			}
 			else
 			{
-				msg.Subject = String.Format("VipDriving Order Confirmation Ref: {0}",booking.RefNumber);
+				msg.Subject = String.Format("VIPdriving Order Confirmation Ref: {0}",booking.RefNumber);
 				msg.Body = confirmationLink + bookingInfo;
 			}
 
@@ -374,7 +375,7 @@ namespace BritishCab
 						{
 							SendEmailViaGmail(bookingInfo, true, null, bookingStatus, null);
 						}
-						SendEmailViaGmail(bookingInfo, true, null,bookingStatus, "vitali@roshkani.com");
+						SendEmailViaGmail(bookingInfo, true, null, bookingStatus, "vipdriving@roshkani.com");
 						bookingInfo.ConfirmationCode = Guid.Empty;
 
 						db.SaveChanges();
@@ -396,7 +397,7 @@ namespace BritishCab
 					select DbBooking).Count();
 			}
 			todaysOrders += 1;
-			booking.RefNumber = DateTime.Today.ToString("M/yy/dd") + "-" + todaysOrders;
+			booking.RefNumber = DateTime.Today.ToString("dd.MM.yy") + "/" + todaysOrders;
 		}
 
 		private IEnumerable<PredefinedPrice> LoadPricesFromXml()
