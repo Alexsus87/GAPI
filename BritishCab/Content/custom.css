@@ -123,34 +123,25 @@ select#WineOption {
 		width: 100%;
 	}
 }*/
-/*@media (min-width: 1200px) {
-	.footer {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-	}
-	.subfooter {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-	}
-}*/
+@media (min-width: 1200px) {
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+    body {
+      /* Margin bottom by footer height */
+      margin-bottom: 190px;
+    }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      /* Set the fixed height of the footer here */
+      height: 190px;
+    }
+}
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 190px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 190px;
-}
+
 
 
 /* Custom page CSS
