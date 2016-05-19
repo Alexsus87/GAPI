@@ -118,19 +118,13 @@ select#WineOption {
     .with-dropdown-buttons .navbar-default .navbar-collapse {
         padding-right: 0;
     }
+		.social {
+	margin-right: -10px !important;
 }
-/*@media (min-width: 992px) {
-		.footer {
-		position: absolute;
-		bottom: 0;
-		width: 100%;
-	}
-	.subfooter {
-				position: absolute;
-		bottom: 0;
-		width: 100%;
-	}
-}*/
+}
+@media (min-width: 992px) {
+
+}
 @media (min-width: 1200px) {
     html {
       position: relative;
@@ -147,6 +141,9 @@ select#WineOption {
       /* Set the fixed height of the footer here */
       height: 190px;
     }
+	.social {
+	margin-right: -30px !important;
+}
 }
 
 
@@ -160,6 +157,4 @@ select#WineOption {
 .container .text-muted {
   margin: 20px 0;
 }
-.social {
-	margin-right: -30px;
-}
+
