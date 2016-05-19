@@ -7,6 +7,14 @@
  * License URI:http://support.wrapbootstrap.com/
  * File Description: Initializations of plugins 
  */
+var carouselHeight;
+
+if (window.innerWidth >= 1200) {
+	carouselHeight = 650;
+}
+if (window.innerWidth < 1200) {
+	carouselHeight = 450;
+}
 
 (function($){
 	$(document).ready(function(){
@@ -281,7 +289,7 @@
 			$('.slider-banner-container .slider-banner-fullwidth-big-height').show().revolution({
 				delay:5000,
 				startwidth:1140,
-				startheight:450,
+				startheight: carouselHeight,
 				
 				navigationArrows:"solo",
 				
