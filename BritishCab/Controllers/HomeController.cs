@@ -130,6 +130,11 @@ namespace BritishCab.Controllers
 
 			#endregion
 
+			//TODO: send Email client is going to pay online
+			if (Request.Form["paypal"] != null)
+			{
+				return View("Submit");
+			}
 			var Url = HttpContext.Request.Url.ToString();
 
 			using (var db = new DefaultContext())

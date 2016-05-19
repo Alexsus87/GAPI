@@ -85,6 +85,14 @@ select#NumberOfLuggage {
 select#WineOption {
     background-color: rgb(120, 124, 125);
 }
+.btn-paypal {
+	background-image: url(https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg);
+	width: 75px;
+	height: 45px;
+	color: transparent !important; 
+	border-color: transparent;
+	margin-left: 15px;
+}
 .subfooter {
     padding: 0px;
     background-color: black;

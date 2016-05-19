@@ -271,24 +271,28 @@ namespace BritishCab
 			string paymentType = bookingStatus == BookingStatus.Paid ? "Paid by Paipal" : "Pay in person";
 
 			string treat = "";
-			if (booking.DrivingDistance > 100)
+			if (booking.DrivingDistance > 100 && booking.WineOption != null)
 			{
 				treat = string.Format("<p><strong>Your treat: {0}</strong></p>", booking.WineOption);
+			}
+			string comments = "";
+			if (booking.Comments != null)
+			{
+				comments = string.Format("<p><strong>Additional comments: {0}</strong></p>", booking.Comments);
 			}
 
 			var bookingInfo = String.Format(@"<h2>Thanks you for booking at VIPdriving!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
-										"<p><strong>Name:&nbsp;{11}</strong></p>" +
-										"<p><strong>From:&nbsp;{6}, {0}</strong></p>" +
-										"<p><strong>To:&nbsp;{7}, {1}</strong></p>" +
+										"<p><strong>Name:&nbsp;{10}</strong></p>" +
+										"<p><strong>From:&nbsp;{5}, {0}</strong></p>" +
+										"<p><strong>To:&nbsp;{6}, {1}</strong></p>" +
 										"<p><strong>Pick up time:{2}</strong></p>" +
 										"<p><strong>Estimated transfer time:{3}</strong></p>" +
 										"<p><strong>Contact number:{4}</strong></p>" +
-										"<p><strong>Additional Comments:{5}</strong></p>" +
-										"<p><strong>Payment type: {8}</strong></p>" +
-										"<p><strong>Number of passengers: {9}</strong></p>" +
-										"<p><strong>Number of large luggage: {10}</strong></p>" +
-										treat,
+										"<p><strong>Payment type: {7}</strong></p>" +
+										"<p><strong>Number of passengers: {8}</strong></p>" +
+										"<p><strong>Number of large luggage: {9}</strong></p>" +
+										treat + comments,
 										booking.PickUpLocation, booking.DropLocation, booking.PickUpDateTime,
 										booking.TransferTime, booking.PhoneNumber, booking.Comments,
 										booking.PickUpAddress, booking.DropAddress, paymentType,
