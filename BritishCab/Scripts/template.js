@@ -7,14 +7,7 @@
  * License URI:http://support.wrapbootstrap.com/
  * File Description: Initializations of plugins 
  */
-var carouselHeight;
-
-if (window.innerWidth >= 1200) {
-	carouselHeight = 650;
-}
-if (window.innerWidth < 1200) {
-	carouselHeight = 450;
-}
+var carouselHeight = 450;
 
 (function($){
 	$(document).ready(function(){
