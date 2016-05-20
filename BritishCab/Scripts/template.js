@@ -655,27 +655,27 @@ var carouselHeight = 450;
 			}
 		});
 		
-		$(window).scroll(function() {
-			if (($(".header.fixed").length > 0)  && !($(".transparent-header .slideshow").length>0)) {
-				if (($(this).scrollTop() > headerTopHeight + headerHeight) && ($(window).width() > 767)) {
-					$("body").addClass("fixed-header-on");
-					$(".header.fixed").addClass('animated object-visible fadeInDown');
-					$(".header-container").css("paddingBottom", (headerHeight)+"px");
-				} else {
-					$("body").removeClass("fixed-header-on");
-					$(".header-container").css("paddingBottom", (0)+"px");
-					$(".header.fixed").removeClass('animated object-visible fadeInDown');
-				}
-			} else if ($(".header.fixed").length > 0) {
-				if (($(this).scrollTop() > headerTopHeight + headerHeight) && ($(window).width() > 767)) {
-					$("body").addClass("fixed-header-on");
-					$(".header.fixed").addClass('animated object-visible fadeInDown');
-				} else {
-					$("body").removeClass("fixed-header-on");
-					$(".header.fixed").removeClass('animated object-visible fadeInDown');
-				}
-			};
-		});
+		//$(window).scroll(function () {
+		//		if (($(".header.fixed").length > 0) && !($(".transparent-header .slideshow").length > 0)) {
+		//			if (($(this).scrollTop() > headerTopHeight ) && ($(window).width() > 767)) {
+		//				$("body").addClass("fixed-header-on");
+		//				$(".header.fixed").addClass('animated object-visible fadeInDown');
+		//				$(".header-container").css("paddingBottom", (headerHeight) + "px");
+		//			} else {
+		//				$("body").removeClass("fixed-header-on");
+		//				$(".header-container").css("paddingBottom", (0) + "px");
+		//				$(".header.fixed").removeClass('animated object-visible fadeInDown');
+		//			}
+		//		} else if ($(".header.fixed").length > 0) {
+		//			if (($(this).scrollTop() > headerTopHeight ) && ($(window).width() > 767)) {
+		//				$("body").addClass("fixed-header-on");
+		//				$(".header.fixed").addClass('animated object-visible fadeInDown');
+		//			} else {
+		//				$("body").removeClass("fixed-header-on");
+		//				$(".header.fixed").removeClass('animated object-visible fadeInDown');
+		//			}
+		//		};
+		//});
 
 		// Charts
 		//-----------------------------------------------
