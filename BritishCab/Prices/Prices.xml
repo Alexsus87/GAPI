@@ -3,7 +3,7 @@
 	<route>
 		<From>Bristol</From>
 		<To>Cardiff</To>
-		<Price>80</Price>
+		<Price>95</Price>
 	</route>
 	<route>
 		<From>Bristol</From>
