@@ -7,6 +7,38 @@ Created:December 2014
 License URI:http://support.wrapbootstrap.com/
 File Description: Place here your custom CSS styles
 */
+.btn.btn-default,
+.btn.btn-primary,
+.btn.btn-success,
+.btn.btn-info,
+.btn.btn-warning,
+.btn.btn-danger {
+	color: white;
+	border-color: #ffffff;
+	background-color: transparent;
+}
+
+form.booking-form {
+	color: #ffffff;
+	margin: 0;
+}
+
+/*Bootstrap-theme-class*/
+.form-control {
+	border-color: #222222;
+	color: #ffffff;
+	background-color: rgba(255, 255, 255, 0.1);
+	margin: 5px;
+}
+
+.get-quote {
+	border-color: #222222;
+	color: whitesmoke;
+}
+.form-group {
+	margin-bottom: 0;
+}
+
 .tp-bannertimer {
 	background-color: transparent;
 }

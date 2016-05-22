@@ -270,8 +270,8 @@
     <Compile Include="TravelDistanceTime.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\animate.css" />
-    <Content Include="Content\animations.css" />
+    <Content Include="Content\themes\animate.css" />
+    <Content Include="Content\themes\animations.css" />
     <Content Include="Content\assets\arrowleft.png" />
     <Content Include="Content\assets\arrowright.png" />
     <Content Include="Content\assets\arrow_large_left.png" />
@@ -309,11 +309,11 @@
     <Content Include="Content\assets\timerdot.png" />
     <Content Include="Content\assets\transparent.jpg" />
     <Content Include="Content\assets\white50.png" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\custom.css" />
+    <Content Include="Content\themes\bootstrap-theme.css" />
+    <Content Include="Content\themes\bootstrap-theme.min.css" />
+    <Content Include="Content\themes\bootstrap.css" />
+    <Content Include="Content\themes\bootstrap.min.css" />
+    <Content Include="Content\themes\custom.css" />
     <Content Include="Content\Images\AP3.jpg" />
     <Content Include="Content\Images\BB2.jpg" />
     <Content Include="Content\Images\Car_clean.png" />
@@ -322,8 +322,8 @@
     <Content Include="Content\Images\LO2.jpg" />
     <Content Include="Content\Images\mercedes-e-class-08.jpg" />
     <Content Include="Content\Images\mercedes_s_class.jpg" />
-    <Content Include="Content\jquery.datetimepicker.css" />
-    <Content Include="Content\light_blue.css" />
+    <Content Include="Content\themes\jquery.datetimepicker.css" />
+    <Content Include="Content\themes\light_blue.css" />
     <Content Include="Content\plugins\AjaxLoader.gif" />
     <Content Include="Content\plugins\grabbing.png" />
     <Content Include="Content\plugins\hover-min.css" />
@@ -387,7 +387,7 @@
     <Content Include="Content\plugins\settings-ie8.css" />
     <Content Include="Content\plugins\settings.css" />
     <Content Include="Content\plugins\SmoothScroll.js" />
-    <Content Include="Content\style.css" />
+    <Content Include="Content\themes\style.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -435,13 +435,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font\revicons.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\Site.css" />
     <Content Include="Home\Prices\Prices.xml" />
     <Content Include="Prices\Prices.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\themes\bootstrap-theme.css.map" />
+    <Content Include="Content\themes\bootstrap.css.map" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="client_secret.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -622,12 +622,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\API_Functions\LogicLibrary.csproj">
-      <Project>{50e7897e-e482-4ff4-8af8-d5dfa22a6307}</Project>
-      <Name>LogicLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604291737191_newName.resx">

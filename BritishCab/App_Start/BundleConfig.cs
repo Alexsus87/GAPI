@@ -35,17 +35,19 @@ namespace BritishCab
 			//  "~/Scripts/npm.js"));
 
 			bundles.Add(new StyleBundle("~/Content/css").Include(
-					  "~/Content/bootstrap.css",
-					  "~/fonts/font-awesome/css/font-awesome.css",
+                      "~/Content/themes/bootstrap.css",
 					  "~/fonts/fontello/css/fontello.css",
+                      "~/fonts/font-awesome/css/font-awesome.css",
 					  "~/Content/plugins/rs-plugin/css/settings.css",
-					  "~/Content/animations.css",
-					  "~/Content/style.css",
-					  "~/Content/jquery-ui.css",
-					  "~/Content/jquery.datetimepicker.css",
+                      "~/Content/themes/animations.css",
+                      "~/Content/themes/style.css",
+                      "~/Content/themes/jquery-ui.css",
+                      "~/Content/themes/jquery.datetimepicker.css",
                       "~/Content/plugins/rs-plugin/css/setting.css",
-					  "~/Content/bootstrap-theme.css",
-					  "~/Content/site.css"));
+                      "~/Content/themes/bootstrap-theme.css",
+                      "~/Content/themes/light_blue.css",
+                      "~/Content/themes/site.css",
+                      "~/Content/themes/custom.css"));
 		}
 	}
 }
