@@ -283,21 +283,21 @@ namespace BritishCab
 
 			var bookingInfo = String.Format(@"<h2>Thanks you for booking at VIPdriving!</h2>" +
 										"<p><strong>Your order details:</strong></p>" +
-										"<p><strong>Name:&nbsp;{10}</strong></p>" +
-										"<p><strong>From:&nbsp;{5}, {0}</strong></p>" +
-										"<p><strong>To:&nbsp;{6}, {1}</strong></p>" +
-										"<p><strong>Pick up time:{2}</strong></p>" +
-										"<p><strong>Estimated transfer time:{3}</strong></p>" +
-										"<p><strong>Contact number:{4}</strong></p>" +
-										"<p><strong>Payment type: {7}</strong></p>" +
-										"<p><strong>Number of passengers: {8}</strong></p>" +
-										"<p><strong>Number of large luggage: {9}</strong></p>" +
-										treat + comments,
-										booking.PickUpLocation, booking.DropLocation, booking.PickUpDateTime,
-										booking.TransferTime, booking.PhoneNumber, booking.Comments,
-										booking.PickUpAddress, booking.DropAddress, paymentType,
-										booking.NumberOfPassengers, booking.NumberOfLuggage,
-										booking.Name);
+										"<p><strong>Name:&nbsp;{0}</strong></p>" +
+										"<p><strong>From:&nbsp;{1}, {2}</strong></p>" +
+										"<p><strong>To:&nbsp;{3}, {4}</strong></p>" +
+										"<p><strong>Pick up time:{5}</strong></p>" +
+										"<p><strong>Estimated transfer time:{6}</strong></p>" +
+										"<p><strong>Contact number:{7}</strong></p>" +
+										"<p><strong>Payment type: {8}</strong></p>" +
+										"<p><strong>Number of passengers: {9}</strong></p>" +
+										"<p><strong>Number of large luggage: {10}</strong></p>" +
+										treat + comments,booking.Name,
+                                        booking.PickUpLocation, booking.PickUpAddress, 
+                                        booking.DropLocation, booking.DropAddress, 
+                                        booking.PickUpDateTime,booking.TransferTime,
+                                        booking.PhoneNumber, paymentType,
+                                        booking.NumberOfPassengers, booking.NumberOfLuggage);
 
 			var confirmationLink = string.Format("<h3>You're almost there!<p>&nbsp;</p>Please follow the following link to confirm your order:</h3>{0}?confirmation={1}<p>&nbsp;</p>", localUrl, booking.ConfirmationCode);
 
