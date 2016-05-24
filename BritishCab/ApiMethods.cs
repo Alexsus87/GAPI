@@ -37,23 +37,24 @@ namespace BritishCab
 			using (var stream =
 				new FileStream(path, FileMode.Open, FileAccess.Read))
 			{
-			//string credPath = System.Environment.GetFolderPath(
-			//    System.Environment.SpecialFolder.Personal);
+				//string credPath = System.Environment.GetFolderPath(
+				//	System.Environment.SpecialFolder.Personal);
 
-			//credPath = Path.Combine(credPath, ".credentials/calendar-dotnet-quickstart");
+				//credPath = Path.Combine("~/.credentials/calendar-dotnet-quickstart.json");
 
-			//credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-			//    GoogleClientSecrets.Load(stream).Secrets,
-			//    Scopes,
-			//    "user",
-			//    CancellationToken.None,
-			//    new FileDataStore(credPath, true)).Result;
-			credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-				GoogleClientSecrets.Load(stream).Secrets,
-				Scopes,
-				"user",
-				CancellationToken.None,
-				new FileDataStore(HttpContext.Current.Server.MapPath("~/Content"), true)).Result;
+				string credPath = HttpContext.Current.Server.MapPath("~/credentials/vipdriving.json");
+				//credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+				//	GoogleClientSecrets.Load(stream).Secrets,
+				//	Scopes,
+				//	"user",
+				//	CancellationToken.None,
+				//	new FileDataStore(credPath, true)).Result;
+				/*credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+					GoogleClientSecrets.Load(stream).Secrets,
+					Scopes,
+					"user",
+					CancellationToken.None,
+					new FileDataStore(HttpContext.Current.Server.MapPath("~/Content"), true)).Result;*/
 			}
 			// Create Google Calendar API service.
 			service = new CalendarService(new BaseClientService.Initializer()
@@ -259,12 +260,12 @@ namespace BritishCab
 
 			// setup Smtp authentication
 			NetworkCredential credentials =
-				new NetworkCredential("driverfrombritain@gmail.com", "T!T@n1130");
+				new NetworkCredential("vipdriving@roshkani.com", "Algaritm4412");
 			client.UseDefaultCredentials = false;
 			client.Credentials = credentials;
 
 			MailMessage msg = new MailMessage();
-			msg.From = new MailAddress("driverfrombritain@gmail.com");
+			msg.From = new MailAddress("vipdriving@roshkani.com");
 			msg.To.Add(new MailAddress(emailAddress));
 			msg.IsBodyHtml = true;
 
@@ -293,11 +294,11 @@ namespace BritishCab
 										"<p><strong>Number of passengers: {9}</strong></p>" +
 										"<p><strong>Number of large luggage: {10}</strong></p>" +
 										treat + comments,booking.Name,
-                                        booking.PickUpLocation, booking.PickUpAddress, 
-                                        booking.DropLocation, booking.DropAddress, 
-                                        booking.PickUpDateTime,booking.TransferTime,
-                                        booking.PhoneNumber, paymentType,
-                                        booking.NumberOfPassengers, booking.NumberOfLuggage);
+										booking.PickUpLocation, booking.PickUpAddress, 
+										booking.DropLocation, booking.DropAddress, 
+										booking.PickUpDateTime,booking.TransferTime,
+										booking.PhoneNumber, paymentType,
+										booking.NumberOfPassengers, booking.NumberOfLuggage);
 
 			var confirmationLink = string.Format("<h3>You're almost there!<p>&nbsp;</p>Please follow the following link to confirm your order:</h3>{0}?confirmation={1}<p>&nbsp;</p>", localUrl, booking.ConfirmationCode);
 
@@ -319,6 +320,7 @@ namespace BritishCab
 			}
 			catch (Exception ex)
 			{
+				throw ex;
 				return false;
 			}
 		}

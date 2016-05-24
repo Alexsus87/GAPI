@@ -468,7 +468,6 @@
     <Content Include="fonts\fontello\font\fontello.eot" />
     <Content Include="fonts\fontello\font\fontello.ttf" />
     <Content Include="fonts\fontello\font\fontello.woff" />
-    <Content Include="Content\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user" />
     <Content Include="Content\font\revicons.eot" />
     <Content Include="Content\font\revicons.ttf" />
     <Content Include="Content\font\revicons.woff" />
@@ -481,6 +480,8 @@
     <Content Include="Content\assets\arrows.psd" />
     <Content Include="Content\assets\bullets.psd" />
     <Content Include="Content\assets\small_arrows.psd" />
+    <Content Include="Content\client_secret.json" />
+    <Content Include="Content\Terms &amp; Conditions .docx" />
     <None Include="Properties\PublishProfiles\britishcab1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\britishcab1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\britishcab1.pubxml" />
@@ -615,6 +616,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="credentials\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

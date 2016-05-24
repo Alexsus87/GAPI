@@ -1,6 +1,7 @@
 ﻿using BritishCab.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -129,7 +130,7 @@ namespace BritishCab.Controllers
 			#endregion
 
 			//TODO: send Email client is going to pay online
-			if (Request.Form["paypal"] != null)
+			if (Request.Form["paypal"] != "")
 			{
 				return View("Submit");
 			}
@@ -144,9 +145,13 @@ namespace BritishCab.Controllers
 			ViewBag.Url = string.Format("{0}?confirmation={1}", Url, booking.ConfirmationCode);
 			if (Request.HttpMethod == "POST")
 			{
-				_api.SendEmailViaGmail(booking, false, Url, BookingStatus.PayOnSight, null);
+				var mail = _api.SendEmailViaGmail(booking, false, Url, BookingStatus.PayOnSight, null);
+				if (!mail)
+				{
+					return View("About");
+				}
 
-				ViewBag.HomeUrl = Request.Url.Authority.ToString();
+				//ViewBag.HomeUrl = Request.Url.Authority.ToString();
 				return View("Submit");
 			}
 			return View("Payment",booking);
@@ -180,6 +185,12 @@ namespace BritishCab.Controllers
 			return RedirectToAction("Booking", booking);
 		}
 
+		public FileResult Download()
+		{
+			byte[] fileBytes = System.IO.File.ReadAllBytes(HttpContext.Server.MapPath("~/Content/Terms & Conditions .docx"));
+			string fileName = "Terms & Conditions .docx";
+			return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+		}
 		public ActionResult VipReward()
 		{
 			return View();
