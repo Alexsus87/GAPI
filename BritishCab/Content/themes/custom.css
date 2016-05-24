@@ -118,9 +118,9 @@ select#WineOption {
     background-color: rgb(120, 124, 125);
 }
 .btn-paypal {
-	background-image: url(https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg);
-	width: 75px;
-	height: 45px;
+	background-image: url(https://www.paypalobjects.com/webstatic/en_US/btn/btn_checkout_pp_142x27.png);
+	width: 145px;
+	height: 27px;
 	color: transparent !important; 
 	border-color: transparent;
 	margin-left: 15px;
