@@ -482,6 +482,9 @@
     <Content Include="Content\assets\small_arrows.psd" />
     <Content Include="Content\client_secret.json" />
     <Content Include="Content\Terms &amp; Conditions .docx" />
+    <Content Include="credentials\vipdriving.json\Google.Apis.Auth.OAuth2.Responses.TokenResponse-user">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\britishcab1 - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\britishcab1 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\britishcab1.pubxml" />
@@ -616,7 +619,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="credentials\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

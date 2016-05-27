@@ -37,24 +37,28 @@ namespace BritishCab
 			using (var stream =
 				new FileStream(path, FileMode.Open, FileAccess.Read))
 			{
+				#region Not used now
 				//string credPath = System.Environment.GetFolderPath(
 				//	System.Environment.SpecialFolder.Personal);
 
 				//credPath = Path.Combine("~/.credentials/calendar-dotnet-quickstart.json");
+				#endregion
 
 				string credPath = HttpContext.Current.Server.MapPath("~/credentials/vipdriving.json");
-				//credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-				//	GoogleClientSecrets.Load(stream).Secrets,
-				//	Scopes,
-				//	"user",
-				//	CancellationToken.None,
-				//	new FileDataStore(credPath, true)).Result;
+				credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+					GoogleClientSecrets.Load(stream).Secrets,
+					Scopes,
+					"user",
+					CancellationToken.None,
+					new FileDataStore(credPath, true)).Result;
+				#region Not used now
 				/*credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
 					GoogleClientSecrets.Load(stream).Secrets,
 					Scopes,
 					"user",
 					CancellationToken.None,
 					new FileDataStore(HttpContext.Current.Server.MapPath("~/Content"), true)).Result;*/
+				#endregion
 			}
 			// Create Google Calendar API service.
 			service = new CalendarService(new BaseClientService.Initializer()
@@ -169,7 +173,7 @@ namespace BritishCab
 			//Inserting event to calendar
 			Event event1 = new Event()
 			{
-				Summary = String.Format("Route: {0} - {1}, Client: {2}",booking.PickUpLocation, booking.DropLocation, booking.Name),
+				Summary = String.Format("From: {0}, {1}, To: {2}, {3}, Client: {4}",booking.PickUpAddress,booking.PickUpLocation,booking.DropAddress, booking.DropLocation, booking.Name),
 				Location = booking.PickUpLocation,
 				Start = new EventDateTime()
 				{
@@ -260,12 +264,12 @@ namespace BritishCab
 
 			// setup Smtp authentication
 			NetworkCredential credentials =
-				new NetworkCredential("vipdriving@roshkani.com", "Algaritm4412");
+				new NetworkCredential("Info@vipdriving.net", "Azariaevita2016");
 			client.UseDefaultCredentials = false;
 			client.Credentials = credentials;
 
 			MailMessage msg = new MailMessage();
-			msg.From = new MailAddress("vipdriving@roshkani.com");
+			msg.From = new MailAddress("Info@vipdriving.net");
 			msg.To.Add(new MailAddress(emailAddress));
 			msg.IsBodyHtml = true;
 
@@ -282,8 +286,15 @@ namespace BritishCab
 				comments = string.Format("<p><strong>Additional comments: {0}</strong></p>", booking.Comments);
 			}
 
-			var bookingInfo = String.Format(@"<h2>Thanks you for booking at VIPdriving!</h2>" +
-										"<p><strong>Your order details:</strong></p>" +
+			string clientGreeting = "";
+
+			if (driverEmail == null)
+			{
+				clientGreeting = "<h2>Thank you for booking at VIPdriving!</h2>" +
+									"<p><strong>Your order details:</strong></p>";
+			}
+
+			var bookingInfo = String.Format(@"{12}<p><strong>Ref. Number: {11}</strong></p>"+
 										"<p><strong>Name:&nbsp;{0}</strong></p>" +
 										"<p><strong>From:&nbsp;{1}, {2}</strong></p>" +
 										"<p><strong>To:&nbsp;{3}, {4}</strong></p>" +
@@ -298,19 +309,25 @@ namespace BritishCab
 										booking.DropLocation, booking.DropAddress, 
 										booking.PickUpDateTime,booking.TransferTime,
 										booking.PhoneNumber, paymentType,
-										booking.NumberOfPassengers, booking.NumberOfLuggage);
+										booking.NumberOfPassengers, booking.NumberOfLuggage,
+										booking.RefNumber, clientGreeting);
 
 			var confirmationLink = string.Format("<h3>You're almost there!<p>&nbsp;</p>Please follow the following link to confirm your order:</h3>{0}?confirmation={1}<p>&nbsp;</p>", localUrl, booking.ConfirmationCode);
 
-			if (isFinal)
+			if (isFinal && driverEmail == null)
 			{
 				msg.Subject = String.Format("Order was placed Ref: {0}", booking.RefNumber);
 				msg.Body = bookingInfo;
 			}
+			else if (driverEmail == null)
+			{
+				msg.Subject = String.Format("VIPdriving Order Confirmation Ref: {0}", booking.RefNumber);
+				msg.Body = confirmationLink + bookingInfo;
+			}
 			else
 			{
-				msg.Subject = String.Format("VIPdriving Order Confirmation Ref: {0}",booking.RefNumber);
-				msg.Body = confirmationLink + bookingInfo;
+				msg.Subject = String.Format("Order was placed Ref: {0}", booking.RefNumber);
+				msg.Body = bookingInfo + String.Format("<p><strong>Customer Email: {0}</strong></p>", booking.Email);
 			}
 
 			try
@@ -320,7 +337,6 @@ namespace BritishCab
 			}
 			catch (Exception ex)
 			{
-				throw ex;
 				return false;
 			}
 		}
@@ -375,6 +391,8 @@ namespace BritishCab
 									   select DBbooking).FirstOrDefault();
 					if (bookingInfo != null)
 					{
+						GetSlotAvailability(bookingInfo);
+
 						if (bookingInfo.IsSlotAvailable)
 						{
 							InsertEventToCalendar(bookingInfo);
@@ -387,7 +405,7 @@ namespace BritishCab
 						{
 							SendEmailViaGmail(bookingInfo, true, null, bookingStatus, null);
 						}
-						SendEmailViaGmail(bookingInfo, true, null, bookingStatus, "vipdriving@roshkani.com");
+						SendEmailViaGmail(bookingInfo, true, null, bookingStatus, "Info@vipdriving.net");
 						bookingInfo.ConfirmationCode = Guid.Empty;
 
 						db.SaveChanges();
