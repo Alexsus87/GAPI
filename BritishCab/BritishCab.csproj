@@ -270,6 +270,9 @@
     <Compile Include="TravelDistanceTime.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\AP3_mobile.jpg" />
+    <Content Include="Content\Images\BB2_mobile.jpg" />
+    <Content Include="Content\Images\LO2_mobile.jpg" />
     <Content Include="Content\themes\animate.css" />
     <Content Include="Content\themes\animations.css" />
     <Content Include="Content\assets\arrowleft.png" />

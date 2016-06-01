@@ -5,23 +5,37 @@
 }
 
 <script type="text/javascript">
-	$(document).ready(function () {
+	$(document).ready(function() {
 		$('#datetimepicker').datetimepicker({
 			theme: 'dark',
 			format: 'd/m/Y H:i',
-			minDate:0
-	    });
+			minDate: 0
+		});
 	});
 
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
 	ga('create', 'UA-78428628-1', 'auto');
 	ga('send', 'pageview');
 </script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+@{
+	var bristol = Request.Browser.IsMobileDevice ? "Content/images/BB2_mobile.jpg" : "Content/images/BB2.jpg";
+	var london = Request.Browser.IsMobileDevice ? "Content/images/LO2_mobile.jpg " : "Content/images/LO2.jpg";
+	var airport = Request.Browser.IsMobileDevice ? "Content/images/AP3_mobile.jpg" : "Content/images/AP3.jpg";
+	var largeText = Request.Browser.IsMobileDevice ? "font-size: 48px" : "";
+}
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMJXLUG_AKhVdOJ1YFd1gFLAgUx7bHoe4&libraries=places"></script>
 <div style="position:relative">
 	<!-- banner start -->
 	<!-- ================ -->
@@ -38,7 +52,7 @@
 						<!-- ================ -->
 						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
 							<!-- main image -->
-							<img src="~/Content/images/BB2.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<img src="@bristol" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
 							<!-- Transparent Background -->
 							<div class="tp-caption dark-translucent-bg"
 								 data-x="center"
@@ -62,7 +76,7 @@
 						<!-- ================ -->
 						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
 							<!-- main image -->
-							<img src="~/Content/images/LO2.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<img src="@london" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
 							<!-- Transparent Background -->
 							<div class="tp-caption dark-translucent-bg"
 								 data-x="center"
@@ -76,13 +90,14 @@
 								 data-speed="500"
 								 data-start="1000"
 								 data-easing="easeOutQuad"
-								 data-end="10000">
+							     data-end="10000"
+								 style="@largeText">
 								All you need for your pleasant journey
 							</div>
 						</li>
 						<li data-transition="slidehorizontal" data-slotamount="1" data-masterspeed="500" data-saveperformance="on" data-title="VIP Driving">
 							<!-- main image -->
-							<img src="~/Content/images/AP3.jpg" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
+							<img src="@airport" alt="slidebg1" data-bgposition="center top" data-bgrepeat="no-repeat" data-bgfit="cover">
 							<!-- Transparent Background -->
 							<div class="tp-caption dark-translucent-bg"
 								 data-x="center"
@@ -96,7 +111,8 @@
 								 data-speed="500"
 								 data-start="1000"
 								 data-easing="easeOutQuad"
-								 data-end="10000">
+								 data-end="10000"
+								 style="@largeText">
 								Affordable reliable fast and always on time
 							</div>
 						</li>

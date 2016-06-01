@@ -29,6 +29,24 @@ namespace BritishCab.Controllers
 		[HttpPost]
 		public ActionResult Index(Booking booking)
 		{
+			if (booking.PickUpLocation == null)
+			{
+				booking.ErrorMessage = "Please choose pick up location";
+				ViewBag.Error = "Please choose pick up location";
+				return View(booking);
+			}
+			if (booking.DropLocation == null)
+			{
+				booking.ErrorMessage = "Please choose destination";
+				ViewBag.Error = "Please choose destination";
+				return View(booking);
+			}
+			if (booking.PickUpDateTime.Date < DateTime.Today)
+			{
+				booking.ErrorMessage = "You cannot choose past date";
+				ViewBag.Error = "You cannot choose past date";
+				return View(booking);
+			}
 
 			//Validate input and get route stats
 			_dm = _api.GetRouteInformation(booking.PickUpLocation, booking.DropLocation);
@@ -54,12 +72,16 @@ namespace BritishCab.Controllers
 		[HttpPost]
 		public ActionResult Booking(Booking booking, string post)
 		{
-			//Getting trip distance stats
-			_dm = _api.GetRouteInformation(booking.PickUpLocation, booking.DropLocation);
-			if (_dm.ErrorBit)
+			if (booking.PickUpLocation == null)
 			{
-				booking.ErrorMessage = "Please check spelling on locations";
-				ViewBag.Error = "Please check spelling on locations";
+				booking.ErrorMessage = "Please choose pick up location";
+				ViewBag.Error = "Please choose pick up location";
+				return View(booking);
+			}
+			if (booking.DropLocation == null)
+			{
+				booking.ErrorMessage = "Please choose destination";
+				ViewBag.Error = "Please choose destination";
 				return View(booking);
 			}
 			if (booking.PickUpDateTime.Date < DateTime.Today)
@@ -68,6 +90,15 @@ namespace BritishCab.Controllers
 				ViewBag.Error = "You cannot choose past date";
 				return View(booking);
 			}
+			//Getting trip distance stats
+			_dm = _api.GetRouteInformation(booking.PickUpLocation, booking.DropLocation);
+			if (_dm.ErrorBit)
+			{
+				booking.ErrorMessage = "Please check spelling on locations";
+				ViewBag.Error = "Please check spelling on locations";
+				return View(booking);
+			}
+
 
 			//Adding trip distance stats to booking
 			_api.PopulateBooking(_dm, booking);
@@ -79,18 +110,56 @@ namespace BritishCab.Controllers
 
 		public ActionResult FinalizeBooking(Booking booking)
 		{
-			if (booking.PickUpLocation == null || booking.DropLocation == null || booking.Price == 0.0)
-			{
-				return RedirectToAction("Booking");
-			}
 
 			var listOfTreats = new List<string>();
 			listOfTreats.Add(" ");
-			listOfTreats.Add("(White) Sauvignon blanc, New Zealand");
-			listOfTreats.Add("(Red) Malbec, Agrentina");
+			listOfTreats.Add("Sauvignon blanc, New Zealand (White)");
+			listOfTreats.Add("Malbec, Agrentina (Red)");
 			listOfTreats.Add("Ferrero Raffaello (non-drinker)");
 
 			ViewBag.Treats = listOfTreats;
+
+			#region checking if null
+
+			if (Request.Form["submit"] != null)
+			{
+				if (booking.Name == null)
+				{
+					booking.ErrorMessage = "Please enter your name";
+					ViewBag.Error = "Please enter your name";
+					return View(booking);
+				}
+				if (booking.PhoneNumber == null)
+				{
+					booking.ErrorMessage = "Please enter your contact number";
+					ViewBag.Error = "Please enter your contact number";
+					return View(booking);
+				}
+				if (booking.PhoneNumber == null)
+				{
+					booking.ErrorMessage = "Please enter your email";
+					ViewBag.Error = "Please enter your email";
+					return View(booking);
+				}
+				if (booking.PhoneNumber == null)
+				{
+					booking.ErrorMessage = "Please enter your pick up address";
+					ViewBag.Error = "Please enter your pick up address";
+					return View(booking);
+				}
+				if (booking.PhoneNumber == null)
+				{
+					booking.ErrorMessage = "Please enter your destination address";
+					ViewBag.Error = "Please enter your destination address";
+					return View(booking);
+				}
+				if (booking.PickUpLocation == null || booking.DropLocation == null || booking.Price == 0.0)
+				{
+					return RedirectToAction("Booking");
+				}
+			}
+
+			#endregion
 
 			if (Request.HttpMethod != "POST") return View(booking);
 

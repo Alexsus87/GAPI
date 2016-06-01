@@ -312,7 +312,7 @@ namespace BritishCab
 										booking.NumberOfPassengers, booking.NumberOfLuggage,
 										booking.RefNumber, clientGreeting);
 
-			var confirmationLink = string.Format("<h3>You're almost there!<p>&nbsp;</p>Please follow the following link to confirm your order:</h3>{0}?confirmation={1}<p>&nbsp;</p>", localUrl, booking.ConfirmationCode);
+			var confirmationLink = string.Format(@"<h3>You're almost there!<p>&nbsp;</p></h3><a href=""{0}?confirmation={1}"">Please click here to confirm your order</a><p>&nbsp;</p>", localUrl, booking.ConfirmationCode);
 
 			if (isFinal && driverEmail == null)
 			{
@@ -363,11 +363,17 @@ namespace BritishCab
 				//This calculates price for total driving distance
 				//var priceForTransfer = bookingEntity.TotalDrivingDistance*pricePerKm;
 
-                var remainder = priceForTransfer % 5;
-                if (remainder != 0)
-                {
-                    priceForTransfer += (5- remainder);
-                }
+				//Setting minimum price if calculated price is lower than 50 pounds
+				if (priceForTransfer < 50)
+				{
+					priceForTransfer = 50;
+				}
+
+				var remainder = priceForTransfer % 5;
+				if (remainder != 0)
+				{
+					priceForTransfer += (5- remainder);
+				}
 
 				bookingEntity.Price = priceForTransfer;
 			}

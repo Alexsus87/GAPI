@@ -60,4 +60,9 @@
 		<To>Newquay</To>
 		<Price>80</Price>
 	</route>
+	<route>
+		<From>Bristol</From>
+		<To>Bath</To>
+		<Price>50</Price>
+	</route>
 </prices>

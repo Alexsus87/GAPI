@@ -23,6 +23,13 @@
 						@Html.HiddenFor(model => model.TotalTime)
 						@Html.HiddenFor(model => model.DrivingDistance)
 
+						@if (@ViewBag.Error != null)
+						{
+							<div class="alert alert-warning">
+								<strong>Warning!</strong> @ViewBag.Error
+							</div>
+						}
+
 						<div class="form-group">
 							@Html.LabelFor(model => model.PickUpLocation, htmlAttributes: new { @class = "control-label col-md-4 col-sm-2" })
 							<div class="col-md-6 display-string">
